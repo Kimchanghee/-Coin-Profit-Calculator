@@ -15,6 +15,10 @@ View your app in AI Studio: https://ai.studio/apps/drive/11qeskxhB7UkSO-t6BweSVn
 
 1. Install dependencies:
    `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
+2. Configure environment variables in [.env.local](.env.local):
+   - `GEMINI_API_KEY` – your Gemini API key
+   - `VITE_ADSENSE_CLIENT_ID` – Google AdSense client ID (optional)
+   - `VITE_ADSENSE_SLOT_SIDEBAR_TOP` / `VITE_ADSENSE_SLOT_SIDEBAR_BOTTOM` – Ad slot IDs used in the sidebar (optional)
+   - `VITE_GA_MEASUREMENT_ID` – Google Analytics 4 measurement ID (optional)
 3. Run the app:
    `npm run dev`
