@@ -5,6 +5,7 @@ import ReferralBanner from './components/ReferralBanner';
 import Calculator from './components/Calculator';
 import AdPlaceholder from './components/AdPlaceholder';
 import Clock from './components/Clock';
+import GoogleAnalytics from './components/GoogleAnalytics';
 import { SUPPORTED_LANGUAGES } from './constants';
 
 const App: React.FC = () => {
@@ -20,6 +21,7 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-black text-gray-200 font-sans">
+      <GoogleAnalytics />
       <header className="bg-gray-950/80 backdrop-blur-sm sticky top-0 z-10 shadow-lg p-4 flex justify-between items-center border-b border-gray-800">
         <h1 className="text-xl md:text-2xl font-bold text-cyan-400">{t('title')}</h1>
         <div className="flex items-center gap-4">
@@ -40,8 +42,8 @@ const App: React.FC = () => {
             <Calculator t={t} />
           </div>
           <aside className="space-y-8">
-            <AdPlaceholder />
-            <AdPlaceholder />
+            <AdPlaceholder slotKey="sidebarTop" />
+            <AdPlaceholder slotKey="sidebarBottom" />
           </aside>
         </div>
       </main>
