@@ -1,5 +1,5 @@
 {
-  "name": "코인 수익율 계산기 Coin Profit Calculator",
-  "description": "A cryptocurrency profit and loss calculator with multi-language support. Calculate your potential earnings from trades considering leverage, investment amount, and fees.",
+  "name": "Coin Profit Calculator",
+  "description": "A cryptocurrency futures profit and loss calculator with multi-language support.",
   "requestFramePermissions": []
 }

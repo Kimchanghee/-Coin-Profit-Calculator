@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { initAnalytics, trackPageView } from '../utils/analytics';
 import { isAnalyticsConfigured } from '../marketing';
 
