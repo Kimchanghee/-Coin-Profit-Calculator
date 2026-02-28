@@ -8,6 +8,8 @@
   },
   "scripts": {
     "dev": "vite",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run typecheck && npm run build",
     "build": "vite build",
     "preview": "vite preview"
   },

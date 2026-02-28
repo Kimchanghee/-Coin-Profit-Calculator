@@ -44,9 +44,15 @@ VITE_ADSENSE_SLOT_FOOTER_BANNER=
 VITE_ADSENSE_SLOT_IN_ARTICLE=
 ```
 
+Template file:
+
+- `.env.example`
+
 ## Build
 
 ```bash
+npm run typecheck
+npm run check
 npm run build
 npm run preview
 ```
@@ -62,6 +68,21 @@ Build output is generated in `dist/`.
    - Output directory: `dist`
 3. Add environment variables in Lovable project settings (same keys listed above).
 4. Deploy from your target branch.
+
+## Publishing Checklist
+
+Before going live:
+
+1. Replace placeholder domain `https://example.com` in:
+   - `index.html` (canonical / og:url / twitter:url fallback)
+   - `public/robots.txt`
+   - `public/sitemap.xml`
+2. Replace publisher id in `public/ads.txt`.
+3. Set AdSense env vars in Lovable:
+   - `VITE_ADSENSE_CLIENT_ID`
+   - `VITE_ADSENSE_SLOT_SIDEBAR_TOP`
+   - `VITE_ADSENSE_SLOT_SIDEBAR_BOTTOM`
+4. Run `npm run check` and deploy.
 
 ## Project Structure
 

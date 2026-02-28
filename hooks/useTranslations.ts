@@ -4,38 +4,42 @@ import type { Translations, TranslationKey } from '../types';
 
 // A map to hold cached translations
 const translationsCache: { [key: string]: Translations } = {};
+const localeModules = import.meta.glob<{ default: Translations }>('../locales/*.json', { eager: true });
+
+const bundledTranslations: Record<string, Translations> = Object.entries(localeModules).reduce(
+    (acc, [path, module]) => {
+        const match = path.match(/\/([a-z0-9_-]+)\.json$/i);
+        if (match) {
+            acc[match[1]] = module.default;
+        }
+        return acc;
+    },
+    {} as Record<string, Translations>,
+);
 
 const loadTranslation = async (langCode: string): Promise<Translations> => {
     if (translationsCache[langCode]) {
         return translationsCache[langCode];
     }
-    try {
-        const response = await fetch(`./locales/${langCode}.json`);
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const translations = await response.json();
+    const translations = bundledTranslations[langCode];
+    if (translations) {
         translationsCache[langCode] = translations;
         return translations;
-    } catch (error) {
-        console.warn(`Could not load translation for ${langCode}, falling back to default.`, error);
-        // Fallback to default language
-        try {
-            if (translationsCache[DEFAULT_LANGUAGE]) {
-                return translationsCache[DEFAULT_LANGUAGE];
-            }
-            const response = await fetch(`./locales/${DEFAULT_LANGUAGE}.json`);
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            const translations = await response.json();
-            translationsCache[DEFAULT_LANGUAGE] = translations;
-            return translations;
-        } catch (fallbackError) {
-            console.error('Failed to load default translations:', fallbackError);
-            return {} as Translations; // Return empty object to prevent crash
-        }
     }
+
+    console.warn(`Could not load translation for ${langCode}, falling back to default.`);
+    if (translationsCache[DEFAULT_LANGUAGE]) {
+        return translationsCache[DEFAULT_LANGUAGE];
+    }
+
+    const fallback = bundledTranslations[DEFAULT_LANGUAGE];
+    if (fallback) {
+        translationsCache[DEFAULT_LANGUAGE] = fallback;
+        return fallback;
+    }
+
+    console.error('Failed to load default translations: bundled default translation is missing.');
+    return {} as Translations;
 };
 
 const updateMetaTag = (selector: string, attribute: string, content?: string) => {
