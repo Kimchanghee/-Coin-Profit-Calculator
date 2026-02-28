@@ -6,13 +6,14 @@
  */
 
 export const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID ?? '';
+const GA_MEASUREMENT_ID_PATTERN = /^G-[A-Z0-9]+$/i;
 
 /**
  * Check if Google Analytics is properly configured
  * @returns true if GA_MEASUREMENT_ID is set
  */
 export const isAnalyticsConfigured = (): boolean => {
-  return Boolean(GA_MEASUREMENT_ID) && GA_MEASUREMENT_ID.startsWith('G-');
+  return GA_MEASUREMENT_ID_PATTERN.test(GA_MEASUREMENT_ID);
 };
 
 /**

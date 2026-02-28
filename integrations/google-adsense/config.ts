@@ -8,6 +8,7 @@
  */
 
 export const ADSENSE_CLIENT_ID = import.meta.env.VITE_ADSENSE_CLIENT_ID ?? '';
+const ADSENSE_CLIENT_ID_PATTERN = /^ca-pub-\d{16}$/;
 
 export const ADSENSE_SLOT_IDS = {
   sidebarTop: import.meta.env.VITE_ADSENSE_SLOT_SIDEBAR_TOP ?? '',
@@ -24,7 +25,7 @@ export type AdSlotKey = keyof typeof ADSENSE_SLOT_IDS;
  * @returns true if ADSENSE_CLIENT_ID is set and valid
  */
 export const isAdsenseConfigured = (): boolean => {
-  return Boolean(ADSENSE_CLIENT_ID) && ADSENSE_CLIENT_ID.startsWith('ca-pub-');
+  return ADSENSE_CLIENT_ID_PATTERN.test(ADSENSE_CLIENT_ID);
 };
 
 /**

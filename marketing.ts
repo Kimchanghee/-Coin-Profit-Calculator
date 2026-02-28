@@ -9,6 +9,9 @@ export type AdSlotKey = keyof typeof ADSENSE_SLOT_IDS;
 
 export const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID ?? '';
 
-export const isAdsenseConfigured = () => Boolean(ADSENSE_CLIENT_ID);
+const ADSENSE_CLIENT_ID_PATTERN = /^ca-pub-\d{16}$/;
+const GA_MEASUREMENT_ID_PATTERN = /^G-[A-Z0-9]+$/i;
 
-export const isAnalyticsConfigured = () => Boolean(GA_MEASUREMENT_ID);
+export const isAdsenseConfigured = () => ADSENSE_CLIENT_ID_PATTERN.test(ADSENSE_CLIENT_ID);
+
+export const isAnalyticsConfigured = () => GA_MEASUREMENT_ID_PATTERN.test(GA_MEASUREMENT_ID);

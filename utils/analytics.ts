@@ -2,7 +2,7 @@ import { GA_MEASUREMENT_ID, isAnalyticsConfigured } from '../marketing';
 
 declare global {
   interface Window {
-    dataLayer?: Record<string, unknown>[];
+    dataLayer?: unknown[];
     gtag?: (...args: unknown[]) => void;
   }
 }
@@ -21,18 +21,12 @@ const loadScript = () => {
     document.head.appendChild(script);
   }
 
-  const inlineScriptId = 'ga-inline-config';
-  if (!document.getElementById(inlineScriptId)) {
-    const inlineScript = document.createElement('script');
-    inlineScript.id = inlineScriptId;
-    inlineScript.innerHTML = `
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', '${GA_MEASUREMENT_ID}', { send_page_view: false });
-    `;
-    document.head.appendChild(inlineScript);
-  }
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = (...args: unknown[]) => {
+    window.dataLayer?.push(args);
+  };
+  window.gtag('js', new Date());
+  window.gtag('config', GA_MEASUREMENT_ID, { send_page_view: false });
 };
 
 export const initAnalytics = () => {
