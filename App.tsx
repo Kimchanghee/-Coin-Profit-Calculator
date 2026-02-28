@@ -36,16 +36,47 @@ const App: React.FC = () => {
 
       <main className="container mx-auto p-4 md:p-8">
         <ReferralBanner t={t} />
+        <AdPlaceholder
+          slotKey="headerBanner"
+          fallbackLabel={t('ad_space_label')}
+          format="horizontal"
+          minHeight={90}
+          className="mt-6"
+        />
         
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
-          <div className="lg:col-span-2">
+          <section className="lg:col-span-2 space-y-8">
             <Calculator t={t} localeCode={currentLanguageCode} />
-          </div>
-          <aside className="space-y-8">
-            <AdPlaceholder slotKey="sidebarTop" fallbackLabel={t('ad_space_label')} />
-            <AdPlaceholder slotKey="sidebarBottom" fallbackLabel={t('ad_space_label')} />
+            <AdPlaceholder
+              slotKey="inArticle"
+              fallbackLabel={t('ad_space_label')}
+              format="rectangle"
+              minHeight={280}
+            />
+          </section>
+          <aside className="space-y-8 lg:sticky lg:top-24 lg:self-start">
+            <AdPlaceholder
+              slotKey="sidebarTop"
+              fallbackLabel={t('ad_space_label')}
+              format="vertical"
+              minHeight={300}
+            />
+            <AdPlaceholder
+              slotKey="sidebarBottom"
+              fallbackLabel={t('ad_space_label')}
+              format="vertical"
+              minHeight={300}
+            />
           </aside>
         </div>
+
+        <AdPlaceholder
+          slotKey="footerBanner"
+          fallbackLabel={t('ad_space_label')}
+          format="horizontal"
+          minHeight={90}
+          className="mt-8"
+        />
       </main>
       
       <footer className="text-center p-4 mt-8 text-gray-600 text-sm border-t border-gray-900">

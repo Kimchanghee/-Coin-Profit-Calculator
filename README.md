@@ -42,6 +42,9 @@ VITE_ADSENSE_SLOT_SIDEBAR_BOTTOM=
 VITE_ADSENSE_SLOT_HEADER_BANNER=
 VITE_ADSENSE_SLOT_FOOTER_BANNER=
 VITE_ADSENSE_SLOT_IN_ARTICLE=
+VITE_ADSENSE_LAZY_LOAD=true
+VITE_ADSENSE_LAZY_ROOT_MARGIN=400px 0px
+VITE_ADSENSE_SHOW_FALLBACK_IN_PROD=false
 ```
 
 Template file:
@@ -80,9 +83,22 @@ Before going live:
 2. Replace publisher id in `public/ads.txt`.
 3. Set AdSense env vars in Lovable:
    - `VITE_ADSENSE_CLIENT_ID`
+   - `VITE_ADSENSE_SLOT_HEADER_BANNER`
+   - `VITE_ADSENSE_SLOT_IN_ARTICLE`
    - `VITE_ADSENSE_SLOT_SIDEBAR_TOP`
    - `VITE_ADSENSE_SLOT_SIDEBAR_BOTTOM`
-4. Run `npm run check` and deploy.
+   - `VITE_ADSENSE_SLOT_FOOTER_BANNER`
+4. Tune ad load flags:
+   - `VITE_ADSENSE_LAZY_LOAD=true`
+   - `VITE_ADSENSE_LAZY_ROOT_MARGIN=400px 0px`
+   - `VITE_ADSENSE_SHOW_FALLBACK_IN_PROD=false`
+5. Run `npm run check` and deploy.
+
+## Ad Revenue Optimization Design
+
+Detailed operating design (placement strategy, KPI, A/B loop):
+
+- `docs/AD_REVENUE_OPTIMIZATION_PLAN.md`
 
 ## Project Structure
 
