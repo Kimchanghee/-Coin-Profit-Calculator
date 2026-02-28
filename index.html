@@ -16,11 +16,10 @@
     <meta name="author" content="Coin Profit Calculator" />
     <meta name="robots" content="index, follow" />
 
-    <!-- Replace with your actual Lovable production domain -->
-    <link rel="canonical" href="https://your-lovable-domain.com" />
+    <link rel="canonical" href="https://example.com/" />
 
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://your-lovable-domain.com" />
+    <meta property="og:url" content="https://example.com/" />
     <meta property="og:title" content="Crypto Futures Profit Calculator" />
     <meta
       property="og:description"
@@ -28,12 +27,24 @@
     />
 
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://your-lovable-domain.com" />
+    <meta property="twitter:url" content="https://example.com/" />
     <meta property="twitter:title" content="Crypto Futures Profit Calculator" />
     <meta
       property="twitter:description"
       content="Calculate crypto futures PnL with leverage, fees, and risk-aware scenarios."
     />
+    <script>
+      (function setSeoUrls() {
+        var url = window.location.origin + window.location.pathname;
+        var canonical = document.querySelector('link[rel="canonical"]');
+        var ogUrl = document.querySelector('meta[property="og:url"]');
+        var twitterUrl = document.querySelector('meta[property="twitter:url"]');
+
+        if (canonical) canonical.setAttribute('href', url);
+        if (ogUrl) ogUrl.setAttribute('content', url);
+        if (twitterUrl) twitterUrl.setAttribute('content', url);
+      })();
+    </script>
 
   </head>
   <body class="bg-black">
