@@ -25,5 +25,8 @@
   "position_type": "Tipo de Posición",
   "error_invalid_numbers": "Por favor, introduzca números válidos en todos los campos.",
   "referral_payback_toggle": "¿Activar reembolso de referido?",
-  "referral_payback_rate": "Tasa de Reembolso (%)"
+  "referral_payback_rate": "Tasa de Reembolso (%)",
+  "error_required_fields": "Por favor, complete primero todos los campos obligatorios.",
+  "ad_space_label": "Espacio publicitario",
+  "disclaimer": "Aviso: Operar con criptomonedas implica un riesgo significativo. Esta calculadora es solo para fines informativos."
 }

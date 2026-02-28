@@ -29,8 +29,11 @@ export type TranslationKey =
   | 'short_position'
   | 'position_type'
   | 'error_invalid_numbers'
+  | 'error_required_fields'
   | 'referral_payback_toggle'
-  | 'referral_payback_rate';
+  | 'referral_payback_rate'
+  | 'ad_space_label'
+  | 'disclaimer';
 
 export type Translations = Record<TranslationKey, string>;
 

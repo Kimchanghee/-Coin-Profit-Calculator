@@ -1,4 +1,3 @@
-
 import type { Language } from './types';
 
 export const SUPPORTED_LANGUAGES: Language[] = [

@@ -39,17 +39,17 @@ const App: React.FC = () => {
         
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
           <div className="lg:col-span-2">
-            <Calculator t={t} />
+            <Calculator t={t} localeCode={currentLanguageCode} />
           </div>
           <aside className="space-y-8">
-            <AdPlaceholder slotKey="sidebarTop" />
-            <AdPlaceholder slotKey="sidebarBottom" />
+            <AdPlaceholder slotKey="sidebarTop" fallbackLabel={t('ad_space_label')} />
+            <AdPlaceholder slotKey="sidebarBottom" fallbackLabel={t('ad_space_label')} />
           </aside>
         </div>
       </main>
       
       <footer className="text-center p-4 mt-8 text-gray-600 text-sm border-t border-gray-900">
-        <p>Disclaimer: Trading cryptocurrency involves significant risk. This calculator is for informational purposes only.</p>
+        <p>{t('disclaimer')}</p>
       </footer>
     </div>
   );

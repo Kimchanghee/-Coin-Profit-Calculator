@@ -24,6 +24,9 @@
   "short_position": "Short",
   "position_type": "Position Type",
   "error_invalid_numbers": "Please enter valid numbers in all fields.",
+  "error_required_fields": "Please fill in all required fields first.",
   "referral_payback_toggle": "Enable Referral Payback?",
-  "referral_payback_rate": "Payback Rate (%)"
+  "referral_payback_rate": "Payback Rate (%)",
+  "ad_space_label": "Advertisement Space",
+  "disclaimer": "Disclaimer: Trading cryptocurrency involves significant risk. This calculator is for informational purposes only."
 }

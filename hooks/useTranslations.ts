@@ -42,6 +42,24 @@ const loadTranslation = async (langCode: string): Promise<Translations> => {
     return {} as Translations;
 };
 
+const LANGUAGE_STORAGE_KEY = 'coin-profit-calculator-language';
+
+const getStoredLanguage = (): string | null => {
+    try {
+        return window.localStorage.getItem(LANGUAGE_STORAGE_KEY);
+    } catch {
+        return null;
+    }
+};
+
+const setStoredLanguage = (languageCode: string) => {
+    try {
+        window.localStorage.setItem(LANGUAGE_STORAGE_KEY, languageCode);
+    } catch {
+        // Ignore storage failures (private mode, blocked storage, etc.)
+    }
+};
+
 const updateMetaTag = (selector: string, attribute: string, content?: string) => {
     const element = document.querySelector(selector) as HTMLMetaElement | HTMLLinkElement | null;
     if (element && content) {
@@ -52,6 +70,11 @@ const updateMetaTag = (selector: string, attribute: string, content?: string) =>
 
 export const useTranslations = () => {
     const [languageCode, setLanguageCode] = useState<string>(() => {
+        const storedLanguage = getStoredLanguage();
+        if (storedLanguage && SUPPORTED_LANGUAGES.some(lang => lang.code === storedLanguage)) {
+            return storedLanguage;
+        }
+
         const browserLang = navigator.language.split('-')[0];
         return SUPPORTED_LANGUAGES.some(lang => lang.code === browserLang) ? browserLang : DEFAULT_LANGUAGE;
     });
@@ -72,6 +95,10 @@ export const useTranslations = () => {
         };
     }, [languageCode]);
 
+    useEffect(() => {
+        setStoredLanguage(languageCode);
+    }, [languageCode]);
+
     const t = useCallback((key: TranslationKey): string => {
         if (!translations) return key;
         return translations[key] || key;
@@ -83,7 +110,7 @@ export const useTranslations = () => {
             document.documentElement.lang = languageCode;
             document.title = translations.title;
             
-            const currentUrl = window.location.href;
+            const currentUrl = `${window.location.origin}${window.location.pathname}`;
 
             updateMetaTag('meta[name="description"]', 'content', translations.description);
             updateMetaTag('meta[name="keywords"]', 'content', translations.meta_keywords);

@@ -25,5 +25,8 @@
   "position_type": "Tipo de Posição",
   "error_invalid_numbers": "Por favor, insira números válidos em todos os campos.",
   "referral_payback_toggle": "Ativar Payback de Referência?",
-  "referral_payback_rate": "Taxa de Payback (%)"
+  "referral_payback_rate": "Taxa de Payback (%)",
+  "error_required_fields": "Por favor, preencha primeiro todos os campos obrigat?rios.",
+  "ad_space_label": "Espa?o publicit?rio",
+  "disclaimer": "Aviso: Negociar criptomoedas envolve risco significativo. Esta calculadora ? apenas para fins informativos."
 }

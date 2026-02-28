@@ -25,5 +25,8 @@
   "position_type": "Type de Position",
   "error_invalid_numbers": "Veuillez entrer des nombres valides dans tous les champs.",
   "referral_payback_toggle": "Activer le cashback de parrainage ?",
-  "referral_payback_rate": "Taux de cashback (%)"
+  "referral_payback_rate": "Taux de cashback (%)",
+  "error_required_fields": "Veuillez d'abord remplir tous les champs obligatoires.",
+  "ad_space_label": "Espace publicitaire",
+  "disclaimer": "Avertissement : Le trading de cryptomonnaies comporte des risques importants. Ce calculateur est fourni ? titre informatif uniquement."
 }

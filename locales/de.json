@@ -25,5 +25,8 @@
   "position_type": "Positionstyp",
   "error_invalid_numbers": "Bitte geben Sie in allen Feldern gültige Zahlen ein.",
   "referral_payback_toggle": "Referral-Payback aktivieren?",
-  "referral_payback_rate": "Payback-Rate (%)"
+  "referral_payback_rate": "Payback-Rate (%)",
+  "error_required_fields": "Bitte f?llen Sie zuerst alle erforderlichen Felder aus.",
+  "ad_space_label": "Werbefl?che",
+  "disclaimer": "Haftungsausschluss: Der Handel mit Kryptow?hrungen ist mit erheblichen Risiken verbunden. Dieser Rechner dient nur zu Informationszwecken."
 }

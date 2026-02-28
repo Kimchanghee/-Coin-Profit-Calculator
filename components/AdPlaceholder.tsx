@@ -26,9 +26,10 @@ const loadAdsenseScript = () => {
 interface AdPlaceholderProps {
   slotKey: AdSlotKey;
   className?: string;
+  fallbackLabel?: string;
 }
 
-const AdPlaceholder: React.FC<AdPlaceholderProps> = ({ slotKey, className }) => {
+const AdPlaceholder: React.FC<AdPlaceholderProps> = ({ slotKey, className, fallbackLabel = 'Advertisement Space' }) => {
   const slotId = ADSENSE_SLOT_IDS[slotKey];
 
   useEffect(() => {
@@ -59,7 +60,7 @@ const AdPlaceholder: React.FC<AdPlaceholderProps> = ({ slotKey, className }) => 
       <div
         className={`min-h-[250px] bg-gray-950 border-2 border-dashed border-gray-800 rounded-lg flex items-center justify-center p-4 ${className ?? ''}`.trim()}
       >
-        <span className="text-gray-600 text-center">Advertisement Space</span>
+        <span className="text-gray-600 text-center">{fallbackLabel}</span>
       </div>
     );
   }
