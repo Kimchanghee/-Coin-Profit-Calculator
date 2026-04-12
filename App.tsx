@@ -81,6 +81,16 @@ const App: React.FC = () => {
       
       <footer className="text-center p-4 mt-8 text-gray-600 text-sm border-t border-gray-900">
         <p>{t('disclaimer')}</p>
+        <div className="mt-3 flex flex-wrap justify-center gap-2 text-xs text-gray-500">
+          <span>Sister Sites:</span>
+          <a href="https://econo-jabis-web.vercel.app" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition-colors">EconoJabis News</a>
+          <span>|</span>
+          <a href="https://creator-hub-iota.vercel.app" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition-colors">Creator Hub</a>
+          <span>|</span>
+          <a href="https://howmuchis.info" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition-colors">HowMuchIs</a>
+          <span>|</span>
+          <a href="https://universal-financial-calculator.vercel.app" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition-colors">Finora Calculator</a>
+        </div>
       </footer>
     </div>
   );
