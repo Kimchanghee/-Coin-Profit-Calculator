@@ -1,4 +1,35 @@
+# Coin Profit Calculator - robots.txt
+# https://coin-profit-calculator.vercel.app
+
 User-agent: *
 Allow: /
 
-Sitemap: https://example.com/sitemap.xml
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Yeti
+Allow: /
+
+User-agent: NaverBot
+Allow: /
+
+Sitemap: https://coin-profit-calculator.vercel.app/sitemap.xml
+Host: https://coin-profit-calculator.vercel.app
