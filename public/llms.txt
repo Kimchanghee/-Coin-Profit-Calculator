@@ -1,0 +1,58 @@
+# Crypto Futures Profit Calculator - llms.txt
+# https://coin-profit-calculator.vercel.app
+
+> Crypto Futures Profit Calculator is a free, comprehensive cryptocurrency futures trading calculator that helps traders calculate profits, losses, liquidation prices, and position sizes for leveraged crypto trading.
+
+## Features
+
+### Profit & Loss Calculator
+- Calculate potential profits and losses for long and short positions
+- Support for up to 125x leverage
+- Real-time margin and ROI calculations
+- Multiple cryptocurrency pairs supported (BTC, ETH, SOL, XRP, and more)
+
+### Liquidation Price Calculator
+- Calculate exact liquidation prices for leveraged positions
+- Cross margin and isolated margin support
+- Risk assessment before entering trades
+
+### Position Size Calculator
+- Calculate optimal position sizes based on risk tolerance
+- Risk-reward ratio optimization
+- Maximum leverage recommendations
+
+### Supported Exchanges
+- Binance Futures
+- Bybit
+- OKX
+- Bitget
+- And more perpetual futures exchanges
+
+## Use Cases
+- Pre-trade profit/loss estimation for crypto futures
+- Risk management and position sizing
+- Liquidation price awareness before entering trades
+- Leverage impact analysis
+- Portfolio risk assessment
+
+## Languages
+- English (en) - Primary
+- Korean (ko) - Full translation
+
+## Technical Details
+- Client-side calculations (no data sent to servers)
+- Real-time cryptocurrency price feeds
+- Mobile-responsive design
+- PWA support
+
+## Structured Data
+- JSON-LD: WebApplication, FAQPage, BreadcrumbList schemas
+- Open Graph and Twitter Card metadata
+- Speakable markup for voice assistants
+
+## Sitemap
+- /sitemap.xml
+- /robots.txt
+
+## Contact
+Website: https://coin-profit-calculator.vercel.app
