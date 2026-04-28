@@ -1,2 +1,5 @@
-# Replace pub id with your real AdSense publisher id after approval.
-google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0
+# Ads.txt for Coin Profit Calculator
+ownerdomain=coin-profit-calculator.vercel.app
+
+highperformanceformat.com, 25838423, DIRECT
+adsterra.com, 25838423, DIRECT

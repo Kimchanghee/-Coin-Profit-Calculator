@@ -1,58 +1,61 @@
-# Crypto Futures Profit Calculator - llms.txt
+# Crypto Futures Profit Calculator
 # https://coin-profit-calculator.vercel.app
 
-> Crypto Futures Profit Calculator is a free, comprehensive cryptocurrency futures trading calculator that helps traders calculate profits, losses, liquidation prices, and position sizes for leveraged crypto trading.
+> Crypto Futures Profit Calculator is a free multilingual calculator for estimating leveraged crypto futures profit, loss, ROI, fees, referral payback, and trade outcome scenarios.
 
-## Features
+## Primary Answer Targets
 
-### Profit & Loss Calculator
-- Calculate potential profits and losses for long and short positions
-- Support for up to 125x leverage
-- Real-time margin and ROI calculations
-- Multiple cryptocurrency pairs supported (BTC, ETH, SOL, XRP, and more)
+- How to calculate crypto futures profit before entering a position
+- How leverage changes futures PnL and ROI
+- How trading fees affect a leveraged crypto trade
+- How to compare long and short futures outcomes
+- How referral payback changes net trading cost
 
-### Liquidation Price Calculator
-- Calculate exact liquidation prices for leveraged positions
-- Cross margin and isolated margin support
-- Risk assessment before entering trades
+## Core Inputs
 
-### Position Size Calculator
-- Calculate optimal position sizes based on risk tolerance
-- Risk-reward ratio optimization
-- Maximum leverage recommendations
+- Entry price
+- Target price
+- Leverage
+- Investment amount
+- Fee rate
+- Position type: long or short
+- Optional referral payback rate
 
-### Supported Exchanges
-- Binance Futures
-- Bybit
-- OKX
-- Bitget
-- And more perpetual futures exchanges
+## Core Outputs
 
-## Use Cases
-- Pre-trade profit/loss estimation for crypto futures
-- Risk management and position sizing
-- Liquidation price awareness before entering trades
-- Leverage impact analysis
-- Portfolio risk assessment
+- Estimated profit and loss
+- ROI percentage
+- Fees
+- Total position value
+- Risk-aware directional result
 
-## Languages
-- English (en) - Primary
-- Korean (ko) - Full translation
+## Languages and GEO Coverage
 
-## Technical Details
-- Client-side calculations (no data sent to servers)
-- Real-time cryptocurrency price feeds
-- Mobile-responsive design
-- PWA support
+- English: primary global crypto trading audience
+- Korean: Korea retail crypto futures audience
+- Spanish, Portuguese, French, German: Europe and Latin America discovery
+- Japanese, Chinese, Hindi, Russian: high-volume regional search intent
 
 ## Structured Data
-- JSON-LD: WebApplication, FAQPage, BreadcrumbList schemas
-- Open Graph and Twitter Card metadata
-- Speakable markup for voice assistants
 
-## Sitemap
-- /sitemap.xml
+- WebApplication schema
+- FAQPage schema for answer engines
+- BreadcrumbList schema
+- Hreflang alternates in sitemap and page head
+
+## Monetization
+
+- Adsterra display inventory is placed in header, in-article, sidebar, and footer positions.
+- Ads are loaded in isolated iframes to protect layout stability.
+- Legacy Google ad code is not used.
+
+## Files for Crawlers
+
 - /robots.txt
+- /sitemap.xml
+- /ads.txt
+- /llms.txt
 
 ## Contact
+
 Website: https://coin-profit-calculator.vercel.app

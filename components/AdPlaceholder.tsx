@@ -1,34 +1,20 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useId, useRef } from 'react';
 import {
-  ADSENSE_CLIENT_ID,
-  ADSENSE_SETTINGS,
-  ADSENSE_SLOT_IDS,
+  ADSTERRA_SLOT_SIZES,
   AdSlotKey,
-  hasAdSlotConfigured,
-  isAdsenseConfigured,
+  AdsterraSize,
+  getAdsterraZoneKey,
+  isAdsterraZoneConfigured,
 } from '../marketing';
 import { trackEvent } from '../utils/analytics';
 
-declare global {
-  interface Window {
-    adsbygoogle?: unknown[];
-  }
-}
+const ADSTERRA_IFRAME_HOST = 'www.highperformanceformat.com';
 
-const loadAdsenseScript = () => {
-  if (!isAdsenseConfigured()) {
-    return;
-  }
-
-  const scriptId = 'adsense-lib';
-  if (!document.getElementById(scriptId)) {
-    const script = document.createElement('script');
-    script.id = scriptId;
-    script.async = true;
-    script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT_ID}`;
-    script.crossOrigin = 'anonymous';
-    document.head.appendChild(script);
-  }
+const ADSTERRA_DIMENSIONS: Record<AdsterraSize, { width: number; height: number }> = {
+  '728x90': { width: 728, height: 90 },
+  '300x250': { width: 300, height: 250 },
+  '160x600': { width: 160, height: 600 },
+  '320x50': { width: 320, height: 50 },
 };
 
 interface AdPlaceholderProps {
@@ -39,6 +25,20 @@ interface AdPlaceholderProps {
   minHeight?: number;
 }
 
+const getPreferredSize = (slotKey: AdSlotKey, format: AdPlaceholderProps['format']): AdsterraSize => {
+  if (format === 'rectangle') return '300x250';
+  if (format === 'vertical') return '160x600';
+  if (format === 'horizontal') return '728x90';
+  return ADSTERRA_SLOT_SIZES[slotKey].desktop;
+};
+
+const buildAdsterraSrcDoc = (key: string, width: number, height: number) =>
+  '<!doctype html><html><head><meta charset="utf-8">' +
+  '<style>html,body{margin:0;padding:0;overflow:hidden;background:transparent}</style></head><body>' +
+  `<script type="text/javascript">atOptions={'key':'${key}','format':'iframe','height':${height},'width':${width},'params':{}};<\/script>` +
+  `<script type="text/javascript" src="https://${ADSTERRA_IFRAME_HOST}/${key}/invoke.js"><\/script>` +
+  '</body></html>';
+
 const AdPlaceholder: React.FC<AdPlaceholderProps> = ({
   slotKey,
   className,
@@ -46,81 +46,38 @@ const AdPlaceholder: React.FC<AdPlaceholderProps> = ({
   format = 'auto',
   minHeight = 250,
 }) => {
-  const slotId = ADSENSE_SLOT_IDS[slotKey];
-  const adRef = useRef<HTMLModElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [requestFailed, setRequestFailed] = useState(false);
+  const uniqueId = useId().replace(/:/g, '');
+  const desktopSize = getPreferredSize(slotKey, format as AdPlaceholderProps['format']);
+  const mobileSize = ADSTERRA_SLOT_SIZES[slotKey].mobile;
+  const desktop = ADSTERRA_DIMENSIONS[desktopSize];
+  const mobile = ADSTERRA_DIMENSIONS[mobileSize];
+  const desktopKey = getAdsterraZoneKey(desktopSize);
+  const mobileKey = getAdsterraZoneKey(mobileSize);
+  const isConfigured = isAdsterraZoneConfigured(desktopKey) && isAdsterraZoneConfigured(mobileKey);
 
   useEffect(() => {
-    if (!isAdsenseConfigured() || !hasAdSlotConfigured(slotKey)) {
-      return;
-    }
-
-    setRequestFailed(false);
-    loadAdsenseScript();
-
-    let isCancelled = false;
-    let timeoutId: number | undefined;
-    let observer: IntersectionObserver | null = null;
-    const adElement = adRef.current;
     const containerElement = containerRef.current;
-
-    if (!adElement || !containerElement) {
+    if (!containerElement || !isConfigured) {
       return;
     }
 
-    const pushAd = () => {
-      if (isCancelled || adElement.dataset.adLoaded === 'true') {
-        return;
-      }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+        trackEvent('adsterra_slot_viewable', { slot_key: slotKey, desktop_size: desktopSize, mobile_size: mobileSize });
+        observer.disconnect();
+      },
+      { rootMargin: '400px 0px' }
+    );
 
-      try {
-        window.adsbygoogle = window.adsbygoogle || [];
-        window.adsbygoogle.push({});
-        adElement.dataset.adLoaded = 'true';
-        trackEvent('ad_slot_requested', { slot_key: slotKey, slot_id: slotId });
-      } catch (error) {
-        setRequestFailed(true);
-        trackEvent('ad_slot_request_failed', { slot_key: slotKey, slot_id: slotId });
-        console.warn('AdSense push failed', error);
-      }
-    };
+    observer.observe(containerElement);
+    trackEvent('adsterra_slot_mounted', { slot_key: slotKey, desktop_size: desktopSize, mobile_size: mobileSize });
 
-    if (ADSENSE_SETTINGS.lazyLoadEnabled && 'IntersectionObserver' in window) {
-      observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (!entry.isIntersecting || adElement.dataset.adViewed === 'true') {
-              return;
-            }
+    return () => observer.disconnect();
+  }, [desktopSize, isConfigured, mobileSize, slotKey]);
 
-            adElement.dataset.adViewed = 'true';
-            trackEvent('ad_slot_viewable', { slot_key: slotKey, slot_id: slotId });
-            pushAd();
-            observer?.disconnect();
-          });
-        },
-        { rootMargin: ADSENSE_SETTINGS.lazyRootMargin }
-      );
-      observer.observe(containerElement);
-    } else {
-      timeoutId = window.setTimeout(pushAd, 500);
-    }
-
-    return () => {
-      isCancelled = true;
-      if (typeof timeoutId === 'number') {
-        window.clearTimeout(timeoutId);
-      }
-      observer?.disconnect();
-    };
-  }, [slotId, slotKey]);
-
-  const showFallback = import.meta.env.DEV || ADSENSE_SETTINGS.fallbackEnabledInProd;
-  if (!isAdsenseConfigured() || !hasAdSlotConfigured(slotKey)) {
-    if (!showFallback) {
-      return null;
-    }
+  if (!isConfigured) {
     return (
       <div
         className={`bg-gray-950 border-2 border-dashed border-gray-800 rounded-lg flex items-center justify-center p-4 ${className ?? ''}`.trim()}
@@ -134,21 +91,27 @@ const AdPlaceholder: React.FC<AdPlaceholderProps> = ({
   return (
     <div
       ref={containerRef}
-      className={`bg-gray-950 border border-gray-900 rounded-lg p-2 ${className ?? ''}`.trim()}
-      style={{ minHeight }}
+      className={`bg-gray-950 border border-gray-900 rounded-lg p-2 overflow-hidden ${className ?? ''}`.trim()}
+      style={{ minHeight: Math.max(minHeight, mobile.height), maxWidth: '100%' }}
+      role="complementary"
+      aria-label={fallbackLabel}
     >
-      <ins
-        ref={adRef}
-        className="adsbygoogle block"
-        style={{ display: 'block', minHeight }}
-        data-ad-client={ADSENSE_CLIENT_ID}
-        data-ad-slot={slotId}
-        data-ad-format={format}
-        data-full-width-responsive="true"
+      <iframe
+        title={`${slotKey}-adsterra-mobile-${uniqueId}`}
+        className="mx-auto block border-0 md:hidden"
+        width={mobile.width}
+        height={mobile.height}
+        scrolling="no"
+        srcDoc={buildAdsterraSrcDoc(mobileKey, mobile.width, mobile.height)}
       />
-      {requestFailed && showFallback && (
-        <div className="mt-2 text-xs text-center text-gray-600">{fallbackLabel}</div>
-      )}
+      <iframe
+        title={`${slotKey}-adsterra-desktop-${uniqueId}`}
+        className="mx-auto hidden border-0 md:block"
+        width={desktop.width}
+        height={desktop.height}
+        scrolling="no"
+        srcDoc={buildAdsterraSrcDoc(desktopKey, desktop.width, desktop.height)}
+      />
     </div>
   );
 };

@@ -60,6 +60,42 @@ const setStoredLanguage = (languageCode: string) => {
     }
 };
 
+const isSupportedLanguage = (languageCode: string | null): languageCode is string =>
+    Boolean(languageCode && SUPPORTED_LANGUAGES.some(lang => lang.code === languageCode));
+
+const getQueryLanguage = (): string | null => {
+    try {
+        return new URLSearchParams(window.location.search).get('lang');
+    } catch {
+        return null;
+    }
+};
+
+const getInitialLanguage = (): string => {
+    const queryLanguage = getQueryLanguage();
+    if (isSupportedLanguage(queryLanguage)) {
+        return queryLanguage;
+    }
+
+    const storedLanguage = getStoredLanguage();
+    if (isSupportedLanguage(storedLanguage)) {
+        return storedLanguage;
+    }
+
+    const browserLang = navigator.language.split('-')[0];
+    return isSupportedLanguage(browserLang) ? browserLang : DEFAULT_LANGUAGE;
+};
+
+const buildLocalizedUrl = (languageCode: string) => {
+    const url = new URL(window.location.href);
+    if (languageCode === DEFAULT_LANGUAGE) {
+        url.searchParams.delete('lang');
+    } else {
+        url.searchParams.set('lang', languageCode);
+    }
+    return url;
+};
+
 const updateMetaTag = (selector: string, attribute: string, content?: string) => {
     const element = document.querySelector(selector) as HTMLMetaElement | HTMLLinkElement | null;
     if (element && content) {
@@ -69,15 +105,7 @@ const updateMetaTag = (selector: string, attribute: string, content?: string) =>
 
 
 export const useTranslations = () => {
-    const [languageCode, setLanguageCode] = useState<string>(() => {
-        const storedLanguage = getStoredLanguage();
-        if (storedLanguage && SUPPORTED_LANGUAGES.some(lang => lang.code === storedLanguage)) {
-            return storedLanguage;
-        }
-
-        const browserLang = navigator.language.split('-')[0];
-        return SUPPORTED_LANGUAGES.some(lang => lang.code === browserLang) ? browserLang : DEFAULT_LANGUAGE;
-    });
+    const [languageCode, setLanguageCodeState] = useState<string>(getInitialLanguage);
     const [translations, setTranslations] = useState<Translations | null>(null);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -99,6 +127,16 @@ export const useTranslations = () => {
         setStoredLanguage(languageCode);
     }, [languageCode]);
 
+    const setLanguageCode = useCallback((nextLanguageCode: string) => {
+        if (!isSupportedLanguage(nextLanguageCode)) {
+            return;
+        }
+
+        setLanguageCodeState(nextLanguageCode);
+        const localizedUrl = buildLocalizedUrl(nextLanguageCode);
+        window.history.replaceState({}, '', `${localizedUrl.pathname}${localizedUrl.search}${localizedUrl.hash}`);
+    }, []);
+
     const t = useCallback((key: TranslationKey): string => {
         if (!translations) return key;
         return translations[key] || key;
@@ -110,7 +148,8 @@ export const useTranslations = () => {
             document.documentElement.lang = languageCode;
             document.title = translations.title;
             
-            const currentUrl = `${window.location.origin}${window.location.pathname}`;
+            const localizedUrl = buildLocalizedUrl(languageCode);
+            const currentUrl = `${localizedUrl.origin}${localizedUrl.pathname}${localizedUrl.search}`;
 
             updateMetaTag('meta[name="description"]', 'content', translations.description);
             updateMetaTag('meta[name="keywords"]', 'content', translations.meta_keywords);

@@ -1,48 +1,41 @@
-export const ADSENSE_CLIENT_ID = import.meta.env.VITE_ADSENSE_CLIENT_ID ?? '';
+const defaultString = (value: unknown, fallback: string): string => {
+  const trimmed = String(value ?? '').trim();
+  return trimmed.length > 0 ? trimmed : fallback;
+};
 
-export const ADSENSE_SLOT_IDS = {
-  headerBanner: import.meta.env.VITE_ADSENSE_SLOT_HEADER_BANNER ?? '',
-  inArticle: import.meta.env.VITE_ADSENSE_SLOT_IN_ARTICLE ?? '',
-  sidebarTop: import.meta.env.VITE_ADSENSE_SLOT_SIDEBAR_TOP ?? '',
-  sidebarBottom: import.meta.env.VITE_ADSENSE_SLOT_SIDEBAR_BOTTOM ?? '',
-  footerBanner: import.meta.env.VITE_ADSENSE_SLOT_FOOTER_BANNER ?? '',
+export const ADSTERRA_DOMAIN_ID = 5636802;
+export const ADSTERRA_SELLER_ID = '25838423';
+
+export const ADSTERRA_ZONE_KEYS = {
+  leaderboard: defaultString(import.meta.env.VITE_ADSTERRA_728_KEY, '08d4a6a9bc5e88135924ac98cee5d2a2'),
+  rectangle: defaultString(import.meta.env.VITE_ADSTERRA_300_KEY, '4a7fd6e3daea4b1b2434f99ce7112b94'),
+  skyscraper: defaultString(import.meta.env.VITE_ADSTERRA_160_KEY, '4a7fd6e3daea4b1b2434f99ce7112b94'),
+  mobile: defaultString(import.meta.env.VITE_ADSTERRA_320_KEY, '170694818fa4811d7133b042a6a1907f'),
 } as const;
 
-export type AdSlotKey = keyof typeof ADSENSE_SLOT_IDS;
+export type AdSlotKey = 'headerBanner' | 'inArticle' | 'sidebarTop' | 'sidebarBottom' | 'footerBanner';
+export type AdsterraSize = '728x90' | '300x250' | '160x600' | '320x50';
 
 export const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID ?? '';
 
-const ADSENSE_CLIENT_ID_PATTERN = /^ca-pub-\d{16}$/;
-const ADSENSE_SLOT_PATTERN = /^\d{10}$/;
 const GA_MEASUREMENT_ID_PATTERN = /^G-[A-Z0-9]+$/i;
+const ADSTERRA_ZONE_KEY_PATTERN = /^[a-f0-9]{32}$/i;
 
-const parseBoolean = (value: string | undefined, fallback: boolean) => {
-  if (!value) {
-    return fallback;
-  }
-
-  const normalized = value.trim().toLowerCase();
-  if (normalized === '1' || normalized === 'true' || normalized === 'yes') {
-    return true;
-  }
-  if (normalized === '0' || normalized === 'false' || normalized === 'no') {
-    return false;
-  }
-  return fallback;
+export const ADSTERRA_SLOT_SIZES: Record<AdSlotKey, { desktop: AdsterraSize; mobile: AdsterraSize }> = {
+  headerBanner: { desktop: '728x90', mobile: '320x50' },
+  inArticle: { desktop: '300x250', mobile: '300x250' },
+  sidebarTop: { desktop: '160x600', mobile: '300x250' },
+  sidebarBottom: { desktop: '160x600', mobile: '300x250' },
+  footerBanner: { desktop: '728x90', mobile: '320x50' },
 };
-
-export const ADSENSE_SETTINGS = {
-  lazyLoadEnabled: parseBoolean(import.meta.env.VITE_ADSENSE_LAZY_LOAD, true),
-  lazyRootMargin: import.meta.env.VITE_ADSENSE_LAZY_ROOT_MARGIN ?? '400px 0px',
-  fallbackEnabledInProd: parseBoolean(import.meta.env.VITE_ADSENSE_SHOW_FALLBACK_IN_PROD, false),
-} as const;
-
-export const isAdsenseConfigured = () => ADSENSE_CLIENT_ID_PATTERN.test(ADSENSE_CLIENT_ID);
 
 export const isAnalyticsConfigured = () => GA_MEASUREMENT_ID_PATTERN.test(GA_MEASUREMENT_ID);
 
-export const hasAdSlotConfigured = (slotKey: AdSlotKey) => ADSENSE_SLOT_PATTERN.test(ADSENSE_SLOT_IDS[slotKey]);
+export const isAdsterraZoneConfigured = (key: string) => ADSTERRA_ZONE_KEY_PATTERN.test(key);
 
-export const getConfiguredAdSlotKeys = () => {
-  return (Object.keys(ADSENSE_SLOT_IDS) as AdSlotKey[]).filter(hasAdSlotConfigured);
+export const getAdsterraZoneKey = (size: AdsterraSize): string => {
+  if (size === '728x90') return ADSTERRA_ZONE_KEYS.leaderboard;
+  if (size === '160x600') return ADSTERRA_ZONE_KEYS.skyscraper;
+  if (size === '320x50') return ADSTERRA_ZONE_KEYS.mobile;
+  return ADSTERRA_ZONE_KEYS.rectangle;
 };

@@ -1,52 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta name="google-site-verification" content="IHCC403YBNOlI2q9-0aeWW0l8M0Hj8JiaywWKoU9h-E" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Crypto Futures Profit Calculator</title>
+    <meta name="google-site-verification" content="IHCC403YBNOlI2q9-0aeWW0l8M0Hj8JiaywWKoU9h-E" />
 
+    <title>Crypto Futures Profit Calculator | PnL, Leverage, ROI and Liquidation Tool</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta
       name="description"
-      content="Calculate crypto futures PnL with leverage, fees, and risk-aware scenarios."
+      content="Free crypto futures profit calculator for long and short trades. Estimate PnL, ROI, fees, liquidation risk, leverage impact, and referral payback before entering a position."
     />
     <meta
       name="keywords"
-      content="crypto, futures, calculator, pnl, leverage, trading"
+      content="crypto futures profit calculator, futures pnl calculator, leverage calculator, liquidation price calculator, bitcoin futures calculator, binance futures pnl, bybit futures calculator, crypto ROI calculator, trading fee calculator"
     />
     <meta name="author" content="Coin Profit Calculator" />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="bingbot" content="index, follow" />
+    <meta name="GPTBot" content="index, follow" />
+    <meta name="ClaudeBot" content="index, follow" />
+    <meta name="PerplexityBot" content="index, follow" />
+    <meta name="Google-Extended" content="index, follow" />
+    <meta name="CCBot" content="index, follow" />
 
     <link rel="canonical" href="https://coin-profit-calculator.vercel.app/" />
+    <link rel="alternate" hreflang="x-default" href="https://coin-profit-calculator.vercel.app/" />
+    <link rel="alternate" hreflang="en" href="https://coin-profit-calculator.vercel.app/" />
+    <link rel="alternate" hreflang="ko" href="https://coin-profit-calculator.vercel.app/?lang=ko" />
+    <link rel="alternate" hreflang="es" href="https://coin-profit-calculator.vercel.app/?lang=es" />
+    <link rel="alternate" hreflang="zh" href="https://coin-profit-calculator.vercel.app/?lang=zh" />
+    <link rel="alternate" hreflang="ja" href="https://coin-profit-calculator.vercel.app/?lang=ja" />
+    <link rel="alternate" hreflang="de" href="https://coin-profit-calculator.vercel.app/?lang=de" />
+    <link rel="alternate" hreflang="fr" href="https://coin-profit-calculator.vercel.app/?lang=fr" />
+    <link rel="alternate" hreflang="ru" href="https://coin-profit-calculator.vercel.app/?lang=ru" />
+    <link rel="alternate" hreflang="pt" href="https://coin-profit-calculator.vercel.app/?lang=pt" />
+    <link rel="alternate" hreflang="hi" href="https://coin-profit-calculator.vercel.app/?lang=hi" />
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://coin-profit-calculator.vercel.app/" />
     <meta property="og:title" content="Crypto Futures Profit Calculator" />
     <meta
       property="og:description"
-      content="Calculate crypto futures PnL with leverage, fees, and risk-aware scenarios."
+      content="Calculate leveraged crypto futures PnL, ROI, fees, and liquidation risk for long and short trades."
+    />
+    <meta property="og:site_name" content="Coin Profit Calculator" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://coin-profit-calculator.vercel.app/" />
+    <meta name="twitter:title" content="Crypto Futures Profit Calculator" />
+    <meta
+      name="twitter:description"
+      content="Calculate leveraged crypto futures PnL, ROI, fees, and liquidation risk for long and short trades."
     />
 
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://coin-profit-calculator.vercel.app/" />
-    <meta property="twitter:title" content="Crypto Futures Profit Calculator" />
-    <meta
-      property="twitter:description"
-      content="Calculate crypto futures PnL with leverage, fees, and risk-aware scenarios."
-    />
+    <link rel="preconnect" href="https://www.highperformanceformat.com" />
+    <link rel="dns-prefetch" href="https://www.highperformanceformat.com" />
+
+    <script type="application/ld+json" id="structured-data">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebApplication",
+            "@id": "https://coin-profit-calculator.vercel.app/#webapp",
+            "name": "Crypto Futures Profit Calculator",
+            "alternateName": ["Coin Profit Calculator", "Crypto PnL Calculator", "Futures Leverage Calculator"],
+            "url": "https://coin-profit-calculator.vercel.app/",
+            "applicationCategory": "FinanceApplication",
+            "operatingSystem": "Any",
+            "inLanguage": ["en", "ko", "es", "zh", "ja", "de", "fr", "ru", "pt", "hi"],
+            "description": "A free web calculator for estimating crypto futures profit, loss, ROI, fees, leverage impact, and liquidation risk.",
+            "featureList": [
+              "Long and short futures PnL",
+              "Leverage and ROI calculation",
+              "Trading fee impact",
+              "Referral payback adjustment",
+              "Multilingual calculator interface"
+            ],
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            }
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://coin-profit-calculator.vercel.app/#faq",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How do I calculate crypto futures profit?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Enter entry price, target price, leverage, investment amount, position direction, and fees. The calculator estimates PnL, ROI, total value, and fee impact before you trade."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can this calculator compare long and short positions?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. Select long or short to calculate how price movement affects leveraged futures profit and loss."
+                }
+              }
+            ]
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://coin-profit-calculator.vercel.app/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Crypto Futures Profit Calculator",
+                "item": "https://coin-profit-calculator.vercel.app/"
+              }
+            ]
+          }
+        ]
+      }
+    </script>
     <script>
       (function setSeoUrls() {
-        var url = window.location.origin + window.location.pathname;
+        var url = window.location.origin + window.location.pathname + window.location.search;
         var canonical = document.querySelector('link[rel="canonical"]');
         var ogUrl = document.querySelector('meta[property="og:url"]');
-        var twitterUrl = document.querySelector('meta[property="twitter:url"]');
+        var twitterUrl = document.querySelector('meta[name="twitter:url"]');
 
         if (canonical) canonical.setAttribute('href', url);
         if (ogUrl) ogUrl.setAttribute('content', url);
         if (twitterUrl) twitterUrl.setAttribute('content', url);
       })();
     </script>
-
   </head>
   <body class="bg-black">
     <div id="root"></div>

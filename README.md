@@ -1,17 +1,17 @@
 # Coin Profit Calculator
 
-A React + TypeScript crypto futures PnL calculator focused on speed and clarity.
+A React + TypeScript crypto futures PnL calculator focused on speed, multilingual discovery, and risk-aware trading estimates.
 
 ## Platform Policy
 
-This repository is now configured for **Lovable-only deployment**.
+This repository is configured for Lovable-only deployment.
 
 ## Tech Stack
 
 - React 19
 - TypeScript 5
 - Vite 6
-- Tailwind CSS (compiled locally via PostCSS)
+- Tailwind CSS compiled locally via PostCSS
 
 ## Local Development
 
@@ -35,21 +35,14 @@ GEMINI_API_KEY=
 # Google Analytics (optional)
 VITE_GA_MEASUREMENT_ID=
 
-# Google AdSense (optional)
-VITE_ADSENSE_CLIENT_ID=
-VITE_ADSENSE_SLOT_SIDEBAR_TOP=
-VITE_ADSENSE_SLOT_SIDEBAR_BOTTOM=
-VITE_ADSENSE_SLOT_HEADER_BANNER=
-VITE_ADSENSE_SLOT_FOOTER_BANNER=
-VITE_ADSENSE_SLOT_IN_ARTICLE=
-VITE_ADSENSE_LAZY_LOAD=true
-VITE_ADSENSE_LAZY_ROOT_MARGIN=400px 0px
-VITE_ADSENSE_SHOW_FALLBACK_IN_PROD=false
+# Adsterra public zone key overrides (optional)
+VITE_ADSTERRA_728_KEY=
+VITE_ADSTERRA_300_KEY=
+VITE_ADSTERRA_160_KEY=
+VITE_ADSTERRA_320_KEY=
 ```
 
-Template file:
-
-- `.env.example`
+The app ships with Adsterra display placements for header, in-article, sidebar, and footer inventory. Do not put the Adsterra Publisher API key in client-side env vars.
 
 ## Build
 
@@ -69,53 +62,31 @@ Build output is generated in `dist/`.
    - Install command: `npm ci`
    - Build command: `npm run build`
    - Output directory: `dist`
-3. Add environment variables in Lovable project settings (same keys listed above).
-4. Deploy from your target branch.
+3. Add optional environment variables in Lovable project settings.
+4. Publish from your target branch.
 
-## Publishing Checklist
+## SEO, GEO, and AEO
 
-Before going live:
+- `index.html` contains canonical, Open Graph, Twitter, WebApplication, FAQPage, and BreadcrumbList schema.
+- `public/sitemap.xml` declares hreflang alternates for supported languages.
+- `public/robots.txt` allows search and AI crawlers.
+- `public/llms.txt` summarizes the calculator for AI and answer engines.
 
-1. Replace placeholder domain `https://example.com` in:
-   - `index.html` (canonical / og:url / twitter:url fallback)
-   - `public/robots.txt`
-   - `public/sitemap.xml`
-2. Replace publisher id in `public/ads.txt`.
-3. Set AdSense env vars in Lovable:
-   - `VITE_ADSENSE_CLIENT_ID`
-   - `VITE_ADSENSE_SLOT_HEADER_BANNER`
-   - `VITE_ADSENSE_SLOT_IN_ARTICLE`
-   - `VITE_ADSENSE_SLOT_SIDEBAR_TOP`
-   - `VITE_ADSENSE_SLOT_SIDEBAR_BOTTOM`
-   - `VITE_ADSENSE_SLOT_FOOTER_BANNER`
-4. Tune ad load flags:
-   - `VITE_ADSENSE_LAZY_LOAD=true`
-   - `VITE_ADSENSE_LAZY_ROOT_MARGIN=400px 0px`
-   - `VITE_ADSENSE_SHOW_FALLBACK_IN_PROD=false`
-5. Run `npm run check` and deploy.
+## Monetization
 
-## Ad Revenue Optimization Design
-
-Detailed operating design (placement strategy, KPI, A/B loop):
-
-- `docs/AD_REVENUE_OPTIMIZATION_PLAN.md`
+- Adsterra banner inventory is loaded through isolated iframes to keep third-party scripts away from the React tree.
+- `public/ads.txt` declares Adsterra authorized sellers.
+- Legacy Google ad code and configuration have been removed.
 
 ## Project Structure
 
 ```text
 components/                # Main React components
 hooks/                     # Custom hooks
-integrations/              # Optional GA/AdSense integrations
 locales/                   # i18n JSON files
 ui-enhanced/               # Alternative enhanced UI components
 utils/                     # Utilities
 ```
-
-## Integration Docs
-
-- `integrations/google-analytics/README.md`
-- `integrations/google-adsense/README.md`
-- `ui-enhanced/README.md`
 
 ## License
 

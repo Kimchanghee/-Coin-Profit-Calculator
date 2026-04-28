@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Coin Profit Calculator">
+  <rect width="64" height="64" rx="14" fill="#020617"/>
+  <circle cx="32" cy="32" r="20" fill="#22d3ee" opacity="0.18"/>
+  <path d="M20 39h24v6H20zM22 33l8-10 6 6 8-12 4 3-11 17-6-6-6 8z" fill="#67e8f9"/>
+  <path d="M20 18h24v5H20z" fill="#e5e7eb" opacity="0.9"/>
+</svg>
