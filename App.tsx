@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslations } from './hooks/useTranslations';
 import LanguageSelector from './components/LanguageSelector';
 import ReferralBanner from './components/ReferralBanner';
@@ -10,6 +10,19 @@ import { SUPPORTED_LANGUAGES } from './constants';
 
 const App: React.FC = () => {
   const { t, setLanguageCode, currentLanguageCode, isLoading } = useTranslations();
+  const [showMobileAnchor, setShowMobileAnchor] = useState(false);
+  const [isMobileAnchorDismissed, setIsMobileAnchorDismissed] = useState(false);
+
+  useEffect(() => {
+    const updateMobileAnchor = () => {
+      setShowMobileAnchor(window.scrollY > 280);
+    };
+
+    updateMobileAnchor();
+    window.addEventListener('scroll', updateMobileAnchor, { passive: true });
+
+    return () => window.removeEventListener('scroll', updateMobileAnchor);
+  }, []);
 
   if (isLoading) {
     return (
@@ -20,7 +33,7 @@ const App: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-black text-gray-200 font-sans">
+    <div className={`min-h-screen bg-black text-gray-200 font-sans ${showMobileAnchor && !isMobileAnchorDismissed ? 'pb-24 md:pb-0' : ''}`.trim()}>
       <GoogleAnalytics />
       <header className="bg-gray-950/80 backdrop-blur-sm sticky top-0 z-10 shadow-lg p-4 flex justify-between items-center border-b border-gray-800">
         <h1 className="text-xl md:text-2xl font-bold text-cyan-400">{t('title')}</h1>
@@ -92,6 +105,25 @@ const App: React.FC = () => {
           <a href="https://universal-financial-calculator.vercel.app" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition-colors">Finora Calculator</a>
         </div>
       </footer>
+      {showMobileAnchor && !isMobileAnchorDismissed && (
+        <div className="md:hidden fixed inset-x-0 bottom-0 z-40 border-t border-gray-800 bg-black/95 px-3 py-2 shadow-2xl">
+          <button
+            type="button"
+            aria-label="Close advertisement"
+            className="absolute right-2 top-1 flex h-6 w-6 items-center justify-center rounded-full border border-gray-700 bg-gray-950 text-gray-400"
+            onClick={() => setIsMobileAnchorDismissed(true)}
+          >
+            ×
+          </button>
+          <AdPlaceholder
+            slotKey="footerBanner"
+            fallbackLabel={t('ad_space_label')}
+            format="horizontal"
+            minHeight={50}
+            className="mx-auto max-w-[336px] rounded-none border-0 bg-transparent p-0"
+          />
+        </div>
+      )}
     </div>
   );
 };
