@@ -125,7 +125,10 @@
     <script>
       (function setSeoUrls() {
         var canonicalOrigin = 'https://profitcalc.tech';
-        var url = canonicalOrigin + window.location.pathname + window.location.search;
+        var pageUrl = new URL(window.location.pathname, canonicalOrigin);
+        var language = new URLSearchParams(window.location.search).get('lang');
+        if (language) pageUrl.searchParams.set('lang', language);
+        var url = pageUrl.toString();
         var canonical = document.querySelector('link[rel="canonical"]');
         var ogUrl = document.querySelector('meta[property="og:url"]');
         var twitterUrl = document.querySelector('meta[name="twitter:url"]');
