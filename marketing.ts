@@ -3,14 +3,14 @@ const defaultString = (value: unknown, fallback: string): string => {
   return trimmed.length > 0 ? trimmed : fallback;
 };
 
-export const ADSTERRA_DOMAIN_ID = 5636802;
+export const ADSTERRA_DOMAIN_ID = 5752506;
 export const ADSTERRA_SELLER_ID = '25838423';
 
 export const ADSTERRA_ZONE_KEYS = {
-  leaderboard: defaultString(import.meta.env.VITE_ADSTERRA_728_KEY, '08d4a6a9bc5e88135924ac98cee5d2a2'),
-  rectangle: defaultString(import.meta.env.VITE_ADSTERRA_300_KEY, '4a7fd6e3daea4b1b2434f99ce7112b94'),
-  skyscraper: defaultString(import.meta.env.VITE_ADSTERRA_160_KEY, '4a7fd6e3daea4b1b2434f99ce7112b94'),
-  mobile: defaultString(import.meta.env.VITE_ADSTERRA_320_KEY, '170694818fa4811d7133b042a6a1907f'),
+  leaderboard: defaultString(import.meta.env.VITE_ADSTERRA_728_KEY, '9f438e50c758b7b6688c24531c7db784'),
+  rectangle: defaultString(import.meta.env.VITE_ADSTERRA_300_KEY, '50a099945ac68e0be8d16466f67f0a2a'),
+  skyscraper: defaultString(import.meta.env.VITE_ADSTERRA_160_KEY, '33b0bf9260f4fa57324614ebfc48182d'),
+  mobile: defaultString(import.meta.env.VITE_ADSTERRA_320_KEY, 'aa05b9fd1fff117b1528e9fd5ab6c337'),
 } as const;
 
 export type AdSlotKey = 'headerBanner' | 'inArticle' | 'sidebarTop' | 'sidebarBottom' | 'footerBanner';
