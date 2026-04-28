@@ -102,7 +102,7 @@ const App: React.FC = () => {
           <span>|</span>
           <a href="https://howmuchis.info" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition-colors">HowMuchIs</a>
           <span>|</span>
-          <a href="https://universal-financial-calculator.vercel.app" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition-colors">Finora Calculator</a>
+          <a href="https://finoracalc.tech" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition-colors">Finora Calculator</a>
         </div>
       </footer>
       {showMobileAnchor && !isMobileAnchorDismissed && (

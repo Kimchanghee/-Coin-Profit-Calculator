@@ -1,5 +1,5 @@
 # Ads.txt for Coin Profit Calculator
-ownerdomain=coin-profit-calculator.vercel.app
+ownerdomain=profitcalc.tech
 
 highperformanceformat.com, 25838423, DIRECT
 adsterra.com, 25838423, DIRECT

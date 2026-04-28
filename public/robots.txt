@@ -1,5 +1,5 @@
 # Coin Profit Calculator - robots.txt
-# https://coin-profit-calculator.vercel.app
+# https://profitcalc.tech
 
 User-agent: *
 Allow: /
@@ -34,5 +34,5 @@ Allow: /
 User-agent: NaverBot
 Allow: /
 
-Sitemap: https://coin-profit-calculator.vercel.app/sitemap.xml
-Host: https://coin-profit-calculator.vercel.app
+Sitemap: https://profitcalc.tech/sitemap.xml
+Host: https://profitcalc.tech

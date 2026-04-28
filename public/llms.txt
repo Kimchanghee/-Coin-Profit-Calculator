@@ -1,5 +1,5 @@
 # Crypto Futures Profit Calculator
-# https://coin-profit-calculator.vercel.app
+# https://profitcalc.tech
 
 > Crypto Futures Profit Calculator is a free multilingual calculator for estimating leveraged crypto futures profit, loss, ROI, fees, referral payback, and trade outcome scenarios.
 
@@ -58,4 +58,4 @@
 
 ## Contact
 
-Website: https://coin-profit-calculator.vercel.app
+Website: https://profitcalc.tech
