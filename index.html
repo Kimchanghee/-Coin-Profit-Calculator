@@ -124,7 +124,8 @@
     </script>
     <script>
       (function setSeoUrls() {
-        var url = window.location.origin + window.location.pathname + window.location.search;
+        var canonicalOrigin = 'https://profitcalc.tech';
+        var url = canonicalOrigin + window.location.pathname + window.location.search;
         var canonical = document.querySelector('link[rel="canonical"]');
         var ogUrl = document.querySelector('meta[property="og:url"]');
         var twitterUrl = document.querySelector('meta[name="twitter:url"]');
