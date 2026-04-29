@@ -117,6 +117,12 @@ const Calculator: React.FC<CalculatorProps> = ({ t, localeCode }) => {
     }
   };
 
+  const formatPercentage = (value: number) => {
+    const factor = 100;
+    const rounded = (Math.sign(value) || 1) * Math.round((Math.abs(value) + Number.EPSILON) * factor) / factor;
+    return rounded.toFixed(2);
+  };
+
   return (
     <div className="bg-gray-950 p-6 rounded-lg shadow-lg border border-gray-800">
       <h2 className="text-2xl font-bold mb-6 text-cyan-400">{t('calculator_title')}</h2>
@@ -284,7 +290,7 @@ const Calculator: React.FC<CalculatorProps> = ({ t, localeCode }) => {
                   calculation.data.roi >= 0 ? 'text-green-400' : 'text-red-400'
                 }`}
               >
-                {calculation.data.roi.toFixed(2)}%
+                {formatPercentage(calculation.data.roi)}%
               </span>
             </div>
             <div className="flex justify-between p-3 bg-gray-900/50 rounded-md">
