@@ -54,6 +54,8 @@ const App: React.FC = () => {
           fallbackLabel={t('ad_space_label')}
           format="horizontal"
           minHeight={90}
+          priority="high"
+          lazy={false}
           className="mt-6"
         />
         
@@ -67,7 +69,7 @@ const App: React.FC = () => {
               minHeight={280}
             />
           </section>
-          <aside className="space-y-8 lg:sticky lg:top-24 lg:self-start">
+          <aside className="hidden space-y-8 lg:sticky lg:top-24 lg:block lg:self-start">
             <AdPlaceholder
               slotKey="sidebarTop"
               fallbackLabel={t('ad_space_label')}
@@ -120,6 +122,8 @@ const App: React.FC = () => {
             fallbackLabel={t('ad_space_label')}
             format="horizontal"
             minHeight={50}
+            priority="high"
+            lazy={false}
             className="mx-auto max-w-[336px] rounded-none border-0 bg-transparent p-0"
           />
         </div>
