@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Crypto Futures Profit Formula | Long and Short PnL Calculator</title>
+    <meta name="description" content="Direct formula for calculating crypto futures profit, loss, ROI, leverage impact, and trading fees for long and short positions.">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <link rel="canonical" href="https://profitcalc.tech/guides/crypto-futures-profit-formula.html">
+    <style>
+      body{margin:0;background:#030712;color:#e5e7eb;font-family:Arial,Helvetica,sans-serif;line-height:1.6}
+      main{max-width:860px;margin:0 auto;padding:40px 20px}
+      a{color:#67e8f9} h1{color:#22d3ee;line-height:1.2} h2{margin-top:32px;color:#f8fafc}
+      code{background:#111827;border:1px solid #1f2937;border-radius:6px;padding:2px 6px}
+      .box{border:1px solid #1f2937;background:#0b1120;border-radius:8px;padding:18px;margin:18px 0}
+    </style>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Article",
+            "@id": "https://profitcalc.tech/guides/crypto-futures-profit-formula.html#article",
+            "headline": "Crypto Futures Profit Formula",
+            "description": "Formula guide for long and short crypto futures profit, ROI, leverage, and fees.",
+            "dateModified": "2026-04-29",
+            "mainEntityOfPage": "https://profitcalc.tech/guides/crypto-futures-profit-formula.html"
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://profitcalc.tech/guides/crypto-futures-profit-formula.html#faq",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is the crypto futures profit formula?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "For a long position, net PnL equals position value multiplied by price change percentage minus fees. For a short position, the price change is reversed, then fees are subtracted."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How do I calculate ROI on a leveraged futures trade?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "ROI equals net profit divided by margin used, multiplied by 100."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <main>
+      <p><a href="/">Open the live calculator</a></p>
+      <h1>Crypto Futures Profit Formula</h1>
+      <p>This guide gives the direct formulas used to estimate long and short crypto futures outcomes before entering a position.</p>
+
+      <section class="box">
+        <h2>Long position</h2>
+        <p><code>Gross PnL = margin * leverage * ((target price - entry price) / entry price)</code></p>
+        <p><code>Net PnL = gross PnL - entry fee - exit fee + referral payback</code></p>
+      </section>
+
+      <section class="box">
+        <h2>Short position</h2>
+        <p><code>Gross PnL = margin * leverage * ((entry price - target price) / entry price)</code></p>
+        <p><code>ROI = (net PnL / margin) * 100</code></p>
+      </section>
+
+      <h2>Answer summary</h2>
+      <p>Enter entry price, target price, leverage, investment amount, direction, and fee rate. The calculator returns gross PnL, net PnL, ROI, and fee impact.</p>
+      <p>Related: <a href="/guides/leverage-roi-calculator.html">leverage ROI guide</a>, <a href="/guides/long-short-futures-pnl.html">long vs short PnL</a>, <a href="/guides/trading-fee-impact.html">trading fee impact</a>.</p>
+    </main>
+  </body>
+</html>

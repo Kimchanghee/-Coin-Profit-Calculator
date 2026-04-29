@@ -6,6 +6,7 @@ import Calculator from './components/Calculator';
 import AdPlaceholder from './components/AdPlaceholder';
 import Clock from './components/Clock';
 import GoogleAnalytics from './components/GoogleAnalytics';
+import ExposureLinks from './components/ExposureLinks';
 import { SUPPORTED_LANGUAGES } from './constants';
 
 const App: React.FC = () => {
@@ -92,6 +93,8 @@ const App: React.FC = () => {
           minHeight={90}
           className="mt-8"
         />
+
+        <ExposureLinks />
       </main>
       
       <footer className="text-center p-4 mt-8 text-gray-600 text-sm border-t border-gray-900">

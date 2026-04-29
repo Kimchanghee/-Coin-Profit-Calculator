@@ -170,9 +170,9 @@ export const useTranslations = () => {
             updateMetaTag('meta[property="og:url"]', 'content', currentUrl);
             
             // Twitter
-            updateMetaTag('meta[property="twitter:title"]', 'content', translations.og_title);
-            updateMetaTag('meta[property="twitter:description"]', 'content', translations.og_description);
-            updateMetaTag('meta[property="twitter:url"]', 'content', currentUrl);
+            updateMetaTag('meta[name="twitter:title"]', 'content', translations.og_title);
+            updateMetaTag('meta[name="twitter:description"]', 'content', translations.og_description);
+            updateMetaTag('meta[name="twitter:url"]', 'content', currentUrl);
         }
     }, [translations, languageCode]);
 

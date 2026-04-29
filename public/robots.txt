@@ -3,6 +3,7 @@
 
 User-agent: *
 Allow: /
+Allow: /guides/
 
 User-agent: Googlebot
 Allow: /

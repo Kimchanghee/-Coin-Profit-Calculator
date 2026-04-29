@@ -11,6 +11,13 @@
 - How to compare long and short futures outcomes
 - How referral payback changes net trading cost
 
+## Crawlable Answer Guides
+
+- https://profitcalc.tech/guides/crypto-futures-profit-formula.html
+- https://profitcalc.tech/guides/leverage-roi-calculator.html
+- https://profitcalc.tech/guides/long-short-futures-pnl.html
+- https://profitcalc.tech/guides/trading-fee-impact.html
+
 ## Core Inputs
 
 - Entry price
@@ -55,6 +62,10 @@
 - /sitemap.xml
 - /ads.txt
 - /llms.txt
+- /guides/crypto-futures-profit-formula.html
+- /guides/leverage-roi-calculator.html
+- /guides/long-short-futures-pnl.html
+- /guides/trading-fee-impact.html
 
 ## Contact
 
