@@ -9,6 +9,15 @@ import GoogleAnalytics from './components/GoogleAnalytics';
 import ExposureLinks from './components/ExposureLinks';
 import { SUPPORTED_LANGUAGES } from './constants';
 
+const buildAmazonUrl = (keyword: string) =>
+  `https://www.amazon.com/s?k=${encodeURIComponent(keyword)}&tag=amazonfi00681-20&linkCode=ll2`;
+
+const buildCoupangUrl = (keyword: string) =>
+  `https://www.coupang.com/np/search?component=&q=${encodeURIComponent(keyword)}`;
+
+const buildAliExpressUrl = (keyword: string) =>
+  `https://www.aliexpress.com/w/wholesale-${encodeURIComponent(keyword.replace(/\s+/g, '-'))}.html`;
+
 const App: React.FC = () => {
   const { t, setLanguageCode, currentLanguageCode, isLoading } = useTranslations();
   const [showMobileAnchor, setShowMobileAnchor] = useState(false);
@@ -63,6 +72,39 @@ const App: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
           <section className="lg:col-span-2 space-y-8">
             <Calculator t={t} localeCode={currentLanguageCode} />
+            <section className="rounded-xl border border-gray-800 bg-gray-950/70 p-5">
+              <h2 className="text-lg font-semibold text-cyan-300">Trading & Setup Picks</h2>
+              <p className="mt-2 text-sm text-gray-400">트레이딩/업무 환경 개선용 추천 링크입니다.</p>
+              <div className="mt-4 grid gap-3 sm:grid-cols-3">
+                <a
+                  className="rounded-lg border border-amber-700/50 bg-amber-950/30 p-4 transition-colors hover:border-amber-500"
+                  href={buildAmazonUrl('trading desk mat')}
+                  target="_blank"
+                  rel="sponsored noopener noreferrer"
+                >
+                  <p className="text-xs font-semibold uppercase text-amber-400">Amazon</p>
+                  <p className="mt-1 text-sm text-gray-100">Trading Desk Mat</p>
+                </a>
+                <a
+                  className="rounded-lg border border-blue-700/50 bg-blue-950/30 p-4 transition-colors hover:border-blue-500"
+                  href={buildCoupangUrl('모니터암')}
+                  target="_blank"
+                  rel="sponsored noopener noreferrer"
+                >
+                  <p className="text-xs font-semibold uppercase text-blue-400">Coupang</p>
+                  <p className="mt-1 text-sm text-gray-100">모니터암</p>
+                </a>
+                <a
+                  className="rounded-lg border border-rose-700/50 bg-rose-950/30 p-4 transition-colors hover:border-rose-500"
+                  href={buildAliExpressUrl('mechanical keyboard')}
+                  target="_blank"
+                  rel="sponsored noopener noreferrer"
+                >
+                  <p className="text-xs font-semibold uppercase text-rose-400">AliExpress</p>
+                  <p className="mt-1 text-sm text-gray-100">Mechanical Keyboard</p>
+                </a>
+              </div>
+            </section>
             <AdPlaceholder
               slotKey="inArticle"
               fallbackLabel={t('ad_space_label')}
