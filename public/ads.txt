@@ -1,5 +1,2 @@
-# Ads.txt for Coin Profit Calculator
-ownerdomain=profitcalc.tech
-
-highperformanceformat.com, 25838423, DIRECT
-adsterra.com, 25838423, DIRECT
+# Display ads are disabled.
+# profitcalc.tech does not authorize third-party display ad sellers.
