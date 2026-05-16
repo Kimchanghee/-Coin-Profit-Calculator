@@ -35,14 +35,9 @@ GEMINI_API_KEY=
 # Google Analytics (optional)
 VITE_GA_MEASUREMENT_ID=
 
-# Adsterra public zone key overrides (optional)
-VITE_ADSTERRA_728_KEY=
-VITE_ADSTERRA_300_KEY=
-VITE_ADSTERRA_160_KEY=
-VITE_ADSTERRA_320_KEY=
 ```
 
-The app ships with Adsterra display placements for header, in-article, sidebar, and footer inventory. Do not put the Adsterra Publisher API key in client-side env vars.
+The app does not ship popup, redirect, social bar, anchor, referral banner, or third-party display network scripts.
 
 ## Build
 
@@ -72,11 +67,11 @@ Build output is generated in `dist/`.
 - `public/robots.txt` allows search and AI crawlers.
 - `public/llms.txt` summarizes the calculator for AI and answer engines.
 
-## Monetization
+## User Experience
 
-- Adsterra banner inventory is loaded through isolated iframes to keep third-party scripts away from the React tree.
-- `public/ads.txt` declares Adsterra authorized sellers.
-- Legacy Google ad code and configuration have been removed.
+- Calculator controls and results are directly accessible without ad interstitials.
+- `public/ads.txt` declares that no third-party ad inventory is configured.
+- Legacy display ad code and configuration have been removed.
 
 ## Project Structure
 

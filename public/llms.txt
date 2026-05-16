@@ -50,17 +50,15 @@
 - BreadcrumbList schema
 - Hreflang alternates in sitemap and page head
 
-## Monetization
+## User Experience
 
-- Adsterra display inventory is placed in header, in-article, sidebar, and footer positions.
-- Ads are loaded in isolated iframes to protect layout stability.
-- Legacy Google ad code is not used.
+- Calculator pages do not use popup, redirect, social bar, anchor, referral banner, or third-party display network scripts.
+- Results remain directly accessible after a user enters values.
 
 ## Files for Crawlers
 
 - /robots.txt
 - /sitemap.xml
-- /ads.txt
 - /llms.txt
 - /guides/crypto-futures-profit-formula.html
 - /guides/leverage-roi-calculator.html

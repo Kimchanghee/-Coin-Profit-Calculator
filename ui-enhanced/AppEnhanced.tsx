@@ -1,9 +1,7 @@
 import React from 'react';
 import { useTranslations } from '../hooks/useTranslations';
 import LanguageSelector from '../components/LanguageSelector';
-import ReferralBanner from '../components/ReferralBanner';
 import CalculatorEnhanced from './CalculatorEnhanced';
-import AdPlaceholder from '../components/AdPlaceholder';
 import Clock from '../components/Clock';
 import GoogleAnalytics from '../components/GoogleAnalytics';
 import { SUPPORTED_LANGUAGES } from '../constants';
@@ -54,23 +52,11 @@ const AppEnhanced: React.FC = () => {
 
       {/* Main Content */}
       <main className="relative container mx-auto p-4 md:p-8">
-        <ReferralBanner t={t} />
-
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
           {/* Calculator Section */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-3">
             <CalculatorEnhanced t={t} />
           </div>
-
-          {/* Sidebar */}
-          <aside className="space-y-8">
-            <div className="transform transition-all duration-300 hover:scale-[1.02]">
-              <AdPlaceholder slotKey="sidebarTop" />
-            </div>
-            <div className="transform transition-all duration-300 hover:scale-[1.02]">
-              <AdPlaceholder slotKey="sidebarBottom" />
-            </div>
-          </aside>
         </div>
       </main>
 

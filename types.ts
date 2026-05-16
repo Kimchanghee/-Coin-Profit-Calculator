@@ -32,7 +32,6 @@ export type TranslationKey =
   | 'error_required_fields'
   | 'referral_payback_toggle'
   | 'referral_payback_rate'
-  | 'ad_space_label'
   | 'disclaimer';
 
 export type Translations = Record<TranslationKey, string>;

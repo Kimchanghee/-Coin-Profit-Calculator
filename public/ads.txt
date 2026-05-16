@@ -1,2 +1,1 @@
-# Display ads are disabled.
-# profitcalc.tech does not authorize third-party display ad sellers.
+# No third-party ad inventory is configured for this property.
