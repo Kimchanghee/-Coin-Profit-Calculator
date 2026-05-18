@@ -13,7 +13,7 @@ const buildSrcDoc = (key: string) =>
 const SafeInlineAdsterra: React.FC = () => {
   const hostRef = useRef<HTMLDivElement>(null);
   const uniqueId = useId().replace(/:/g, '');
-  const [shouldLoad, setShouldLoad] = useState(false);
+  const [shouldLoad, setShouldLoad] = useState(true);
   const srcDoc = useMemo(() => buildSrcDoc(RECTANGLE_KEY), []);
 
   useEffect(() => {
