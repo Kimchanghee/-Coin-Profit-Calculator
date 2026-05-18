@@ -68,3 +68,9 @@
 ## Contact
 
 Website: https://profitcalc.tech
+
+## Safe monetization hardening
+
+- Sponsored and affiliate links use nofollow/sponsored attributes.
+- Affiliate clicks are tracked with GA4 affiliate_click where the page has GA enabled.
+- Popup, popunder, social-bar, and redirect-style display ad loaders remain disabled.
