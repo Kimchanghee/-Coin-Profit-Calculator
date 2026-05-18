@@ -5,6 +5,7 @@ import Calculator from './components/Calculator';
 import Clock from './components/Clock';
 import GoogleAnalytics from './components/GoogleAnalytics';
 import ExposureLinks from './components/ExposureLinks';
+import SafeInlineAdsterra from './components/SafeInlineAdsterra';
 import { SUPPORTED_LANGUAGES } from './constants';
 
 const App: React.FC = () => {
@@ -37,6 +38,7 @@ const App: React.FC = () => {
         <div className="mt-8">
           <section className="space-y-8">
             <Calculator t={t} localeCode={currentLanguageCode} />
+            <SafeInlineAdsterra />
           </section>
         </div>
 
