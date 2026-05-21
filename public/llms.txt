@@ -1,76 +1,21 @@
-# Crypto Futures Profit Calculator
-# https://profitcalc.tech
+# ProfitCalc
 
-> Crypto Futures Profit Calculator is a free multilingual calculator for estimating leveraged crypto futures profit, loss, ROI, fees, referral payback, and trade outcome scenarios.
+Calculator, FAQ, language alternates, and related finance tools for search discovery.
 
-## Primary Answer Targets
+- Site: https://profitcalc.tech/
+- Discovery map: https://profitcalc.tech/discover.html
+- Sitemap: https://profitcalc.tech/sitemap.xml
+- Robots: https://profitcalc.tech/robots.txt
 
-- How to calculate crypto futures profit before entering a position
-- How leverage changes futures PnL and ROI
-- How trading fees affect a leveraged crypto trade
-- How to compare long and short futures outcomes
-- How referral payback changes net trading cost
+## Related owned resources
 
-## Crawlable Answer Guides
-
-- https://profitcalc.tech/guides/crypto-futures-profit-formula.html
-- https://profitcalc.tech/guides/leverage-roi-calculator.html
-- https://profitcalc.tech/guides/long-short-futures-pnl.html
-- https://profitcalc.tech/guides/trading-fee-impact.html
-
-## Core Inputs
-
-- Entry price
-- Target price
-- Leverage
-- Investment amount
-- Fee rate
-- Position type: long or short
-- Optional referral payback rate
-
-## Core Outputs
-
-- Estimated profit and loss
-- ROI percentage
-- Fees
-- Total position value
-- Risk-aware directional result
-
-## Languages and GEO Coverage
-
-- English: primary global crypto trading audience
-- Korean: Korea retail crypto futures audience
-- Spanish, Portuguese, French, German: Europe and Latin America discovery
-- Japanese, Chinese, Hindi, Russian: high-volume regional search intent
-
-## Structured Data
-
-- WebApplication schema
-- FAQPage schema for answer engines
-- BreadcrumbList schema
-- Hreflang alternates in sitemap and page head
-
-## User Experience
-
-- Calculator pages do not use popup, redirect, social bar, anchor, referral banner, or third-party display network scripts.
-- Results remain directly accessible after a user enters values.
-
-## Files for Crawlers
-
-- /robots.txt
-- /sitemap.xml
-- /llms.txt
-- /guides/crypto-futures-profit-formula.html
-- /guides/leverage-roi-calculator.html
-- /guides/long-short-futures-pnl.html
-- /guides/trading-fee-impact.html
-
-## Contact
-
-Website: https://profitcalc.tech
-
-## Safe monetization hardening
-
-- Sponsored and affiliate links use nofollow/sponsored attributes.
-- Affiliate clicks are tracked with GA4 affiliate_click where the page has GA enabled.
-- Popup, popunder, social-bar, and redirect-style display ad loaders remain disabled.
+- [Halculator](https://halculator.com/) - CALC
+- [InflationValueCalc](https://inflationvaluecalc.online/) - CALC
+- [SafetyCashCalc](https://safetycashcalc.online/) - CALC
+- [LoanPayoffCalc](https://loanpayoffcalc.online/) - CALC
+- [SavingsGoalCalc](https://savingsgoalcalc.online/) - CALC
+- [CompoundGrowthCalc](https://compoundgrowthcalc.online/) - CALC
+- [RetirePathCalc](https://retirepathcalc.online/) - CALC
+- [BreakevenPriceCalc](https://breakevenpricecalc.online/) - CALC
+- [EconoJabis](https://econojabis.com/) - FINANCE
+- [HowMuchIs](https://howmuchis.info/) - FINANCE

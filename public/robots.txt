@@ -35,5 +35,12 @@ Allow: /
 User-agent: NaverBot
 Allow: /
 
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
 Sitemap: https://profitcalc.tech/sitemap.xml
-Host: https://profitcalc.tech
+Host: profitcalc.tech
+IndexNow-Key: 9fef1caf8503ff2d0de8f8a8fa4c8904
