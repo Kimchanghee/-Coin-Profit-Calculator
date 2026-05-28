@@ -10,7 +10,7 @@ const buildSrcDoc = (key: string) =>
   `<script type="text/javascript" src="https://www.highperformanceformat.com/${key}/invoke.js"><\/script>` +
   '</body></html>';
 
-const SafeInlineAdsterra: React.FC = () => {
+const SafeInlineSponsored: React.FC = () => {
   const hostRef = useRef<HTMLDivElement>(null);
   const uniqueId = useId().replace(/:/g, '');
   const [shouldLoad, setShouldLoad] = useState(true);
@@ -68,4 +68,4 @@ const SafeInlineAdsterra: React.FC = () => {
   );
 };
 
-export default SafeInlineAdsterra;
+export default SafeInlineSponsored;

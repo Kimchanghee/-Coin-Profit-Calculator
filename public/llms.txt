@@ -19,3 +19,9 @@ Calculator, FAQ, language alternates, and related finance tools for search disco
 - [BreakevenPriceCalc](https://breakevenpricecalc.online/) - CALC
 - [EconoJabis](https://econojabis.com/) - FINANCE
 - [HowMuchIs](https://howmuchis.info/) - FINANCE
+
+## Safe monetization hardening
+
+- Sponsored and affiliate links use nofollow/sponsored attributes.
+- Affiliate clicks are tracked with GA4 affiliate_click where the page has GA enabled.
+- Popup, popunder, social-bar, and redirect-style display ad loaders remain disabled.
