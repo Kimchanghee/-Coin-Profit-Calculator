@@ -12,6 +12,10 @@ const loadScript = () => {
     return;
   }
 
+  if (typeof window.gtag === 'function') {
+    return;
+  }
+
   const scriptId = 'ga-script';
   if (!document.getElementById(scriptId)) {
     const script = document.createElement('script');
