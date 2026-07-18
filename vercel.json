@@ -1,0 +1,16 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "coin-profit-calculator.vercel.app"
+        }
+      ],
+      "destination": "https://profitcalc.tech/:path*",
+      "permanent": true,
+      "preserveQueryParams": true
+    }
+  ]
+}
