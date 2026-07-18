@@ -9,8 +9,7 @@
         }
       ],
       "destination": "https://profitcalc.tech/:path*",
-      "permanent": true,
-      "preserveQueryParams": true
+      "permanent": true
     }
   ]
 }
