@@ -5,9 +5,10 @@ Date: 2026-09-22
 ## Deliverable
 
 - Static assets ZIP: `D:\웹 수익 자동화\releases\profitcalc-restored.zip`
-- ZIP size: 100,740 bytes
-- ZIP SHA-256: `EC6C3C8A082A2EDA142EBE4DEA937919CCE9A113744267CFEB569BCC4C5EB45F`
-- ZIP layout: 18 deployable files at the archive root, with no `dist/` wrapper
+- Corrected upload ZIP size: 100,574 bytes
+- Corrected upload ZIP SHA-256: `DEA77EDBDC3F2A14D17A5525FD573A54A8FF92BD11C6A5147C549334AD5D9DF5`
+- ZIP layout: 17 deployable files at the archive root, with no `dist/` wrapper
+- The tested `dist/` remains unchanged. The upload ZIP omits `_redirects` and uses a simplified `_headers` control file to avoid a Cloudflare dashboard package-parser failure.
 
 ## Restoration scope
 
@@ -16,7 +17,7 @@ Date: 2026-09-22
 - Added no trading execution, exchange connection, paid service, or new ad code.
 - Removed the obsolete Vercel middleware/runtime dependency.
 - Removed unused Gemini environment injection so a server-side key cannot be compiled into the browser bundle.
-- Added Cloudflare static-asset files: `_headers`, `_redirects`, and a dedicated `404.html`.
+- Added Cloudflare static-asset files and a dedicated `404.html`. The source build retains `_redirects`; the corrected dashboard upload ZIP deliberately omits it after the first archive repeatedly failed during import.
 
 ## QA crawler lock
 
@@ -26,7 +27,7 @@ The release intentionally remains unavailable for indexing during restoration QA
 - App, guide, discovery, and 404 pages carry `noindex` metadata.
 - `_headers` applies `X-Robots-Tag: noindex, nofollow, noarchive` globally.
 
-Do not remove this lock until the parent has uploaded the package and verified the live apex, www redirect, routes, headers, calculator UI, analytics policy, and 404 response.
+Do not remove this lock until the parent has uploaded the package and verified the live apex, routes, headers, calculator UI, analytics policy, and 404 response. Configure and verify the www-to-apex redirect separately at the Cloudflare edge because `_redirects` is intentionally absent from the corrected upload ZIP.
 
 ## Route map
 
@@ -49,8 +50,8 @@ Do not remove this lock until the parent has uploaded the package and verified t
 | `/guides/long-short-futures-pnl.html` | Original direction guide, HTTP 200 |
 | `/guides/trading-fee-impact.html` | Original fee guide, HTTP 200 |
 | `/robots.txt`, `/sitemap.xml`, `/llms.txt`, `/ads.txt` | Preserved static discovery/policy files, HTTP 200 |
-| `/index.html` | 308 redirect to `/` through `_redirects` |
-| `https://www.profitcalc.tech/*` | 308 redirect to canonical `https://profitcalc.tech/:splat` through `_redirects` |
+| `/index.html` | Packaged static HTML; canonical metadata points to the apex root |
+| `https://www.profitcalc.tech/*` | Configure and verify the redirect separately at the Cloudflare edge |
 | Any missing path | Dedicated 404 body with HTTP 404; no catch-all 200 rule is included |
 
 ## Tests completed
@@ -63,7 +64,7 @@ Do not remove this lock until the parent has uploaded the package and verified t
 - Canonicals: inspected HTML canonicals use `https://profitcalc.tech/`.
 - QA lock: robots, page metadata, and global response-header directives validated.
 - Security headers: nosniff, frame denial, strict referrer policy, restricted permissions policy, HSTS, and global noindex directives present.
-- Redirect rules: canonical www redirect and `/index.html` redirect present; no SPA/catch-all 200 rule present.
+- No SPA/catch-all 200 rule is present. The corrected upload archive omits `_redirects` for dashboard compatibility.
 - Localization: all 10 locale files parse and contain the same 29 translation keys.
 - Calculator regression equations: long, short, and 20% fee-payback cases passed against the implemented equations.
   - Long example: net PnL 984.25, ROI 98.425%, fees 15.75, total 1,984.25.
@@ -71,6 +72,8 @@ Do not remove this lock until the parent has uploaded the package and verified t
   - Payback example: net PnL 987.40, fees 12.60.
 - Client bundle scan: no Gemini/API-key environment references remain.
 - ZIP contents and root layout validated.
+- ZIP forensic validation: all 17 entries passed CRC and decompression checks; names use forward slashes; local and central names match; no BOM, directory entries, extra fields, comments, trailing bytes, unsafe paths, or UTF-8 filename ambiguity were found.
+- The 16 normal app assets in the corrected ZIP are byte-identical to the tested `dist/`; only the package-level `_headers` was simplified and `_redirects` omitted.
 
 ## Build sizes
 
@@ -80,12 +83,12 @@ Do not remove this lock until the parent has uploaded the package and verified t
 - Main JavaScript: 243,407 bytes raw, approximately 77.40 kB gzip
 - Main CSS: 27,910 bytes raw, approximately 5.29 kB gzip
 - Main HTML: 9,975 bytes raw, approximately 2.60 kB gzip
-- Release ZIP: 100,740 bytes
+- Corrected release ZIP: 100,574 bytes
 
 ## Remaining live-only checks
 
 - Upload/deployment was deliberately not performed.
-- The parent must verify Cloudflare applies `_headers` and `_redirects` for the existing Worker static-assets configuration.
+- The parent must verify Cloudflare applies `_headers` for the existing Worker static-assets configuration.
 - Confirm the Worker asset configuration uses genuine not-found handling and does not force SPA fallback.
-- Confirm apex and www behavior, response headers, 404 status, calculator interaction, and third-party analytics/sponsored requests after upload.
+- Confirm apex behavior, configure the www redirect separately, and verify response headers, 404 status, calculator interaction, and third-party analytics/sponsored requests after upload.
 - The Browserslist data warning is non-blocking and was not changed because it is not a demonstrated restoration blocker.
