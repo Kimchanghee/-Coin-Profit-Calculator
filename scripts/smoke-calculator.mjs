@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const calculatorSource = fs.readFileSync(path.join(repoRoot, 'components', 'Calculator.tsx'), 'utf8');
 const appSource = fs.readFileSync(path.join(repoRoot, 'App.tsx'), 'utf8');
+const translationHookSource = fs.readFileSync(path.join(repoRoot, 'hooks', 'useTranslations.ts'), 'utf8');
 const korean = JSON.parse(fs.readFileSync(path.join(repoRoot, 'locales', 'ko.json'), 'utf8'));
 
 const requiredEquations = [
@@ -60,10 +61,43 @@ for(const file of locales){const data=JSON.parse(fs.readFileSync(path.join(repoR
 const index=fs.readFileSync(path.join(repoRoot,'index.html'),'utf8');
 const schema=JSON.parse(index.match(/<script type="application\/ld\+json" id="structured-data">([\s\S]*?)<\/script>/)[1]);
 for(const item of schema['@graph'].find(x=>x['@type']==='FAQPage').mainEntity){if(!index.includes('<h2>'+item.name+'</h2><p>'+item.acceptedAnswer.text+'</p>'))throw new Error('FAQ body/schema mismatch');}
-for(const file of ['index.html','public/about.html','public/methodology.html',...fs.readdirSync(path.join(repoRoot,'public/guides')).map(f=>'public/guides/'+f)]){const text=fs.readFileSync(path.join(repoRoot,file),'utf8');if(!text.includes('noindex')||/liquidat/i.test(text))throw new Error('SEO lock/claim regression: '+file);}
+const scopedUrls = [
+  'https://profitcalc.tech/',
+  'https://profitcalc.tech/guides/crypto-futures-profit-formula',
+  'https://profitcalc.tech/guides/leverage-roi-calculator',
+  'https://profitcalc.tech/guides/long-short-futures-pnl',
+  'https://profitcalc.tech/guides/trading-fee-impact',
+  'https://profitcalc.tech/about',
+  'https://profitcalc.tech/methodology',
+];
+const staticPages = [
+  ['public/about.html','https://profitcalc.tech/about'],
+  ['public/methodology.html','https://profitcalc.tech/methodology'],
+  ['public/guides/crypto-futures-profit-formula.html','https://profitcalc.tech/guides/crypto-futures-profit-formula'],
+  ['public/guides/leverage-roi-calculator.html','https://profitcalc.tech/guides/leverage-roi-calculator'],
+  ['public/guides/long-short-futures-pnl.html','https://profitcalc.tech/guides/long-short-futures-pnl'],
+  ['public/guides/trading-fee-impact.html','https://profitcalc.tech/guides/trading-fee-impact'],
+];
+const indexableFiles = ['index.html',...staticPages.map(([file])=>file)];
+if(indexableFiles.length!==7)throw new Error('Indexable page count regression');
+for(const file of indexableFiles){const text=fs.readFileSync(path.join(repoRoot,file),'utf8');if(/<meta[^>]+noindex/i.test(text)||/liquidat/i.test(text))throw new Error('Indexability/claim regression: '+file);}
+for(const [file,url] of staticPages){const text=fs.readFileSync(path.join(repoRoot,file),'utf8');for(const tag of [`<link rel="canonical" href="${url}">`,`<meta property="og:url" content="${url}">`,`<meta name="twitter:url" content="${url}">`])if(!text.includes(tag))throw new Error('Clean self URL metadata missing: '+file);if(/href="\/(?:about|methodology|guides\/[^"?#]+)\.html"/i.test(text))throw new Error('Redirecting internal link remains: '+file);}
+if((index.match(/<link rel="canonical" href="https:\/\/profitcalc\.tech\/" \/>/g)||[]).length!==1)throw new Error('Homepage root canonical changed');
+if(/<link rel="alternate"[^>]+\?lang=/i.test(index))throw new Error('Query-language hreflang returned');
+if(/<meta\s+name="keywords"/i.test(index)||translationHookSource.includes('meta_keywords'))throw new Error('Unsupported keyword metadata returned');
+if(translationHookSource.includes('link[rel="canonical"]')||translationHookSource.includes('og:url')||translationHookSource.includes('twitter:url')||translationHookSource.includes('buildCanonicalUrl'))throw new Error('Locale hook mutates static URL metadata');
+if(!translationHookSource.includes('buildLocalizedUrl')||!translationHookSource.includes('replaceState'))throw new Error('Ten-locale query UX was removed');
+const sitemap=fs.readFileSync(path.join(repoRoot,'public/sitemap.xml'),'utf8');
+const sitemapUrls=[...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(match=>match[1]);
+if(JSON.stringify(sitemapUrls)!==JSON.stringify(scopedUrls))throw new Error('Sitemap must contain exactly the seven scoped URLs');
+for(const file of ['public/discover.html','public/404.html']){const text=fs.readFileSync(path.join(repoRoot,file),'utf8');if(!/<meta name="robots" content="[^"]*noindex/i.test(text))throw new Error('Noindex missing: '+file);}
 if(fs.existsSync(path.join(repoRoot,'public/_redirects')))throw new Error('Redirect file added');
-if(!fs.readFileSync(path.join(repoRoot,'public/_headers'),'utf8').includes('X-Robots-Tag: noindex'))throw new Error('Header lock missing');
-if(!fs.readFileSync(path.join(repoRoot,'public/robots.txt'),'utf8').includes('Disallow: /'))throw new Error('Robots lock missing');
+const headers=fs.readFileSync(path.join(repoRoot,'public/_headers'),'utf8');
+const headerBlocks=Object.fromEntries(headers.trim().split(/\r?\n(?=\/)/).map(block=>{const [route,...lines]=block.split(/\r?\n/);return [route.trim(),lines.join('\n')];}));
+if(/X-Robots-Tag/i.test(headerBlocks['/*']||''))throw new Error('Global X-Robots-Tag returned');
+for(const route of ['/discover','/discover.html'])if(!/X-Robots-Tag:\s*noindex, nofollow, noarchive/i.test(headerBlocks[route]||''))throw new Error('Scoped discover noindex header missing: '+route);
+const robots=fs.readFileSync(path.join(repoRoot,'public/robots.txt'),'utf8');
+if(/^\s*Disallow:/mi.test(robots)||!/^Allow:\s*\/$/mi.test(robots)||!/^Sitemap:\s*https:\/\/profitcalc\.tech\/sitemap\.xml$/mi.test(robots))throw new Error('Crawler policy regression');
 
 const close = (actual, expected) => Math.abs(actual - expected) < 1e-9;
 const cases = [
@@ -80,7 +114,7 @@ for (const [name, actual, expected] of cases) {
   }
 }
 
-console.log('Calculator smoke passed: actual callback, long/short, payback, blank/invalid/boundaries, 10 locales, matching FAQ, noindex safeguards.');
+console.log('Calculator smoke passed: arithmetic, 10 locales, matching FAQ, seven final clean sitemap URLs, six self-canonical static pages, scoped discover headers, and 404 meta safeguard.');
 
 // Review regression cases: all inputs are finite, but intermediate arithmetic is not.
 for (const args of [

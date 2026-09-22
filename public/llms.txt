@@ -1,14 +1,14 @@
 # ProfitCalc
 
-Linear USD futures scenario calculator. Restoration QA: noindex and robots blocking remain enabled. This file does not grant crawl access or imply indexing.
+Linear USD futures scenario calculator. Crawling and indexing are scoped to the seven URLs listed below and in sitemap.xml. The discovery map and genuine 404 response remain noindex. This file does not guarantee search visibility or AI citation.
 
 - https://profitcalc.tech/
-- https://profitcalc.tech/guides/crypto-futures-profit-formula.html
-- https://profitcalc.tech/guides/leverage-roi-calculator.html
-- https://profitcalc.tech/guides/long-short-futures-pnl.html
-- https://profitcalc.tech/guides/trading-fee-impact.html
-- https://profitcalc.tech/about.html
-- https://profitcalc.tech/methodology.html
+- https://profitcalc.tech/guides/crypto-futures-profit-formula
+- https://profitcalc.tech/guides/leverage-roi-calculator
+- https://profitcalc.tech/guides/long-short-futures-pnl
+- https://profitcalc.tech/guides/trading-fee-impact
+- https://profitcalc.tech/about
+- https://profitcalc.tech/methodology
 
 Let I be investment (initial margin), L leverage, E entry price, T target price, f fee percent / 100 and p enabled payback percent / 100 (otherwise 0). Position value N = I × L; units Q = N / E; closing value C = Q × T. Gross PnL is C − N for long or N − C for short. Entry fee = N × f; exit fee = C × f; gross fees = entry fee + exit fee; payback = gross fees × p; total fees = gross fees − payback. Net PnL = gross PnL − total fees; ROI = net PnL / I × 100%; final equity = I + net PnL.
 

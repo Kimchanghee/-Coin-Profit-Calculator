@@ -1,5 +1,4 @@
-# Temporary restoration QA lock for https://profitcalc.tech
-# Replace with the production crawler policy only after deployment verification.
-
 User-agent: *
-Disallow: /
+Allow: /
+
+Sitemap: https://profitcalc.tech/sitemap.xml

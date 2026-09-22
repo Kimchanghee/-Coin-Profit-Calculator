@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Trading fees and referral payback | ProfitCalc</title>
   <meta name="description" content="ProfitCalc charges one user-entered fee rate on entry notional and the same rate on closing value. Referral payback, when enabled, reduces the sum of those fees by a hypothetical percentage. The interface does not verify an exchange discount or rebate entitlement.">
-  <meta name="robots" content="noindex, nofollow, noarchive">
-  <link rel="canonical" href="https://profitcalc.tech/guides/trading-fee-impact.html">
+
+  <link rel="canonical" href="https://profitcalc.tech/guides/trading-fee-impact"><meta property="og:url" content="https://profitcalc.tech/guides/trading-fee-impact"><meta name="twitter:url" content="https://profitcalc.tech/guides/trading-fee-impact">
   <link rel="icon" href="/favicon.svg">
   <style>body{margin:0;background:#141512;color:#efefe4;font:16px/1.7 Arial,sans-serif}main{max-width:860px;margin:auto;padding:32px 22px}a{color:#edb558;display:inline-block;min-height:44px}h1,h2{line-height:1.25;color:#edb558}nav{display:flex;gap:18px;flex-wrap:wrap}p{overflow-wrap:anywhere}h2{margin-top:32px}</style>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Trading fees and referral payback | ProfitCalc","url":"https://profitcalc.tech/guides/trading-fee-impact.html","description":"ProfitCalc charges one user-entered fee rate on entry notional and the same rate on closing value. Referral payback, when enabled, reduces the sum of those fees by a hypothetical percentage. The interface does not verify an exchange discount or rebate entitlement."}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Trading fees and referral payback | ProfitCalc","url":"https://profitcalc.tech/guides/trading-fee-impact","description":"ProfitCalc charges one user-entered fee rate on entry notional and the same rate on closing value. Referral payback, when enabled, reduces the sum of those fees by a hypothetical percentage. The interface does not verify an exchange discount or rebate entitlement."}</script>
 </head>
 <body>
 <main>
-  <nav><a href="/">ProfitCalc calculator</a><a href="/methodology.html">Full methodology</a></nav>
+  <nav><a href="/">ProfitCalc calculator</a><a href="/methodology">Full methodology</a></nav>
   <h1>Trading fees and referral payback</h1>
   <p>ProfitCalc charges one user-entered fee rate on entry notional and the same rate on closing value. Referral payback, when enabled, reduces the sum of those fees by a hypothetical percentage. The interface does not verify an exchange discount or rebate entitlement.</p>
   <section>
@@ -43,9 +43,9 @@
   <section><h2>Validation and precision</h2><p>Entry and target prices, investment and leverage must be finite and positive; fee must be finite and nonnegative. Enabled payback must be between 0% and 100%. All derived arithmetic must remain finite. Both prices start blank; once either is filled, required-field validation applies. Display values are rounded, without intermediate currency rounding.</p></section>
   <section><h2>Model limitations</h2><p>The calculation assumes a linear USD-denominated contract, fixed quantity and exact entry and exit prices. Funding, slippage, taxes, inverse contracts, maintenance margin and exchange-specific rules are excluded. Payback is hypothetical, not guaranteed. Results may show negative final equity. This is information, not financial advice.</p></section>
   <section><h2>Implementation basis</h2><p>These statements follow the calculation callback, resetFields and preset handlers in components/Calculator.tsx. Numeric cases are checked by scripts/smoke-calculator.mjs. No external exchange fee, product availability or performance claim is made.</p></section>
-  <nav aria-label="Related calculation guides"><a href="/guides/crypto-futures-profit-formula.html">Crypto futures profit formula</a>
-<a href="/guides/leverage-roi-calculator.html">Leverage and ROI</a>
-<a href="/guides/long-short-futures-pnl.html">Long versus short futures PnL</a></nav>
+  <nav aria-label="Related calculation guides"><a href="/guides/crypto-futures-profit-formula">Crypto futures profit formula</a>
+<a href="/guides/leverage-roi-calculator">Leverage and ROI</a>
+<a href="/guides/long-short-futures-pnl">Long versus short futures PnL</a></nav>
 </main>
 </body>
 </html>

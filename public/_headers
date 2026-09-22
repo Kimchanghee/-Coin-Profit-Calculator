@@ -1,5 +1,4 @@
 /*
-  X-Robots-Tag: noindex, nofollow, noarchive
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
@@ -11,3 +10,9 @@
 
 /robots.txt
   Cache-Control: public, max-age=0, must-revalidate
+
+/discover
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+/discover.html
+  X-Robots-Tag: noindex, nofollow, noarchive

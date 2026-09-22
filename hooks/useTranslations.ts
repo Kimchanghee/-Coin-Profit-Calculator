@@ -5,7 +5,6 @@ import type { Translations, TranslationKey } from '../types';
 // A map to hold cached translations
 const translationsCache: { [key: string]: Translations } = {};
 const localeModules = import.meta.glob<{ default: Translations }>('../locales/*.json', { eager: true });
-const CANONICAL_ORIGIN = 'https://profitcalc.tech';
 
 const bundledTranslations: Record<string, Translations> = Object.entries(localeModules).reduce(
     (acc, [path, module]) => {
@@ -97,14 +96,6 @@ const buildLocalizedUrl = (languageCode: string) => {
     return url;
 };
 
-const buildCanonicalUrl = (languageCode: string) => {
-    const url = new URL(window.location.pathname, CANONICAL_ORIGIN);
-    if (languageCode !== DEFAULT_LANGUAGE) {
-        url.searchParams.set('lang', languageCode);
-    }
-    return url;
-};
-
 const updateMetaTag = (selector: string, attribute: string, content?: string) => {
     const element = document.querySelector(selector) as HTMLMetaElement | HTMLLinkElement | null;
     if (element && content) {
@@ -156,23 +147,15 @@ export const useTranslations = () => {
         if (translations) {
             document.documentElement.lang = languageCode;
             document.title = translations.title;
-            
-            const canonicalUrl = buildCanonicalUrl(languageCode);
-            const currentUrl = `${canonicalUrl.origin}${canonicalUrl.pathname}${canonicalUrl.search}`;
-
             updateMetaTag('meta[name="description"]', 'content', translations.description);
-            updateMetaTag('meta[name="keywords"]', 'content', translations.meta_keywords);
-            updateMetaTag('link[rel="canonical"]', 'href', currentUrl);
 
             // Open Graph
             updateMetaTag('meta[property="og:title"]', 'content', translations.og_title);
             updateMetaTag('meta[property="og:description"]', 'content', translations.og_description);
-            updateMetaTag('meta[property="og:url"]', 'content', currentUrl);
             
             // Twitter
             updateMetaTag('meta[name="twitter:title"]', 'content', translations.og_title);
             updateMetaTag('meta[name="twitter:description"]', 'content', translations.og_description);
-            updateMetaTag('meta[name="twitter:url"]', 'content', currentUrl);
         }
     }, [translations, languageCode]);
 
