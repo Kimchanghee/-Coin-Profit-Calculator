@@ -1,46 +1,5 @@
-# Coin Profit Calculator - robots.txt
-# https://profitcalc.tech
+# Temporary restoration QA lock for https://profitcalc.tech
+# Replace with the production crawler policy only after deployment verification.
 
 User-agent: *
-Allow: /
-Allow: /guides/
-
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: GPTBot
-Allow: /
-
-User-agent: ChatGPT-User
-Allow: /
-
-User-agent: ClaudeBot
-Allow: /
-
-User-agent: Google-Extended
-Allow: /
-
-User-agent: PerplexityBot
-Allow: /
-
-User-agent: CCBot
-Allow: /
-
-User-agent: Yeti
-Allow: /
-
-User-agent: NaverBot
-Allow: /
-
-User-agent: Claude-SearchBot
-Allow: /
-
-User-agent: Amazonbot
-Allow: /
-
-Sitemap: https://profitcalc.tech/sitemap.xml
-Host: profitcalc.tech
-IndexNow-Key: 9fef1caf8503ff2d0de8f8a8fa4c8904
+Disallow: /

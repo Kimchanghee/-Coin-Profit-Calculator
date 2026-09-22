@@ -2,9 +2,9 @@
 
 A React + TypeScript crypto futures PnL calculator focused on speed, multilingual discovery, and risk-aware trading estimates.
 
-## Platform Policy
+## Deployment Target
 
-This repository is configured for Lovable-only deployment.
+This repository builds to static assets for the existing Cloudflare Worker assets deployment. It does not require a server runtime.
 
 ## Tech Stack
 
@@ -50,28 +50,27 @@ npm run preview
 
 Build output is generated in `dist/`.
 
-## Deploy on Lovable
+## Cloudflare static assets
 
-1. Import this Git repository into Lovable.
-2. Configure build settings:
-   - Install command: `npm ci`
-   - Build command: `npm run build`
-   - Output directory: `dist`
-3. Add optional environment variables in Lovable project settings.
-4. Publish from your target branch.
+1. Install from the lockfile with `npm ci --ignore-scripts`.
+2. Run the typecheck and Vite build.
+3. Upload the contents of `dist/` as the Worker static-assets package.
+4. Keep Cloudflare's asset handling on a genuine 404 mode rather than SPA fallback.
+
+The build includes `_headers`, `_redirects`, and `404.html`. During restoration QA it deliberately ships `X-Robots-Tag: noindex` and `robots.txt` with `Disallow: /`.
 
 ## SEO, GEO, and AEO
 
 - `index.html` contains canonical, Open Graph, Twitter, WebApplication, FAQPage, and BreadcrumbList schema.
 - `public/sitemap.xml` declares hreflang alternates for supported languages.
-- `public/robots.txt` allows search and AI crawlers.
+- `public/robots.txt` is temporarily locked to `Disallow: /` for restoration QA.
 - `public/llms.txt` summarizes the calculator for AI and answer engines.
 
 ## User Experience
 
 - Calculator controls and results are directly accessible without ad interstitials.
-- `public/ads.txt` declares that no third-party ad inventory is configured.
-- Legacy display ad code and configuration have been removed.
+- `public/ads.txt` and the original inline sponsored slot are preserved as they existed in the source repository.
+- No new ad network, paid service, redirect ad, or trading action is added by the Cloudflare migration.
 
 ## Project Structure
 
