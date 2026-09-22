@@ -1,78 +1,51 @@
 <!doctype html>
 <html lang="en">
-  <head>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-EP1ND9DJNG"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-EP1ND9DJNG');</script>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Long vs Short Futures PnL | Crypto Position Calculator</title>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <meta name="description" content="Compare long and short crypto futures PnL formulas before choosing a position direction.">
-    <!-- Temporary restoration QA lock. Remove only after the production deployment is verified. -->
-    <meta name="robots" content="noindex, nofollow, noarchive">
-    <link rel="canonical" href="https://profitcalc.tech/guides/long-short-futures-pnl.html">
-    <style>
-      body{margin:0;background:#030712;color:#e5e7eb;font-family:Arial,Helvetica,sans-serif;line-height:1.6}
-      main{max-width:860px;margin:0 auto;padding:40px 20px}
-      a{color:#67e8f9} h1{color:#22d3ee;line-height:1.2} h2{margin-top:32px;color:#f8fafc}
-      code{background:#111827;border:1px solid #1f2937;border-radius:6px;padding:2px 6px}
-      .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
-      .box{border:1px solid #1f2937;background:#0b1120;border-radius:8px;padding:18px}
-    </style>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Article",
-        "headline": "Long vs Short Futures PnL",
-        "description": "A direct comparison of long and short crypto futures profit and loss formulas.",
-        "dateModified": "2026-04-29",
-        "mainEntityOfPage": "https://profitcalc.tech/guides/long-short-futures-pnl.html"
-      }
-    </script>
-    <script>
-  window.addEventListener('click', function(event) {
-    var link = event.target && event.target.closest ? event.target.closest('a[rel*="sponsored"], [data-affiliate-link]') : null;
-    if (!link || typeof window.gtag !== 'function') return;
-    window.gtag('event', 'affiliate_click', {
-      merchant: (link.textContent || '').trim().slice(0, 60) || 'partner',
-      placement: link.getAttribute('data-placement') || link.getAttribute('aria-label') || 'sponsored-link',
-      page_location: window.location.href
-    });
-  }, { capture: true });
-</script>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Long versus short futures PnL | ProfitCalc</title>
+  <meta name="description" content="Direction changes the sign of the price-based PnL term. It does not change the quantity formula or remove either trading fee. Compare directions using the same assumptions rather than treating the example presets as trading recommendations.">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <link rel="canonical" href="https://profitcalc.tech/guides/long-short-futures-pnl.html">
+  <link rel="icon" href="/favicon.svg">
+  <style>body{margin:0;background:#141512;color:#efefe4;font:16px/1.7 Arial,sans-serif}main{max-width:860px;margin:auto;padding:32px 22px}a{color:#edb558;display:inline-block;min-height:44px}h1,h2{line-height:1.25;color:#edb558}nav{display:flex;gap:18px;flex-wrap:wrap}p{overflow-wrap:anywhere}h2{margin-top:32px}</style>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Long versus short futures PnL | ProfitCalc","url":"https://profitcalc.tech/guides/long-short-futures-pnl.html","description":"Direction changes the sign of the price-based PnL term. It does not change the quantity formula or remove either trading fee. Compare directions using the same assumptions rather than treating the example presets as trading recommendations."}</script>
 </head>
-  <body>
-    <main>
-      <p><a href="/">Open the live calculator</a></p>
-      <h1>Long vs Short Futures PnL</h1>
-      <p>A long position benefits when the target price is above the entry price. A short position benefits when the target price is below the entry price.</p>
-
-      <div class="grid">
-        <section class="box">
-          <h2>Long trade</h2>
-          <p><code>(target - entry) / entry</code></p>
-          <p>Positive when price rises.</p>
-        </section>
-        <section class="box">
-          <h2>Short trade</h2>
-          <p><code>(entry - target) / entry</code></p>
-          <p>Positive when price falls.</p>
-        </section>
-      </div>
-
-      <h2>Answer summary</h2>
-      <p>Use the same entry, target, leverage, and margin values, then switch the calculator between long and short to compare directional outcomes.</p>
-      <p>Related: <a href="/guides/crypto-futures-profit-formula.html">profit formula</a>, <a href="/guides/leverage-roi-calculator.html">leverage ROI</a>.</p>
-      <section class="box">
-        <h2>Quick worksheet before using the calculator</h2>
-        <p>Use this worksheet to keep the page useful before opening the live futures calculator. Enter the position size, leverage, fee rate, and target move so the next click is a calculator action, not an unrelated ad destination.</p>
-        <form action="/" method="get">
-          <label>Margin or position amount <input name="margin" inputmode="decimal" placeholder="100" style="display:block;width:100%;box-sizing:border-box;margin:6px 0 12px;padding:10px;border:1px solid #1f2937;border-radius:6px;background:#030712;color:#e5e7eb"></label>
-          <label>Leverage <input name="leverage" inputmode="decimal" placeholder="10" style="display:block;width:100%;box-sizing:border-box;margin:6px 0 12px;padding:10px;border:1px solid #1f2937;border-radius:6px;background:#030712;color:#e5e7eb"></label>
-          <label>Expected price move % <input name="move" inputmode="decimal" placeholder="2" style="display:block;width:100%;box-sizing:border-box;margin:6px 0 12px;padding:10px;border:1px solid #1f2937;border-radius:6px;background:#030712;color:#e5e7eb"></label>
-          <button type="submit" style="border:0;border-radius:6px;background:#0891b2;color:white;padding:10px 14px;font-weight:bold">Open the live profit calculator</button>
-        </form>
-        <p>Before using leverage, compare gross PnL, exchange fees, funding, liquidation distance, and risk per trade. Futures calculations are planning tools, not financial advice.</p>
-      </section>
-    </main>
-  </body>
+<body>
+<main>
+  <nav><a href="/">ProfitCalc calculator</a><a href="/methodology.html">Full methodology</a></nav>
+  <h1>Long versus short futures PnL</h1>
+  <p>Direction changes the sign of the price-based PnL term. It does not change the quantity formula or remove either trading fee. Compare directions using the same assumptions rather than treating the example presets as trading recommendations.</p>
+  <section>
+    <h2>The two gross PnL branches</h2>
+    <p>The code first computes N = I × L, Q = N / E and C = Q × T. A long uses grossPnl = C − N. A short uses grossPnl = N − C. Thus a rising target price favors a long before fees, while a falling target favors a short. Both branches subtract totalFees afterward.</p>
+  </section>
+  <section>
+    <h2>Same rising price, opposite directions</h2>
+    <p>Use E = $50,000, T = $55,000, I = $1,000, L = 10 and fee 0.075%, with payback disabled. N is $10,000, Q is 0.2 and C is $11,000. A long has $1,000 gross PnL and $984.25 net PnL. A short has −$1,000 gross PnL and −$1,015.75 net PnL. Both pay $15.75 under these identical prices and fee assumptions.</p>
+  </section>
+  <section>
+    <h2>A favorable short example</h2>
+    <p>For the same starting inputs but T = $45,000, C is $9,000. The short earns $1,000 gross PnL. Entry fee is $7.50 and exit fee $6.75, totaling $14.25. Net PnL is $985.75, ROI 98.575% (98.58% displayed) and final equity $1,985.75. The opposite long has net PnL −$1,014.25.</p>
+  </section>
+  <section>
+    <h2>Why equal percentage moves have different fees</h2>
+    <p>A 10% rise produces an $11,000 exit value; a 10% fall produces a $9,000 exit value. Because the exit fee uses closingValue rather than the entry notional, the profitable long and profitable short examples have different fees. Applying twice the entry fee would erase this distinction and would not match the implemented formula.</p>
+  </section>
+  <section>
+    <h2>Unchanged price and losses beyond margin</h2>
+    <p>At T = E, both direction branches have zero gross PnL. With $10,000 notional and the 0.075% fee, each side costs $7.50, so both net results are −$15 and ROI is −1.5%. At adverse prices the model may report losses larger than the initial investment, since no account protection or exchange-specific loss cap is modeled.</p>
+  </section>
+  <section>
+    <h2>Changing direction in the interface</h2>
+    <p>The long and short buttons are explicit actions. Reset clears both prices, restores the default numeric assumptions and disables payback while retaining the selected direction. Each example preset instead explicitly sets a long position and replaces the example inputs. None of these actions executes a trade or fetches a market price.</p>
+  </section>
+  <section><h2>Validation and precision</h2><p>Entry and target prices, investment and leverage must be finite and positive; fee must be finite and nonnegative. Enabled payback must be between 0% and 100%. All derived arithmetic must remain finite. Both prices start blank; once either is filled, required-field validation applies. Display values are rounded, without intermediate currency rounding.</p></section>
+  <section><h2>Model limitations</h2><p>The calculation assumes a linear USD-denominated contract, fixed quantity and exact entry and exit prices. Funding, slippage, taxes, inverse contracts, maintenance margin and exchange-specific rules are excluded. Payback is hypothetical, not guaranteed. Results may show negative final equity. This is information, not financial advice.</p></section>
+  <section><h2>Implementation basis</h2><p>These statements follow the calculation callback, resetFields and preset handlers in components/Calculator.tsx. Numeric cases are checked by scripts/smoke-calculator.mjs. No external exchange fee, product availability or performance claim is made.</p></section>
+  <nav aria-label="Related calculation guides"><a href="/guides/crypto-futures-profit-formula.html">Crypto futures profit formula</a>
+<a href="/guides/leverage-roi-calculator.html">Leverage and ROI</a>
+<a href="/guides/trading-fee-impact.html">Trading fees and referral payback</a></nav>
+</main>
+</body>
 </html>

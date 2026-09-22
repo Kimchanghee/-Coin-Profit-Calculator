@@ -30,7 +30,7 @@ if (!fs.existsSync(headers)) throw new Error('dist is missing _headers.');
 if (fs.readFileSync(headers, 'utf8').includes('/*.html')) throw new Error('dist contains the rejected /*.html header glob.');
 if (!fs.readFileSync(robots, 'utf8').includes('Disallow: /')) throw new Error('restoration QA robots lock is missing.');
 
-const releaseZip = path.resolve(repoRoot, '..', 'releases', 'profitcalc-restored.zip');
+const releaseZip = path.resolve(repoRoot, 'releases', 'profitcalc-restored.zip');
 const packager = path.join(repoRoot, 'scripts', 'package-cloudflare.ps1');
 const shell = process.platform === 'win32' ? 'pwsh.exe' : 'pwsh';
 run(shell, ['-NoLogo', '-NoProfile', '-NonInteractive', '-File', packager, '-DistPath', dist, '-ZipPath', releaseZip], 'CLOUDFLARE PACKAGE');

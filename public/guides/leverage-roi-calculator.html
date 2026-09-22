@@ -1,70 +1,51 @@
 <!doctype html>
 <html lang="en">
-  <head>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-EP1ND9DJNG"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-EP1ND9DJNG');</script>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Leverage ROI Calculator | Crypto Futures Margin Return</title>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <meta name="description" content="Calculate leveraged crypto futures ROI from margin, position value, price movement, and fees.">
-    <!-- Temporary restoration QA lock. Remove only after the production deployment is verified. -->
-    <meta name="robots" content="noindex, nofollow, noarchive">
-    <link rel="canonical" href="https://profitcalc.tech/guides/leverage-roi-calculator.html">
-    <style>
-      body{margin:0;background:#030712;color:#e5e7eb;font-family:Arial,Helvetica,sans-serif;line-height:1.6}
-      main{max-width:860px;margin:0 auto;padding:40px 20px}
-      a{color:#67e8f9} h1{color:#22d3ee;line-height:1.2} h2{margin-top:32px;color:#f8fafc}
-      code{background:#111827;border:1px solid #1f2937;border-radius:6px;padding:2px 6px}
-      .box{border:1px solid #1f2937;background:#0b1120;border-radius:8px;padding:18px;margin:18px 0}
-    </style>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Article",
-        "headline": "Leverage ROI Calculator",
-        "description": "How to estimate crypto futures ROI from leverage, margin, price movement, and fees.",
-        "dateModified": "2026-04-29",
-        "mainEntityOfPage": "https://profitcalc.tech/guides/leverage-roi-calculator.html"
-      }
-    </script>
-    <script>
-  window.addEventListener('click', function(event) {
-    var link = event.target && event.target.closest ? event.target.closest('a[rel*="sponsored"], [data-affiliate-link]') : null;
-    if (!link || typeof window.gtag !== 'function') return;
-    window.gtag('event', 'affiliate_click', {
-      merchant: (link.textContent || '').trim().slice(0, 60) || 'partner',
-      placement: link.getAttribute('data-placement') || link.getAttribute('aria-label') || 'sponsored-link',
-      page_location: window.location.href
-    });
-  }, { capture: true });
-</script>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Leverage and ROI | ProfitCalc</title>
+  <meta name="description" content="ProfitCalc defines ROI as net PnL divided by the entered investment, multiplied by 100. It is a return on initial margin, not a return on leveraged position value. Changing leverage changes both price PnL and the trading fees in this fixed-margin model.">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <link rel="canonical" href="https://profitcalc.tech/guides/leverage-roi-calculator.html">
+  <link rel="icon" href="/favicon.svg">
+  <style>body{margin:0;background:#141512;color:#efefe4;font:16px/1.7 Arial,sans-serif}main{max-width:860px;margin:auto;padding:32px 22px}a{color:#edb558;display:inline-block;min-height:44px}h1,h2{line-height:1.25;color:#edb558}nav{display:flex;gap:18px;flex-wrap:wrap}p{overflow-wrap:anywhere}h2{margin-top:32px}</style>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Leverage and ROI | ProfitCalc","url":"https://profitcalc.tech/guides/leverage-roi-calculator.html","description":"ProfitCalc defines ROI as net PnL divided by the entered investment, multiplied by 100. It is a return on initial margin, not a return on leveraged position value. Changing leverage changes both price PnL and the trading fees in this fixed-margin model."}</script>
 </head>
-  <body>
-    <main>
-      <p><a href="/">Open the live calculator</a></p>
-      <h1>Leverage ROI Calculator</h1>
-      <p>Leverage increases position value, while ROI is still measured against the margin used. That is why a small price move can create a large positive or negative ROI.</p>
-
-      <section class="box">
-        <h2>Core formula</h2>
-        <p><code>Position value = margin * leverage</code></p>
-        <p><code>ROI = (net PnL / margin) * 100</code></p>
-      </section>
-
-      <h2>Example</h2>
-      <p>If margin is $100 and leverage is 10x, position value is $1,000. A 2% favorable move creates about $20 gross profit before fees, or about 20% ROI on the $100 margin.</p>
-      <p>Related: <a href="/guides/crypto-futures-profit-formula.html">futures profit formula</a>, <a href="/guides/trading-fee-impact.html">fee impact guide</a>.</p>
-      <section class="box">
-        <h2>Quick worksheet before using the calculator</h2>
-        <p>Use this worksheet to keep the page useful before opening the live futures calculator. Enter the position size, leverage, fee rate, and target move so the next click is a calculator action, not an unrelated ad destination.</p>
-        <form action="/" method="get">
-          <label>Margin or position amount <input name="margin" inputmode="decimal" placeholder="100" style="display:block;width:100%;box-sizing:border-box;margin:6px 0 12px;padding:10px;border:1px solid #1f2937;border-radius:6px;background:#030712;color:#e5e7eb"></label>
-          <label>Leverage <input name="leverage" inputmode="decimal" placeholder="10" style="display:block;width:100%;box-sizing:border-box;margin:6px 0 12px;padding:10px;border:1px solid #1f2937;border-radius:6px;background:#030712;color:#e5e7eb"></label>
-          <label>Expected price move % <input name="move" inputmode="decimal" placeholder="2" style="display:block;width:100%;box-sizing:border-box;margin:6px 0 12px;padding:10px;border:1px solid #1f2937;border-radius:6px;background:#030712;color:#e5e7eb"></label>
-          <button type="submit" style="border:0;border-radius:6px;background:#0891b2;color:white;padding:10px 14px;font-weight:bold">Open the live profit calculator</button>
-        </form>
-        <p>Before using leverage, compare gross PnL, exchange fees, funding, liquidation distance, and risk per trade. Futures calculations are planning tools, not financial advice.</p>
-      </section>
-    </main>
-  </body>
+<body>
+<main>
+  <nav><a href="/">ProfitCalc calculator</a><a href="/methodology.html">Full methodology</a></nav>
+  <h1>Leverage and ROI</h1>
+  <p>ProfitCalc defines ROI as net PnL divided by the entered investment, multiplied by 100. It is a return on initial margin, not a return on leveraged position value. Changing leverage changes both price PnL and the trading fees in this fixed-margin model.</p>
+  <section>
+    <h2>The denominator matters</h2>
+    <p>Let I be initial investment, L leverage, E entry and T exit. Position value N = I × L and quantity Q = N / E. After calculating directional gross PnL and deducting net trading fees, ROI = netPnl / I × 100. Dividing by N instead would measure a different return and is not what the interface displays.</p>
+  </section>
+  <section>
+    <h2>A code-backed leverage comparison</h2>
+    <p>Hold I = $1,000, E = $50,000, T = $55,000, a long position, fee = 0.075% and payback off. At 1×, gross PnL is $100, fees $1.575, net PnL $98.425 and ROI 9.8425% (displayed 9.84%). At 5× these become $500, $7.875, $492.125 and 49.2125% (49.21%). At 10× they are $1,000, $15.75, $984.25 and 98.425% (98.43%).</p>
+  </section>
+  <section>
+    <h2>Losses scale too</h2>
+    <p>Keeping the same margin and fee but exiting the long at $45,000 gives a 10% price decline. At 10×, gross PnL is −$1,000. Fees are $7.50 plus $6.75 = $14.25, so net PnL is −$1,014.25, ROI −101.425% (−101.43%), and final equity −$14.25. This is an arithmetic outcome, not a statement about an exchange balance or execution path.</p>
+  </section>
+  <section>
+    <h2>Price movement is not net ROI</h2>
+    <p>A 10% favorable move times 10× leverage yields 100% gross return on margin. The result falls to 98.425% after the two assumed fees. Funding, taxes and execution differences are excluded, so even the net figure here is not a complete account-level return. At an unchanged price, 10× leverage with this fee produces −1.5% ROI.</p>
+  </section>
+  <section>
+    <h2>What does changing investment do?</h2>
+    <p>For otherwise identical inputs, doubling I doubles position value, quantity, gross PnL, fees and net PnL. The ratio netPnl / I stays the same within normal floating-point precision. This proportionality follows from the code and does not imply that real trade size has no market impact.</p>
+  </section>
+  <section>
+    <h2>Limits on leverage inputs</h2>
+    <p>The current validation requires positive finite leverage but imposes no exchange-specific maximum. Fractional leverage is accepted. That is input flexibility, not a claim that a venue offers that leverage. Derived arithmetic must remain finite or the calculator rejects the scenario. No maintenance-margin or forced-close engine is included.</p>
+  </section>
+  <section><h2>Validation and precision</h2><p>Entry and target prices, investment and leverage must be finite and positive; fee must be finite and nonnegative. Enabled payback must be between 0% and 100%. All derived arithmetic must remain finite. Both prices start blank; once either is filled, required-field validation applies. Display values are rounded, without intermediate currency rounding.</p></section>
+  <section><h2>Model limitations</h2><p>The calculation assumes a linear USD-denominated contract, fixed quantity and exact entry and exit prices. Funding, slippage, taxes, inverse contracts, maintenance margin and exchange-specific rules are excluded. Payback is hypothetical, not guaranteed. Results may show negative final equity. This is information, not financial advice.</p></section>
+  <section><h2>Implementation basis</h2><p>These statements follow the calculation callback, resetFields and preset handlers in components/Calculator.tsx. Numeric cases are checked by scripts/smoke-calculator.mjs. No external exchange fee, product availability or performance claim is made.</p></section>
+  <nav aria-label="Related calculation guides"><a href="/guides/crypto-futures-profit-formula.html">Crypto futures profit formula</a>
+<a href="/guides/long-short-futures-pnl.html">Long versus short futures PnL</a>
+<a href="/guides/trading-fee-impact.html">Trading fees and referral payback</a></nav>
+</main>
+</body>
 </html>

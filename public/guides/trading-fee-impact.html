@@ -1,71 +1,51 @@
 <!doctype html>
 <html lang="en">
-  <head>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-EP1ND9DJNG"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-EP1ND9DJNG');</script>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Trading Fee Impact | Crypto Futures Net Profit Calculator</title>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <meta name="description" content="See how entry fees, exit fees, leverage, and referral payback change net profit on crypto futures trades.">
-    <!-- Temporary restoration QA lock. Remove only after the production deployment is verified. -->
-    <meta name="robots" content="noindex, nofollow, noarchive">
-    <link rel="canonical" href="https://profitcalc.tech/guides/trading-fee-impact.html">
-    <style>
-      body{margin:0;background:#030712;color:#e5e7eb;font-family:Arial,Helvetica,sans-serif;line-height:1.6}
-      main{max-width:860px;margin:0 auto;padding:40px 20px}
-      a{color:#67e8f9} h1{color:#22d3ee;line-height:1.2} h2{margin-top:32px;color:#f8fafc}
-      code{background:#111827;border:1px solid #1f2937;border-radius:6px;padding:2px 6px}
-      .box{border:1px solid #1f2937;background:#0b1120;border-radius:8px;padding:18px;margin:18px 0}
-    </style>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Article",
-        "headline": "Trading Fee Impact on Crypto Futures Net Profit",
-        "description": "How trading fees and referral payback change net crypto futures PnL.",
-        "dateModified": "2026-04-29",
-        "mainEntityOfPage": "https://profitcalc.tech/guides/trading-fee-impact.html"
-      }
-    </script>
-    <script>
-  window.addEventListener('click', function(event) {
-    var link = event.target && event.target.closest ? event.target.closest('a[rel*="sponsored"], [data-affiliate-link]') : null;
-    if (!link || typeof window.gtag !== 'function') return;
-    window.gtag('event', 'affiliate_click', {
-      merchant: (link.textContent || '').trim().slice(0, 60) || 'partner',
-      placement: link.getAttribute('data-placement') || link.getAttribute('aria-label') || 'sponsored-link',
-      page_location: window.location.href
-    });
-  }, { capture: true });
-</script>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Trading fees and referral payback | ProfitCalc</title>
+  <meta name="description" content="ProfitCalc charges one user-entered fee rate on entry notional and the same rate on closing value. Referral payback, when enabled, reduces the sum of those fees by a hypothetical percentage. The interface does not verify an exchange discount or rebate entitlement.">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <link rel="canonical" href="https://profitcalc.tech/guides/trading-fee-impact.html">
+  <link rel="icon" href="/favicon.svg">
+  <style>body{margin:0;background:#141512;color:#efefe4;font:16px/1.7 Arial,sans-serif}main{max-width:860px;margin:auto;padding:32px 22px}a{color:#edb558;display:inline-block;min-height:44px}h1,h2{line-height:1.25;color:#edb558}nav{display:flex;gap:18px;flex-wrap:wrap}p{overflow-wrap:anywhere}h2{margin-top:32px}</style>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Trading fees and referral payback | ProfitCalc","url":"https://profitcalc.tech/guides/trading-fee-impact.html","description":"ProfitCalc charges one user-entered fee rate on entry notional and the same rate on closing value. Referral payback, when enabled, reduces the sum of those fees by a hypothetical percentage. The interface does not verify an exchange discount or rebate entitlement."}</script>
 </head>
-  <body>
-    <main>
-      <p><a href="/">Open the live calculator</a></p>
-      <h1>Trading Fee Impact</h1>
-      <p>Crypto futures profit should be checked after both entry and exit fees. With leverage, fees are usually charged on position value, not just margin.</p>
-
-      <section class="box">
-        <h2>Fee formula</h2>
-        <p><code>Entry fee = position value * fee rate</code></p>
-        <p><code>Exit fee = exit value * fee rate</code></p>
-        <p><code>Net PnL = gross PnL - entry fee - exit fee + referral payback</code></p>
-      </section>
-
-      <h2>Answer summary</h2>
-      <p>Always compare gross PnL and net PnL. A profitable trade can become smaller after fees, especially at high leverage or with frequent entries and exits.</p>
-      <p>Related: <a href="/guides/crypto-futures-profit-formula.html">profit formula</a>, <a href="/guides/leverage-roi-calculator.html">leverage ROI</a>.</p>
-      <section class="box">
-        <h2>Quick worksheet before using the calculator</h2>
-        <p>Use this worksheet to keep the page useful before opening the live futures calculator. Enter the position size, leverage, fee rate, and target move so the next click is a calculator action, not an unrelated ad destination.</p>
-        <form action="/" method="get">
-          <label>Margin or position amount <input name="margin" inputmode="decimal" placeholder="100" style="display:block;width:100%;box-sizing:border-box;margin:6px 0 12px;padding:10px;border:1px solid #1f2937;border-radius:6px;background:#030712;color:#e5e7eb"></label>
-          <label>Leverage <input name="leverage" inputmode="decimal" placeholder="10" style="display:block;width:100%;box-sizing:border-box;margin:6px 0 12px;padding:10px;border:1px solid #1f2937;border-radius:6px;background:#030712;color:#e5e7eb"></label>
-          <label>Expected price move % <input name="move" inputmode="decimal" placeholder="2" style="display:block;width:100%;box-sizing:border-box;margin:6px 0 12px;padding:10px;border:1px solid #1f2937;border-radius:6px;background:#030712;color:#e5e7eb"></label>
-          <button type="submit" style="border:0;border-radius:6px;background:#0891b2;color:white;padding:10px 14px;font-weight:bold">Open the live profit calculator</button>
-        </form>
-        <p>Before using leverage, compare gross PnL, exchange fees, funding, liquidation distance, and risk per trade. Futures calculations are planning tools, not financial advice.</p>
-      </section>
-    </main>
-  </body>
+<body>
+<main>
+  <nav><a href="/">ProfitCalc calculator</a><a href="/methodology.html">Full methodology</a></nav>
+  <h1>Trading fees and referral payback</h1>
+  <p>ProfitCalc charges one user-entered fee rate on entry notional and the same rate on closing value. Referral payback, when enabled, reduces the sum of those fees by a hypothetical percentage. The interface does not verify an exchange discount or rebate entitlement.</p>
+  <section>
+    <h2>Percentage input and two fee bases</h2>
+    <p>If the entered fee is r percent, f = r / 100. With N = I × L, Q = N / E and C = Q × T, entryFee = N × f and exitFee = C × f. grossFees = entryFee + exitFee. The fee applies to the leveraged values rather than only to initial margin, and the closing fee changes with target price.</p>
+  </section>
+  <section>
+    <h2>Worked fee calculation</h2>
+    <p>For I = $1,000, L = 10, E = $50,000 and T = $55,000, N is $10,000 and C is $11,000. Entering 0.075% gives entryFee = $7.50 and exitFee = $8.25. Gross fees are $15.75. With a long gross PnL of $1,000, disabling payback leaves totalFees at $15.75 and netPnl at $984.25.</p>
+  </section>
+  <section>
+    <h2>How optional payback works</h2>
+    <p>Let p be the enabled payback percentage divided by 100. paybackAmount = grossFees × p and totalFees = grossFees − paybackAmount. At 20%, the example rebate is $3.15, totalFees $12.60 and net PnL $987.40. ROI is 98.74%. This assumes both fee legs qualify in equal proportion and applies the reduction immediately in the scenario; real eligibility and settlement timing are not evaluated.</p>
+  </section>
+  <section>
+    <h2>Boundary cases</h2>
+    <p>When payback is disabled, paybackAmount is exactly zero regardless of any previously entered rate. When enabled, the rate is required and must be finite between 0% and 100%, inclusive. A 0% rate leaves fees unchanged. A 100% rate eliminates modeled fees for otherwise finite calculations. Negative fees are rejected. A zero fee is accepted and makes net PnL equal gross PnL.</p>
+  </section>
+  <section>
+    <h2>Fees can reverse a small gain</h2>
+    <p>With the same $10,000 entry notional but a long target of $50,050, quantity 0.2 creates $10 gross PnL. Exit value is $10,010. Entry and exit fees total $15.0075, leaving net PnL −$5.0075 and ROI −0.50075%. Rounded displays show −$5.01 and −0.50%. A favorable price move therefore does not necessarily yield positive net PnL.</p>
+  </section>
+  <section>
+    <h2>What the single-rate model omits</h2>
+    <p>The calculator does not distinguish maker and taker execution, tiered fee schedules, different entry and exit rates, rebate currencies or per-order minimum charges. Funding payments, slippage and taxes are excluded. Fee input has no arbitrary upper bound, but every derived arithmetic value must stay finite. Use an independently verified fee assumption rather than reading the default as a current exchange quote.</p>
+  </section>
+  <section><h2>Validation and precision</h2><p>Entry and target prices, investment and leverage must be finite and positive; fee must be finite and nonnegative. Enabled payback must be between 0% and 100%. All derived arithmetic must remain finite. Both prices start blank; once either is filled, required-field validation applies. Display values are rounded, without intermediate currency rounding.</p></section>
+  <section><h2>Model limitations</h2><p>The calculation assumes a linear USD-denominated contract, fixed quantity and exact entry and exit prices. Funding, slippage, taxes, inverse contracts, maintenance margin and exchange-specific rules are excluded. Payback is hypothetical, not guaranteed. Results may show negative final equity. This is information, not financial advice.</p></section>
+  <section><h2>Implementation basis</h2><p>These statements follow the calculation callback, resetFields and preset handlers in components/Calculator.tsx. Numeric cases are checked by scripts/smoke-calculator.mjs. No external exchange fee, product availability or performance claim is made.</p></section>
+  <nav aria-label="Related calculation guides"><a href="/guides/crypto-futures-profit-formula.html">Crypto futures profit formula</a>
+<a href="/guides/leverage-roi-calculator.html">Leverage and ROI</a>
+<a href="/guides/long-short-futures-pnl.html">Long versus short futures PnL</a></nav>
+</main>
+</body>
 </html>

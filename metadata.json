@@ -1,5 +1,5 @@
 {
-  "name": "Coin Profit Calculator",
+  "name": "ProfitCalc",
   "description": "A cryptocurrency futures profit and loss calculator with multi-language support.",
   "requestFramePermissions": []
 }

@@ -80,7 +80,7 @@ const AppEnhanced: React.FC = () => {
                 <span>Online</span>
               </div>
               <span>•</span>
-              <span>© 2025 Coin Profit Calculator</span>
+              <span>© 2025 ProfitCalc</span>
             </div>
           </div>
         </div>

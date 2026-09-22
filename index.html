@@ -6,17 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="google-site-verification" content="IHCC403YBNOlI2q9-0aeWW0l8M0Hj8JiaywWKoU9h-E" />
 
-    <title>Crypto Futures Profit Calculator | PnL, Leverage, ROI and Liquidation Tool</title>
+    <title>ProfitCalc | Futures PnL, fees and ROI calculator</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta
       name="description"
-      content="Free crypto futures profit calculator for long and short trades. Estimate PnL, ROI, fees, liquidation risk, leverage impact, and referral payback before entering a position."
+      content="Free crypto futures profit calculator for long and short trades. Estimate PnL, ROI, fees, leverage impact, and referral payback before entering a position."
     />
     <meta
       name="keywords"
-      content="crypto futures profit calculator, futures pnl calculator, leverage calculator, liquidation price calculator, bitcoin futures calculator, binance futures pnl, bybit futures calculator, crypto ROI calculator, trading fee calculator"
+      content="crypto futures profit calculator, futures pnl calculator, leverage calculator, bitcoin futures calculator, binance futures pnl, bybit futures calculator, crypto ROI calculator, trading fee calculator"
     />
-    <meta name="author" content="Coin Profit Calculator" />
+    <meta name="author" content="ProfitCalc" />
     <!-- Temporary restoration QA lock. Remove only after the production deployment is verified. -->
     <meta name="robots" content="noindex, nofollow, noarchive" />
     <meta name="googlebot" content="noindex, nofollow, noarchive" />
@@ -45,129 +45,77 @@
     <meta property="og:title" content="Crypto Futures Profit Calculator" />
     <meta
       property="og:description"
-      content="Calculate leveraged crypto futures PnL, ROI, fees, and liquidation risk for long and short trades."
+      content="Calculate leveraged crypto futures PnL, ROI, fees, and for long and short trades."
     />
-    <meta property="og:site_name" content="Coin Profit Calculator" />
+    <meta property="og:site_name" content="ProfitCalc" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://profitcalc.tech/" />
     <meta name="twitter:title" content="Crypto Futures Profit Calculator" />
     <meta
       name="twitter:description"
-      content="Calculate leveraged crypto futures PnL, ROI, fees, and liquidation risk for long and short trades."
+      content="Calculate leveraged crypto futures PnL, ROI, fees, and for long and short trades."
     />
 
-    <script type="application/ld+json" id="structured-data">
-      {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebApplication",
-            "@id": "https://profitcalc.tech/#webapp",
-            "name": "Crypto Futures Profit Calculator",
-            "alternateName": ["Coin Profit Calculator", "Crypto PnL Calculator", "Futures Leverage Calculator"],
-            "url": "https://profitcalc.tech/",
-            "applicationCategory": "FinanceApplication",
-            "operatingSystem": "Any",
-            "inLanguage": ["en", "ko", "es", "zh", "ja", "de", "fr", "ru", "pt", "hi"],
-            "description": "A free web calculator for estimating crypto futures profit, loss, ROI, fees, leverage impact, and liquidation risk.",
-            "featureList": [
-              "Long and short futures PnL",
-              "Leverage and ROI calculation",
-              "Trading fee impact",
-              "Referral payback adjustment",
-              "Multilingual calculator interface"
-            ],
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            }
-          },
-          {
-            "@type": "FAQPage",
-            "@id": "https://profitcalc.tech/#faq",
-            "mainEntity": [
-              {
-                "@type": "Question",
-                "name": "How do I calculate crypto futures profit?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Enter entry price, target price, leverage, investment amount, position direction, and fees. The calculator estimates PnL, ROI, total value, and fee impact before you trade."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Can this calculator compare long and short positions?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Yes. Select long or short to calculate how price movement affects leveraged futures profit and loss."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "What formula does the crypto futures calculator use?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "It estimates position value from margin and leverage, calculates directional price change for long or short positions, then subtracts entry and exit fees."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "How do fees affect leveraged futures ROI?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Fees reduce net profit because they are usually charged on leveraged position value. Net ROI is net profit divided by margin used."
-                }
-              }
-            ]
-          },
-          {
-            "@type": "ItemList",
-            "@id": "https://profitcalc.tech/#answer-guides",
-            "name": "Crypto futures calculator answer guides",
-            "itemListElement": [
-              {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Crypto futures profit formula",
-                "url": "https://profitcalc.tech/guides/crypto-futures-profit-formula.html"
-              },
-              {
-                "@type": "ListItem",
-                "position": 2,
-                "name": "Leverage ROI calculator",
-                "url": "https://profitcalc.tech/guides/leverage-roi-calculator.html"
-              },
-              {
-                "@type": "ListItem",
-                "position": 3,
-                "name": "Long vs short futures PnL",
-                "url": "https://profitcalc.tech/guides/long-short-futures-pnl.html"
-              },
-              {
-                "@type": "ListItem",
-                "position": 4,
-                "name": "Trading fee impact",
-                "url": "https://profitcalc.tech/guides/trading-fee-impact.html"
-              }
-            ]
-          },
-          {
-            "@type": "BreadcrumbList",
-            "@id": "https://profitcalc.tech/#breadcrumb",
-            "itemListElement": [
-              {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Crypto Futures Profit Calculator",
-                "item": "https://profitcalc.tech/"
-              }
-            ]
-          }
-        ]
+    <script type="application/ld+json" id="structured-data">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "ProfitCalc",
+      "url": "https://profitcalc.tech/",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "description": "Linear futures gross and net PnL, fees, ROI and final equity estimates with optional hypothetical referral payback.",
+      "inLanguage": [
+        "en",
+        "ko",
+        "es",
+        "zh",
+        "ja",
+        "de",
+        "fr",
+        "ru",
+        "pt",
+        "hi"
+      ],
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
       }
-    </script>
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What formulas does ProfitCalc use?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Let I be investment (initial margin), L leverage, E entry price, T target price, f fee percent / 100 and p enabled payback percent / 100 (otherwise 0). Position value N = I × L; units Q = N / E; closing value C = Q × T. Gross PnL is C − N for long or N − C for short. Entry fee = N × f; exit fee = C × f; gross fees = entry fee + exit fee; payback = gross fees × p; total fees = gross fees − payback. Net PnL = gross PnL − total fees; ROI = net PnL / I × 100%; final equity = I + net PnL."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are the limitations?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "This is a linear USD-denominated model with fixed units and exact entry and exit prices, not an exchange settlement engine. Funding, slippage, taxes, inverse contracts, maintenance margin and exchange-specific rules are not modeled. Final equity may be negative; no exchange loss cap is applied. Payback is a hypothetical reduction of both trading fees, not a guaranteed rebate. This is information, not financial advice."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which inputs are accepted?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Entry, target, leverage and investment must be finite and greater than zero. Fee must be finite and nonnegative; no maximum fee or leverage is imposed. Enabled payback must be between 0% and 100%. Entry and target start blank. If both are blank, no result or error is shown; once either is entered, all required fields are checked. Reset restores blank prices, 10× leverage, $1,000 investment and 0.075% fee, disables payback and retains the selected direction. Derived position values, quantities, fees, PnL, ROI and equity must also remain finite; arithmetic overflow is rejected with a validation error."
+          }
+        }
+      ]
+    }
+  ]
+}</script>
     <script>
       (function setSeoUrls() {
         var canonicalOrigin = 'https://profitcalc.tech';
@@ -198,6 +146,9 @@
 </head>
   <body class="bg-black">
     <div id="root"></div>
+<noscript>
+<section class="semantic-copy" lang="en" aria-labelledby="method-summary"><h2 id="method-summary">ProfitCalc: formulas and assumptions</h2><p>Estimate long or short futures gross PnL, net PnL, ROI, trading fees and final equity from your own inputs. Enable JavaScript to use the interactive calculator. Values are calculated locally; analytics may still be loaded.</p><h2>What formulas does ProfitCalc use?</h2><p>Let I be investment (initial margin), L leverage, E entry price, T target price, f fee percent / 100 and p enabled payback percent / 100 (otherwise 0). Position value N = I × L; units Q = N / E; closing value C = Q × T. Gross PnL is C − N for long or N − C for short. Entry fee = N × f; exit fee = C × f; gross fees = entry fee + exit fee; payback = gross fees × p; total fees = gross fees − payback. Net PnL = gross PnL − total fees; ROI = net PnL / I × 100%; final equity = I + net PnL.</p><h2>What are the limitations?</h2><p>This is a linear USD-denominated model with fixed units and exact entry and exit prices, not an exchange settlement engine. Funding, slippage, taxes, inverse contracts, maintenance margin and exchange-specific rules are not modeled. Final equity may be negative; no exchange loss cap is applied. Payback is a hypothetical reduction of both trading fees, not a guaranteed rebate. This is information, not financial advice.</p><h2>Which inputs are accepted?</h2><p>Entry, target, leverage and investment must be finite and greater than zero. Fee must be finite and nonnegative; no maximum fee or leverage is imposed. Enabled payback must be between 0% and 100%. Entry and target start blank. If both are blank, no result or error is shown; once either is entered, all required fields are checked. Reset restores blank prices, 10× leverage, $1,000 investment and 0.075% fee, disables payback and retains the selected direction. Derived position values, quantities, fees, PnL, ROI and equity must also remain finite; arithmetic overflow is rejected with a validation error.</p><h2>Worked examples</h2><p>For a long trade with E = $50,000, T = $55,000, I = $1,000, L = 10 and fee = 0.075%: N = $10,000, Q = 0.2, C = $11,000, gross PnL = $1,000, entry fee = $7.50, exit fee = $8.25, total fees = $15.75, net PnL = $984.25, ROI = 98.425% (displayed 98.43%) and final equity = $1,984.25. With 20% payback, fees become $12.60 and net PnL becomes $987.40. A short to $45,000 gives gross PnL $1,000, fees $14.25 and net PnL $985.75. A flat $50,000 exit gives gross PnL $0 and net PnL −$15.</p><nav aria-label="English calculation guides"><a href="/guides/crypto-futures-profit-formula.html">Crypto futures profit formula</a> <a href="/guides/leverage-roi-calculator.html">Leverage and ROI</a> <a href="/guides/long-short-futures-pnl.html">Long and short PnL</a> <a href="/guides/trading-fee-impact.html">Trading fee impact</a><a href="/about.html">About ProfitCalc</a><a href="/methodology.html">Methodology</a></nav></section>
+</noscript>
     <script type="module" src="/index.tsx"></script>
   </body>
 </html>

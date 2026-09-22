@@ -1,0 +1,14 @@
+[
+  {
+    "question": "What formulas does ProfitCalc use?",
+    "answer": "Let I be investment (initial margin), L leverage, E entry price, T target price, f fee percent / 100 and p enabled payback percent / 100 (otherwise 0). Position value N = I × L; units Q = N / E; closing value C = Q × T. Gross PnL is C − N for long or N − C for short. Entry fee = N × f; exit fee = C × f; gross fees = entry fee + exit fee; payback = gross fees × p; total fees = gross fees − payback. Net PnL = gross PnL − total fees; ROI = net PnL / I × 100%; final equity = I + net PnL."
+  },
+  {
+    "question": "What are the limitations?",
+    "answer": "This is a linear USD-denominated model with fixed units and exact entry and exit prices, not an exchange settlement engine. Funding, slippage, taxes, inverse contracts, maintenance margin and exchange-specific rules are not modeled. Final equity may be negative; no exchange loss cap is applied. Payback is a hypothetical reduction of both trading fees, not a guaranteed rebate. This is information, not financial advice."
+  },
+  {
+    "question": "Which inputs are accepted?",
+    "answer": "Entry, target, leverage and investment must be finite and greater than zero. Fee must be finite and nonnegative; no maximum fee or leverage is imposed. Enabled payback must be between 0% and 100%. Entry and target start blank. If both are blank, no result or error is shown; once either is entered, all required fields are checked. Reset restores blank prices, 10× leverage, $1,000 investment and 0.075% fee, disables payback and retains the selected direction. Derived position values, quantities, fees, PnL, ROI and equity must also remain finite; arithmetic overflow is rejected with a validation error."
+  }
+]

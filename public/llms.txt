@@ -1,27 +1,15 @@
 # ProfitCalc
 
-Calculator, FAQ, language alternates, and related finance tools for search discovery.
+Linear USD futures scenario calculator. Restoration QA: noindex and robots blocking remain enabled. This file does not grant crawl access or imply indexing.
 
-- Site: https://profitcalc.tech/
-- Discovery map: https://profitcalc.tech/discover.html
-- Sitemap: https://profitcalc.tech/sitemap.xml
-- Robots: https://profitcalc.tech/robots.txt
+- https://profitcalc.tech/
+- https://profitcalc.tech/guides/crypto-futures-profit-formula.html
+- https://profitcalc.tech/guides/leverage-roi-calculator.html
+- https://profitcalc.tech/guides/long-short-futures-pnl.html
+- https://profitcalc.tech/guides/trading-fee-impact.html
+- https://profitcalc.tech/about.html
+- https://profitcalc.tech/methodology.html
 
-## Related owned resources
+Let I be investment (initial margin), L leverage, E entry price, T target price, f fee percent / 100 and p enabled payback percent / 100 (otherwise 0). Position value N = I × L; units Q = N / E; closing value C = Q × T. Gross PnL is C − N for long or N − C for short. Entry fee = N × f; exit fee = C × f; gross fees = entry fee + exit fee; payback = gross fees × p; total fees = gross fees − payback. Net PnL = gross PnL − total fees; ROI = net PnL / I × 100%; final equity = I + net PnL.
 
-- [Halculator](https://halculator.com/) - CALC
-- [InflationValueCalc](https://inflationvaluecalc.online/) - CALC
-- [SafetyCashCalc](https://safetycashcalc.online/) - CALC
-- [LoanPayoffCalc](https://loanpayoffcalc.online/) - CALC
-- [SavingsGoalCalc](https://savingsgoalcalc.online/) - CALC
-- [CompoundGrowthCalc](https://compoundgrowthcalc.online/) - CALC
-- [RetirePathCalc](https://retirepathcalc.online/) - CALC
-- [BreakevenPriceCalc](https://breakevenpricecalc.online/) - CALC
-- [EconoJabis](https://econojabis.com/) - FINANCE
-- [HowMuchIs](https://howmuchis.info/) - FINANCE
-
-## Safe monetization hardening
-
-- Sponsored and affiliate links use nofollow/sponsored attributes.
-- Affiliate clicks are tracked with GA4 affiliate_click where the page has GA enabled.
-- Popup, popunder, social-bar, and redirect-style display ad loaders remain disabled.
+This is a linear USD-denominated model with fixed units and exact entry and exit prices, not an exchange settlement engine. Funding, slippage, taxes, inverse contracts, maintenance margin and exchange-specific rules are not modeled. Final equity may be negative; no exchange loss cap is applied. Payback is a hypothetical reduction of both trading fees, not a guaranteed rebate. This is information, not financial advice.

@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslations } from './hooks/useTranslations';
 import LanguageSelector from './components/LanguageSelector';
 import Calculator from './components/Calculator';
-import Clock from './components/Clock';
+
 import GoogleAnalytics from './components/GoogleAnalytics';
 import ExposureLinks from './components/ExposureLinks';
 import { SUPPORTED_LANGUAGES } from './constants';
@@ -21,10 +21,10 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen bg-black text-gray-200 font-sans">
       <GoogleAnalytics />
-      <header className="bg-gray-950/80 backdrop-blur-sm sticky top-0 z-10 shadow-lg p-4 flex justify-between items-center border-b border-gray-800">
-        <h1 className="text-xl md:text-2xl font-bold text-cyan-400">{t('title')}</h1>
+      <header className="site-header bg-gray-950/80 backdrop-blur-sm sticky top-0 z-10 shadow-lg p-4 flex justify-between items-center border-b border-gray-800">
+        <a href="/" className="brand">Profit<span>Calc</span></a>
         <div className="flex items-center gap-4">
-          <Clock />
+
           <LanguageSelector
             supportedLanguages={SUPPORTED_LANGUAGES}
             currentLanguageCode={currentLanguageCode}
@@ -33,28 +33,19 @@ const App: React.FC = () => {
         </div>
       </header>
 
-      <main className="container mx-auto p-4 md:p-8">
+      <main className="site-main container mx-auto p-4 md:p-8">
         <div className="mt-8">
           <section className="space-y-8">
             <Calculator t={t} localeCode={currentLanguageCode} />
           </section>
         </div>
 
-        <ExposureLinks />
+        <ExposureLinks t={t} />
       </main>
-      
+
       <footer className="text-center p-4 mt-8 text-gray-600 text-sm border-t border-gray-900">
         <p>{t('disclaimer')}</p>
-        <div className="mt-3 flex flex-wrap justify-center gap-2 text-xs text-gray-500">
-          <span>Sister Sites:</span>
-          <a href="https://econo-jabis-web.vercel.app" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition-colors">EconoJabis News</a>
-          <span>|</span>
-          <a href="https://creator-hub-iota.vercel.app" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition-colors">Creator Hub</a>
-          <span>|</span>
-          <a href="https://howmuchis.info" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition-colors">HowMuchIs</a>
-          <span>|</span>
-          <a href="https://finoracalc.tech" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition-colors">Finora Calculator</a>
-        </div>
+        <nav className="footer-links"><a href="/about.html">{t('about')}</a><a href="/methodology.html">{t('methodology')}</a></nav>
       </footer>
     </div>
   );

@@ -1,85 +1,59 @@
-# Coin Profit Calculator
+# ProfitCalc
 
-A React + TypeScript crypto futures PnL calculator focused on speed, multilingual discovery, and risk-aware trading estimates.
+A React and TypeScript linear USD futures scenario calculator. It estimates gross and net PnL, fees, ROI and final equity. It is not an exchange settlement engine or financial advice.
 
-## Deployment Target
+## Local development
 
-This repository builds to static assets for the existing Cloudflare Worker assets deployment. It does not require a server runtime.
+Requires Node.js 20 or newer. The packaging step also requires PowerShell 7 (pwsh).
 
-## Tech Stack
-
-- React 19
-- TypeScript 5
-- Vite 6
-- Tailwind CSS compiled locally via PostCSS
-
-## Local Development
-
-Prerequisite: Node.js 20+
-
-```bash
-npm install
+```sh
+npm ci
 npm run dev
 ```
 
-App runs at `http://localhost:5173`.
+Vite serves development at http://localhost:5173 by default. Optional VITE_GA_MEASUREMENT_ID enables the existing analytics component; index.html also contains the existing GA loader. Calculation arithmetic runs locally, which does not mean the page makes no network requests.
 
-## Environment Variables
+## Verification and build
 
-Optional variables:
-
-```env
-# Optional extra GA4 component loader
-VITE_GA_MEASUREMENT_ID=
-```
-
-The app does not ship popup, redirect, social bar, anchor, referral banner, or third-party display network scripts.
-
-## Build
-
-```bash
+```sh
 npm run typecheck
 npm run smoke:calculator
-npm run build
 npm run build:cloudflare
-npm run preview
 ```
 
-Build output is generated in `dist/`.
+The Cloudflare command repeats typecheck and smoke tests, runs Vite, and packages the fresh dist/ directory into **releases/profitcalc-restored.zip inside this repository**. releases/ and dist/ are ignored by Git. No commit, upload or deployment is performed by the build.
 
-## Cloudflare static assets
+The packager dynamically verifies that ZIP entry count matches the dist file count. The current build contains 19 files; this is an observation, not a hard-coded count requirement. It checks that _headers exists, that no _redirects file or rejected HTML header glob is present, that archive paths use forward slashes, and that files have no dist/ wrapper.
 
-1. Install from the lockfile with `npm ci --ignore-scripts`.
-2. Run `npm run build:cloudflare`.
-3. Upload `../releases/profitcalc-restored.zip` through the Worker static-assets dashboard.
-4. Keep Cloudflare's asset handling on a genuine 404 mode rather than SPA fallback.
+Use genuine 404 asset handling on Cloudflare, not SPA fallback. The package includes public/404.html. A local Vite preview alone does not prove production HTTP 404 or header behavior.
 
-`build:cloudflare` runs typecheck, calculator smoke tests, Vite, and the ZIP packager. It enforces the successful 17-file layout: simplified `_headers`, no `_redirects`, and no `dist/` wrapper. Configure the www-to-apex redirect separately at the Cloudflare edge.
+## Indexing safeguards and semantic content
 
-During restoration QA the package deliberately ships `X-Robots-Tag: noindex` and `robots.txt` with `Disallow: /`.
+- Restoration QA retains noindex, nofollow and noarchive meta directives, X-Robots-Tag in public/_headers, and Disallow: / in public/robots.txt. Do not remove these during routine builds.
+- index.html contains canonical, Open Graph and Twitter metadata plus WebApplication and FAQPage JSON-LD. It does not contain BreadcrumbList schema.
+- Language alternate links, including x-default and all ten supported locale codes, are in index.html. public/sitemap.xml lists only the audited root, four English guides, about and methodology pages; it does not declare hreflang alternates.
+- The English static calculator explanation is inside noscript, readable without JavaScript and absent from the JavaScript-enabled layout. React restores localized guide navigation and opt-in English reference answers through ExposureLinks. FAQ answers match data/calculator-reference.json and the static fallback.
+- public/llms.txt lists audited pages and model limitations. It does not override robots restrictions or claim search/AI visibility.
+- About, methodology and all four specialized guides retain noindex. Their formulas and examples follow components/Calculator.tsx.
 
-## SEO, GEO, and AEO
+## Calculation behavior
 
-- `index.html` contains canonical, Open Graph, Twitter, WebApplication, FAQPage, and BreadcrumbList schema.
-- `public/sitemap.xml` declares hreflang alternates for supported languages.
-- `public/robots.txt` is temporarily locked to `Disallow: /` for restoration QA.
-- `public/llms.txt` summarizes the calculator for AI and answer engines.
+Entry and target prices initially stay blank. Direction, leverage, investment, per-side fee and optional referral payback feed the original linear formulas. Derived non-finite arithmetic is rejected instead of rendering Infinity or NaN. No exchange-specific maximum leverage, fee schedule or account protection is claimed.
 
-## User Experience
+Reset clears prices, restores 10× leverage, $1,000 investment and 0.075% fee, disables payback and retains direction. Explicit example presets replace assumptions and select long. Ten locales remain available. English-only reference content is labeled as such.
 
-- Calculator controls and results are directly accessible without ad interstitials.
-- The inactive inline sponsored component remains in source history but is not mounted or included in the active app bundle.
-- No active ad slot, new ad network, paid service, redirect ad, or trading action is added by the Cloudflare migration.
+## Tests
 
-## Project Structure
+The smoke test executes the actual calculation callback extracted from Calculator.tsx. It checks long/short results, gross/net fees, payback, zero/flat boundaries, blank and invalid inputs, derived arithmetic overflow, locale key parity, matching FAQ content, specialized guide examples, noscript placement and indexing safeguards. Browser layout and production HTTP behavior require separate checks.
 
-```text
-components/                # Main React components
-hooks/                     # Custom hooks
-locales/                   # i18n JSON files
-ui-enhanced/               # Alternative enhanced UI components
-utils/                     # Utilities
-```
+## Structure
+
+- components/: calculator, language controls and reference links
+- data/calculator-reference.json: shared English reference answers
+- hooks/ and locales/: locale loading and ten translation dictionaries
+- public/guides/: four topic-specific static guides
+- scripts/: smoke, build and packaging verification
+- dist/ and releases/: ignored generated outputs
 
 ## License
 

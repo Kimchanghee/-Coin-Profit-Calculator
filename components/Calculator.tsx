@@ -8,6 +8,7 @@ interface CalculatorProps {
 }
 
 interface CalculationResult {
+  grossPnl: number;
   netPnl: number;
   roi: number;
   totalFees: number;
@@ -87,9 +88,15 @@ const Calculator: React.FC<CalculatorProps> = ({ t, localeCode }) => {
     const roi = (netPnl / i) * 100;
     const totalValue = i + netPnl;
 
+    // Finite inputs can overflow derived arithmetic.
+    if (![investmentValue, units, closingValue, grossPnl, entryFee, exitFee,
+      grossFees, paybackAmount, totalFees, netPnl, roi, totalValue].every(Number.isFinite)) {
+      return { error: t('error_invalid_numbers'), data: null };
+    }
+
     return {
       error: '',
-      data: { netPnl, roi, totalFees, totalValue },
+      data: { grossPnl, netPnl, roi, totalFees, totalValue },
     };
   }, [entryPrice, targetPrice, leverage, investment, fee, positionType, paybackEnabled, paybackRate, t]);
 
@@ -119,193 +126,61 @@ const Calculator: React.FC<CalculatorProps> = ({ t, localeCode }) => {
 
   const formatPercentage = (value: number) => {
     const factor = 100;
+    if (Math.abs(value) > Number.MAX_VALUE / factor) return value.toFixed(2);
     const rounded = (Math.sign(value) || 1) * Math.round((Math.abs(value) + Number.EPSILON) * factor) / factor;
     return rounded.toFixed(2);
   };
 
+  const fields = [
+    { id: 'entryPrice', label: 'entry_price', value: entryPrice, set: setEntryPrice, placeholder: '50000' },
+    { id: 'targetPrice', label: 'target_price', value: targetPrice, set: setTargetPrice, placeholder: '55000' },
+    { id: 'investment', label: 'investment', value: investment, set: setInvestment },
+    { id: 'leverage', label: 'leverage', value: leverage, set: setLeverage },
+    { id: 'fee', label: 'fee_rate', value: fee, set: setFee },
+  ] as const;
+  const data = calculation.data;
+  const preset = (target: string) => {
+    setEntryPrice('50000'); setTargetPrice(target); setInvestment('1000');
+    setLeverage('10'); setFee('0.075'); setPositionType(PositionType.LONG);
+    setPaybackEnabled(false); setPaybackRate('');
+  };
   return (
-    <div className="bg-gray-950 p-6 rounded-lg shadow-lg border border-gray-800">
-      <h2 className="text-2xl font-bold mb-6 text-cyan-400">{t('calculator_title')}</h2>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-        <div className="md:col-span-2">
-          <label className="block text-sm font-medium text-gray-400 mb-2">{t('position_type')}</label>
-          <div className="flex bg-gray-900 rounded-md p-1 border border-gray-700">
-            <button
-              onClick={() => setPositionType(PositionType.LONG)}
-              className={`w-1/2 py-2 text-sm font-semibold rounded transition-colors ${
-                positionType === PositionType.LONG
-                  ? 'bg-green-500 text-white shadow-md'
-                  : 'text-gray-400 hover:bg-gray-800'
-              }`}
-            >
-              {t('long_position')}
-            </button>
-            <button
-              onClick={() => setPositionType(PositionType.SHORT)}
-              className={`w-1/2 py-2 text-sm font-semibold rounded transition-colors ${
-                positionType === PositionType.SHORT
-                  ? 'bg-red-500 text-white shadow-md'
-                  : 'text-gray-400 hover:bg-gray-800'
-              }`}
-            >
-              {t('short_position')}
-            </button>
+    <section className="calculator" aria-labelledby="calculator-title">
+      <div className="calculator-heading"><h1 id="calculator-title">{t('calculator_title')}</h1><span>USD · {t('linear_model')}</span></div>
+      <div className="calculator-grid">
+        <section className="trade-inputs" aria-labelledby="inputs-title">
+          <h2 id="inputs-title">{t('trade_inputs')}</h2>
+          <div className="side-switch" role="group" aria-label={t('position_type')}>
+            {[PositionType.LONG, PositionType.SHORT].map(side => <button key={side} aria-pressed={positionType === side} onClick={() => setPositionType(side)}>{t(side === PositionType.LONG ? 'long_position' : 'short_position')}</button>)}
           </div>
-        </div>
-
-        <div>
-          <label htmlFor="entryPrice" className="block text-sm font-medium text-gray-400">
-            {t('entry_price')}
-          </label>
-          <input
-            type="number"
-            id="entryPrice"
-            value={entryPrice}
-            onChange={e => setEntryPrice(e.target.value)}
-            className="mt-1 block w-full bg-gray-900 border-gray-700 rounded-md shadow-sm p-2 focus:ring-cyan-500 focus:border-cyan-500"
-            placeholder="50000"
-          />
-        </div>
-
-        <div>
-          <label htmlFor="targetPrice" className="block text-sm font-medium text-gray-400">
-            {t('target_price')}
-          </label>
-          <input
-            type="number"
-            id="targetPrice"
-            value={targetPrice}
-            onChange={e => setTargetPrice(e.target.value)}
-            className="mt-1 block w-full bg-gray-900 border-gray-700 rounded-md shadow-sm p-2 focus:ring-cyan-500 focus:border-cyan-500"
-            placeholder="55000"
-          />
-        </div>
-
-        <div>
-          <label htmlFor="leverage" className="block text-sm font-medium text-gray-400">
-            {t('leverage')}
-          </label>
-          <input
-            type="number"
-            id="leverage"
-            value={leverage}
-            onChange={e => setLeverage(e.target.value)}
-            className="mt-1 block w-full bg-gray-900 border-gray-700 rounded-md shadow-sm p-2 focus:ring-cyan-500 focus:border-cyan-500"
-          />
-        </div>
-
-        <div>
-          <label htmlFor="investment" className="block text-sm font-medium text-gray-400">
-            {t('investment')}
-          </label>
-          <input
-            type="number"
-            id="investment"
-            value={investment}
-            onChange={e => setInvestment(e.target.value)}
-            className="mt-1 block w-full bg-gray-900 border-gray-700 rounded-md shadow-sm p-2 focus:ring-cyan-500 focus:border-cyan-500"
-          />
-        </div>
-
-        <div className="md:col-span-2">
-          <label htmlFor="fee" className="block text-sm font-medium text-gray-400">
-            {t('fee_rate')}
-          </label>
-          <input
-            type="number"
-            id="fee"
-            value={fee}
-            onChange={e => setFee(e.target.value)}
-            className="mt-1 block w-full bg-gray-900 border-gray-700 rounded-md shadow-sm p-2 focus:ring-cyan-500 focus:border-cyan-500"
-          />
-        </div>
-
-        <div className="md:col-span-2 bg-gray-900/70 p-4 rounded-md border border-gray-800">
-          <div className="flex items-center justify-between">
-            <label htmlFor="paybackToggle" className="text-sm font-medium text-gray-300">
-              {t('referral_payback_toggle')}
-            </label>
-            <input
-              type="checkbox"
-              id="paybackToggle"
-              checked={paybackEnabled}
-              onChange={() => setPaybackEnabled(!paybackEnabled)}
-              className="h-4 w-4 rounded border-gray-600 bg-gray-800 text-cyan-500 focus:ring-cyan-600"
-            />
+          <div className="fields">{fields.map(field => <div key={field.id} className={field.id === 'fee' ? 'wide' : ''}>
+            <label htmlFor={field.id}>{t(field.label)}</label>
+            <input id={field.id} type="number" inputMode="decimal" step="any" value={field.value} placeholder={'placeholder' in field ? field.placeholder : undefined} onChange={e => field.set(e.target.value)} />
+          </div>)}</div>
+          <div className="payback"><label htmlFor="paybackToggle">{t('referral_payback_toggle')}</label><input id="paybackToggle" type="checkbox" checked={paybackEnabled} onChange={() => setPaybackEnabled(!paybackEnabled)} />
+          {paybackEnabled && <div className="wide"><label htmlFor="paybackRate">{t('referral_payback_rate')}</label><input id="paybackRate" type="number" inputMode="decimal" step="any" value={paybackRate} onChange={e => setPaybackRate(e.target.value)} placeholder="20" /></div>}</div>
+          <div className="preset-panel"><p>{t('presets_note')}</p><div className="preset-buttons"><button onClick={() => preset('55000')}>{t('preset_up')}</button><button onClick={() => preset('45000')}>{t('preset_down')}</button><button onClick={() => preset('50000')}>{t('preset_flat')}</button></div></div>
+          <button className="reset" onClick={resetFields}>{t('reset_button')}</button>
+          {calculation.error && <p className="error" role="alert">{calculation.error}</p>}
+        </section>
+        <aside className="result-panel" aria-labelledby="result-title">
+          <h2 id="result-title">{t('results_title')}</h2>
+          <div className={'result-display ' + (data && data.netPnl < 0 ? 'negative' : '')} aria-live="polite" aria-atomic="true">
+            <span>{t('pnl')}</span><strong data-result="net">{data ? formatCurrency(data.netPnl) : '–'}</strong>
+            <div className="roi"><span>{t('roi')}</span><b data-result="roi">{data ? formatPercentage(data.roi) + '%' : '–'}</b></div>
+            {!data && <p>{t('empty_result')}</p>}
           </div>
-          {paybackEnabled && (
-            <div className="mt-3">
-              <label htmlFor="paybackRate" className="block text-sm font-medium text-gray-400">
-                {t('referral_payback_rate')}
-              </label>
-              <input
-                type="number"
-                id="paybackRate"
-                value={paybackRate}
-                onChange={e => setPaybackRate(e.target.value)}
-                className="mt-1 block w-full bg-gray-900 border-gray-700 rounded-md shadow-sm p-2 focus:ring-cyan-500 focus:border-cyan-500"
-                placeholder="20"
-              />
-            </div>
-          )}
-        </div>
+          <section className="pnl-flow" aria-label={t('pnl_flow')}>
+            <div><span>{t('gross_pnl')}</span><b data-result="gross">{data ? formatCurrency(data.grossPnl) : '–'}</b></div><i aria-hidden="true">−</i>
+            <div><span>{t('fees')}</span><b data-result="fees">{data ? formatCurrency(data.totalFees) : '–'}</b></div><i aria-hidden="true">=</i>
+            <div><span>{t('pnl')}</span><b>{data ? formatCurrency(data.netPnl) : '–'}</b></div>
+          </section>
+          <div className="equity"><span>{t('total_value')}</span><strong data-result="equity">{data ? formatCurrency(data.totalValue) : '–'}</strong></div>
+          <p className="limitations">{t('model_limits')}</p>
+        </aside>
+        {data && <div className="compact-result"><span>{t('pnl')}<strong>{formatCurrency(data.netPnl)}</strong></span><span>{t('roi')}<strong>{formatPercentage(data.roi)}%</strong></span></div>}
       </div>
-
-      <button
-        onClick={resetFields}
-        className="w-full mt-4 py-2 px-4 border border-gray-700 rounded-md shadow-sm text-sm font-medium text-gray-300 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-gray-600"
-      >
-        {t('reset_button')}
-      </button>
-
-      {calculation.error && <div className="mt-4 text-red-400 text-center">{calculation.error}</div>}
-
-      {calculation.data && !calculation.error && (
-        <div className="mt-6 pt-6 border-t border-gray-800">
-          <h3 className="text-xl font-bold mb-4 text-center text-cyan-300">{t('results_title')}</h3>
-          <div className="space-y-3">
-            <div
-              className={`flex justify-between items-center p-3 rounded-md ${
-                calculation.data.netPnl >= 0 ? 'bg-green-500/10' : 'bg-red-500/10'
-              }`}
-            >
-              <span className="font-semibold text-gray-300">{t('pnl')}</span>
-              <span
-                className={`font-bold text-lg ${
-                  calculation.data.netPnl >= 0 ? 'text-green-400' : 'text-red-400'
-                }`}
-              >
-                {formatCurrency(calculation.data.netPnl)}
-              </span>
-            </div>
-            <div
-              className={`flex justify-between items-center p-3 rounded-md ${
-                calculation.data.roi >= 0 ? 'bg-green-500/10' : 'bg-red-500/10'
-              }`}
-            >
-              <span className="font-semibold text-gray-300">{t('roi')}</span>
-              <span
-                className={`font-bold text-lg ${
-                  calculation.data.roi >= 0 ? 'text-green-400' : 'text-red-400'
-                }`}
-              >
-                {formatPercentage(calculation.data.roi)}%
-              </span>
-            </div>
-            <div className="flex justify-between p-3 bg-gray-900/50 rounded-md">
-              <span className="font-semibold text-gray-400">{t('fees')}</span>
-              <span className="text-gray-300">{formatCurrency(calculation.data.totalFees)}</span>
-            </div>
-            <div className="flex justify-between p-3 bg-gray-900/50 rounded-md">
-              <span className="font-semibold text-gray-400">{t('total_value')}</span>
-              <span className="text-gray-300">{formatCurrency(calculation.data.totalValue)}</span>
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
+    </section>
   );
 };
-
 export default Calculator;
