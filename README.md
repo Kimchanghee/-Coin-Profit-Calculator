@@ -29,12 +29,8 @@ App runs at `http://localhost:5173`.
 Optional variables:
 
 ```env
-# Gemini (optional)
-GEMINI_API_KEY=
-
-# Google Analytics (optional)
+# Optional extra GA4 component loader
 VITE_GA_MEASUREMENT_ID=
-
 ```
 
 The app does not ship popup, redirect, social bar, anchor, referral banner, or third-party display network scripts.
@@ -43,8 +39,9 @@ The app does not ship popup, redirect, social bar, anchor, referral banner, or t
 
 ```bash
 npm run typecheck
-npm run check
+npm run smoke:calculator
 npm run build
+npm run build:cloudflare
 npm run preview
 ```
 
@@ -53,11 +50,13 @@ Build output is generated in `dist/`.
 ## Cloudflare static assets
 
 1. Install from the lockfile with `npm ci --ignore-scripts`.
-2. Run the typecheck and Vite build.
-3. Upload the contents of `dist/` as the Worker static-assets package.
+2. Run `npm run build:cloudflare`.
+3. Upload `../releases/profitcalc-restored.zip` through the Worker static-assets dashboard.
 4. Keep Cloudflare's asset handling on a genuine 404 mode rather than SPA fallback.
 
-The build includes `_headers`, `_redirects`, and `404.html`. During restoration QA it deliberately ships `X-Robots-Tag: noindex` and `robots.txt` with `Disallow: /`.
+`build:cloudflare` runs typecheck, calculator smoke tests, Vite, and the ZIP packager. It enforces the successful 17-file layout: simplified `_headers`, no `_redirects`, and no `dist/` wrapper. Configure the www-to-apex redirect separately at the Cloudflare edge.
+
+During restoration QA the package deliberately ships `X-Robots-Tag: noindex` and `robots.txt` with `Disallow: /`.
 
 ## SEO, GEO, and AEO
 
@@ -69,8 +68,8 @@ The build includes `_headers`, `_redirects`, and `404.html`. During restoration 
 ## User Experience
 
 - Calculator controls and results are directly accessible without ad interstitials.
-- `public/ads.txt` and the original inline sponsored slot are preserved as they existed in the source repository.
-- No new ad network, paid service, redirect ad, or trading action is added by the Cloudflare migration.
+- The inactive inline sponsored component remains in source history but is not mounted or included in the active app bundle.
+- No active ad slot, new ad network, paid service, redirect ad, or trading action is added by the Cloudflare migration.
 
 ## Project Structure
 

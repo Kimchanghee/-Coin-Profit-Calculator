@@ -10,7 +10,9 @@
     "dev": "vite",
     "typecheck": "tsc --noEmit",
     "check": "npm run typecheck && npm run build",
+    "smoke:calculator": "node ./scripts/smoke-calculator.mjs",
     "build": "vite build",
+    "build:cloudflare": "node ./scripts/build-cloudflare.mjs",
     "preview": "vite preview"
   },
   "dependencies": {

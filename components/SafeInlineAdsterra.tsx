@@ -1,4 +1,4 @@
-import React, { useEffect, useId, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { trackEvent } from '../utils/analytics';
 
 const RECTANGLE_KEY = '8c9983d2e443c2e7b96b5a9064f7455e';
@@ -12,7 +12,6 @@ const buildSrcDoc = (key: string) =>
 
 const SafeInlineSponsored: React.FC = () => {
   const hostRef = useRef<HTMLDivElement>(null);
-  const uniqueId = useId().replace(/:/g, '');
   const [shouldLoad, setShouldLoad] = useState(true);
   const srcDoc = useMemo(() => buildSrcDoc(RECTANGLE_KEY), []);
 
@@ -55,7 +54,7 @@ const SafeInlineSponsored: React.FC = () => {
       <div className="flex min-h-[250px] items-center justify-center overflow-hidden">
         {shouldLoad && (
           <iframe
-            title={`profitcalc-safe-inline-adsterra-${uniqueId}`}
+            title="Advertisement"
             width="300"
             height="250"
             scrolling="no"

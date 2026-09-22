@@ -10,8 +10,8 @@ A corrected dashboard-oriented package was rebuilt at:
 
 `D:\웹 수익 자동화\releases\profitcalc-restored.zip`
 
-- Size: 100,574 bytes
-- SHA-256: `DEA77EDBDC3F2A14D17A5525FD573A54A8FF92BD11C6A5147C549334AD5D9DF5`
+- Final size: 100,001 bytes
+- Final SHA-256: `9FCD03EA30A32B6708DEC52C2EFE2CF59A996A3A0824F1AB0DDE6A571709BB51`
 - Entries: 17
 
 ## Original versus accepted CalcZen container
@@ -37,10 +37,10 @@ The original ProfitCalc archive also opened and extracted successfully through .
 
 ## Compatibility changes in the corrected upload ZIP
 
-The tested application output in `dist/` was left untouched.
+The compatibility layout is now part of the source build rather than a one-off staging transformation.
 
-- All 16 normal application/static files are byte-identical to `dist/`.
-- `_redirects` is omitted from the upload ZIP. The parent should configure the www-to-apex redirect separately at Cloudflare.
+- All 17 ZIP entries are byte-identical to the final tested `dist/`.
+- `_redirects` is absent from both `public/` and the generated ZIP. The parent should configure the www-to-apex redirect separately at Cloudflare.
 - `_headers` remains UTF-8 without BOM and LF-only, but its route blocks are limited to the simple style already accepted in CalcZen:
   - global `/*` security and noindex headers
   - `/assets/*` immutable cache headers
@@ -48,7 +48,9 @@ The tested application output in `dist/` was left untouched.
 - The unique `/*.html` cache glob from the failed package was removed.
 - The archive was rebuilt with the same .NET `ZipFile.CreateFromDirectory` conventions observed in CalcZen.
 
-These changes target the remaining plausible dashboard package-parser difference. They do not change the calculator JavaScript, CSS, HTML pages, guides, translations, 404 page, robots lock, sitemap, verification files, analytics tag, or existing sponsored component.
+These compatibility changes targeted the remaining plausible dashboard package-parser difference. The user subsequently reported that deployment `f7cbab54` succeeded with the corrected 17-file layout.
+
+The later visible-QA fix updates the Korean disclaimer and required-fields text, removes duplicated unit suffixes, and removes the inactive sponsored component from the active bundle. Calculator equations, controls, other locale files, routes, 404 page, robots lock, sitemap, verification files, and analytics behavior remain preserved.
 
 ## Corrected archive verification
 
@@ -57,8 +59,8 @@ These changes target the remaining plausible dashboard package-parser difference
 - No absolute paths, `..` segments, backslashes, directory entries, comments, extra fields, or trailing bytes.
 - Native `tar -tf` accepted the archive.
 - Extraction succeeded.
-- 16/16 normal files matched the tested `dist/` by SHA-256.
+- 17/17 files matched the final tested `dist/` by SHA-256.
 - `_headers` is 447 bytes, UTF-8 without BOM, LF-only.
 - `_redirects` is absent.
 
-No browser or deployment action was performed.
+`build:cloudflare` now runs typecheck, arithmetic/UI smoke checks, Vite, control-file validation, and the .NET ZIP packager. No browser or deployment action was performed by this agent.

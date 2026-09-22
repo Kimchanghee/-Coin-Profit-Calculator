@@ -184,7 +184,7 @@ const Calculator: React.FC<CalculatorProps> = ({ t, localeCode }) => {
 
         <div>
           <label htmlFor="leverage" className="block text-sm font-medium text-gray-400">
-            {t('leverage')} (x)
+            {t('leverage')}
           </label>
           <input
             type="number"
@@ -197,7 +197,7 @@ const Calculator: React.FC<CalculatorProps> = ({ t, localeCode }) => {
 
         <div>
           <label htmlFor="investment" className="block text-sm font-medium text-gray-400">
-            {t('investment')} ($)
+            {t('investment')}
           </label>
           <input
             type="number"
@@ -210,7 +210,7 @@ const Calculator: React.FC<CalculatorProps> = ({ t, localeCode }) => {
 
         <div className="md:col-span-2">
           <label htmlFor="fee" className="block text-sm font-medium text-gray-400">
-            {t('fee_rate')} (%)
+            {t('fee_rate')}
           </label>
           <input
             type="number"
