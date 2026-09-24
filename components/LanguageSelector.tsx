@@ -11,10 +11,12 @@ interface LanguageSelectorProps {
 const LanguageSelector: React.FC<LanguageSelectorProps> = ({ supportedLanguages, currentLanguageCode, onSelectLanguage }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
 
   const handleSelect = (code: string) => {
     onSelectLanguage(code);
     setIsOpen(false);
+    toggleRef.current?.focus();
   };
 
   useEffect(() => {
@@ -30,8 +32,19 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({ supportedLanguages,
   const currentLanguageName = supportedLanguages.find(lang => lang.code === currentLanguageCode)?.name;
 
   return (
-    <div className="relative" ref={dropdownRef}>
-      <button 
+    <div className="relative" ref={dropdownRef} onKeyDown={event => {
+      if (event.key === 'Escape' && isOpen) {
+        event.stopPropagation();
+        setIsOpen(false);
+        toggleRef.current?.focus();
+      }
+    }}>
+      <button
+        ref={toggleRef}
+        type="button"
+        aria-label={`Language: ${currentLanguageName ?? currentLanguageCode}`}
+        aria-expanded={isOpen}
+        aria-controls="profitcalc-languages"
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center space-x-2 bg-gray-800 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200 border border-gray-700"
       >
@@ -41,7 +54,7 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({ supportedLanguages,
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg z-20 overflow-hidden border border-gray-700">
+        <div id="profitcalc-languages" className="absolute right-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg z-20 overflow-hidden border border-gray-700">
           <ul className="py-1">
             {supportedLanguages.map(lang => (
               <li key={lang.code}>
