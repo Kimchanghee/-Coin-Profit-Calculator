@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://profitcalc.tech/</loc></url>
-  <url><loc>https://profitcalc.tech/guides/crypto-futures-profit-formula</loc></url>
-  <url><loc>https://profitcalc.tech/guides/leverage-roi-calculator</loc></url>
-  <url><loc>https://profitcalc.tech/guides/long-short-futures-pnl</loc></url>
-  <url><loc>https://profitcalc.tech/guides/trading-fee-impact</loc></url>
-  <url><loc>https://profitcalc.tech/about</loc></url>
-  <url><loc>https://profitcalc.tech/methodology</loc></url>
+  <url><loc>https://profitcalc.tech/</loc><lastmod>2026-10-13</lastmod></url>
+  <url><loc>https://profitcalc.tech/guides/crypto-futures-profit-formula</loc><lastmod>2026-10-13</lastmod></url>
+  <url><loc>https://profitcalc.tech/guides/leverage-roi-calculator</loc><lastmod>2026-10-13</lastmod></url>
+  <url><loc>https://profitcalc.tech/guides/long-short-futures-pnl</loc><lastmod>2026-10-13</lastmod></url>
+  <url><loc>https://profitcalc.tech/guides/trading-fee-impact</loc><lastmod>2026-10-13</lastmod></url>
+  <url><loc>https://profitcalc.tech/about</loc><lastmod>2026-10-13</lastmod></url>
+  <url><loc>https://profitcalc.tech/methodology</loc><lastmod>2026-10-13</lastmod></url>
+  <url><loc>https://profitcalc.tech/privacy</loc><lastmod>2026-10-13</lastmod></url>
+  <url><loc>https://profitcalc.tech/terms</loc><lastmod>2026-10-13</lastmod></url>
 </urlset>

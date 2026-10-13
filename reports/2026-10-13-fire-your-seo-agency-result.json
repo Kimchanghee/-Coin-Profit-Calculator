@@ -1,0 +1,52 @@
+{
+  "domain": "profitcalc.tech",
+  "skill": {
+    "repo": "leopard627/fire-your-seo-agency",
+    "commit": "5f7249f"
+  },
+  "before": {
+    "SEO": "OK",
+    "AEO": "WARN",
+    "GEO": "WARN",
+    "LLMO": "FAIL",
+    "NEO": "FAIL"
+  },
+  "after_local_static_audit": {
+    "SEO": "OK",
+    "AEO": "OK",
+    "GEO": "WARN",
+    "LLMO": "OK",
+    "NEO": "WARN"
+  },
+  "changed": [
+    "New /privacy and /terms (disclaimer) pages, linked in nav/footer of all static pages and home",
+    "Organization+WebSite @id graph on all pages; AboutPage/WebPage/Article + BreadcrumbList; dateModified 2026-10-13",
+    "Guide titles/descriptions rewritten to <=160 chars, og/twitter tags added",
+    "sitemap: 9 URLs with lastmod; build-cloudflare.mjs scoped URL checks updated 7->9",
+    "robots.txt AI crawler policy; llms.txt markdown links, data policy, citation",
+    "Verified live site is indexable (no noindex meta/header on /, robots Allow /); discover.html and 404 remain noindex",
+    "skill installed at .agents/skills/fire-your-seo-agency"
+  ],
+  "not_done": [
+    {
+      "item": "Contact page",
+      "reason": "no published email on the site; not invented"
+    },
+    {
+      "item": "vite build, tsc, build:cloudflare, zip",
+      "reason": "native rollup hangs in this sandbox; build:cloudflare also needs pwsh. Verified via audit.mjs on public/ + index.html static server"
+    }
+  ],
+  "user_action_required": [
+    "Provide a contact email to add a Contact page",
+    "Run npm run build:cloudflare on a working machine and upload the zip",
+    "Register in Naver Search Advisor and Bing Webmaster Tools"
+  ],
+  "remeasure_on": "2026-10-27",
+  "measure_plan": [
+    "GSC impressions/clicks 28d",
+    "Naver Search Advisor",
+    "AI citation Q&A 5-10 queries (Perplexity/ChatGPT/Naver AI briefing)",
+    "AI crawler visits (Cloudflare bot analytics)"
+  ]
+}

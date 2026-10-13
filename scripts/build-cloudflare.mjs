@@ -52,17 +52,21 @@ const scopedUrls = [
   'https://profitcalc.tech/guides/trading-fee-impact',
   'https://profitcalc.tech/about',
   'https://profitcalc.tech/methodology',
+  'https://profitcalc.tech/privacy',
+  'https://profitcalc.tech/terms',
 ];
 const staticPages = [
   ['about.html', 'https://profitcalc.tech/about'],
   ['methodology.html', 'https://profitcalc.tech/methodology'],
+  ['privacy.html', 'https://profitcalc.tech/privacy'],
+  ['terms.html', 'https://profitcalc.tech/terms'],
   ['guides/crypto-futures-profit-formula.html', 'https://profitcalc.tech/guides/crypto-futures-profit-formula'],
   ['guides/leverage-roi-calculator.html', 'https://profitcalc.tech/guides/leverage-roi-calculator'],
   ['guides/long-short-futures-pnl.html', 'https://profitcalc.tech/guides/long-short-futures-pnl'],
   ['guides/trading-fee-impact.html', 'https://profitcalc.tech/guides/trading-fee-impact'],
 ];
 const sitemapUrls = [...fs.readFileSync(sitemap, 'utf8').matchAll(/<loc>(.*?)<\/loc>/g)].map(match => match[1]);
-if (JSON.stringify(sitemapUrls) !== JSON.stringify(scopedUrls)) throw new Error('dist sitemap is not the exact seven final clean URLs.');
+if (JSON.stringify(sitemapUrls) !== JSON.stringify(scopedUrls)) throw new Error('dist sitemap is not the exact nine final clean URLs.');
 for (const file of ['index.html', ...staticPages.map(([file]) => file)]) {
   if (/<meta[^>]+noindex/i.test(fs.readFileSync(path.join(dist, file), 'utf8'))) throw new Error(`dist indexable page contains noindex: ${file}`);
 }
@@ -82,4 +86,4 @@ const packager = path.join(repoRoot, 'scripts', 'package-cloudflare.ps1');
 const shell = process.platform === 'win32' ? 'pwsh.exe' : 'pwsh';
 run(shell, ['-NoLogo', '-NoProfile', '-NonInteractive', '-File', packager, '-DistPath', dist, '-ZipPath', releaseZip], 'CLOUDFLARE PACKAGE');
 
-console.log('\nCloudflare build completed with seven final clean sitemap URLs, six self-canonical static pages, scoped discover noindex headers, and the 404 HTML meta safeguard.');
+console.log('\nCloudflare build completed with nine final clean sitemap URLs, six self-canonical static pages, scoped discover noindex headers, and the 404 HTML meta safeguard.');

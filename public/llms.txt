@@ -1,15 +1,23 @@
 # ProfitCalc
 
-Linear USD futures scenario calculator. Crawling and indexing are scoped to the seven URLs listed below and in sitemap.xml. The discovery map and genuine 404 response remain noindex. This file does not guarantee search visibility or AI citation.
+Linear USD futures scenario calculator. Crawling and indexing are scoped to the nine URLs listed below and in sitemap.xml. The discovery map and genuine 404 response remain noindex. This file does not guarantee search visibility or AI citation.
 
-- https://profitcalc.tech/
-- https://profitcalc.tech/guides/crypto-futures-profit-formula
-- https://profitcalc.tech/guides/leverage-roi-calculator
-- https://profitcalc.tech/guides/long-short-futures-pnl
-- https://profitcalc.tech/guides/trading-fee-impact
-- https://profitcalc.tech/about
-- https://profitcalc.tech/methodology
+- [Calculator](https://profitcalc.tech/): Futures PnL, fee and ROI calculator
+- [Crypto futures profit formula](https://profitcalc.tech/guides/crypto-futures-profit-formula): Formula and worked example
+- [Leverage and ROI](https://profitcalc.tech/guides/leverage-roi-calculator): How leverage changes ROI
+- [Long vs short PnL](https://profitcalc.tech/guides/long-short-futures-pnl): Direction-specific gross PnL
+- [Trading fees and payback](https://profitcalc.tech/guides/trading-fee-impact): Fee legs and hypothetical payback
+- [About](https://profitcalc.tech/about): What the tool is and is not
+- [Methodology](https://profitcalc.tech/methodology): Full formula set and limits
+- [Privacy](https://profitcalc.tech/privacy): Analytics and data handling
+- [Terms and disclaimer](https://profitcalc.tech/terms): Risk and model limits
 
 Let I be investment (initial margin), L leverage, E entry price, T target price, f fee percent / 100 and p enabled payback percent / 100 (otherwise 0). Position value N = I × L; units Q = N / E; closing value C = Q × T. Gross PnL is C − N for long or N − C for short. Entry fee = N × f; exit fee = C × f; gross fees = entry fee + exit fee; payback = gross fees × p; total fees = gross fees − payback. Net PnL = gross PnL − total fees; ROI = net PnL / I × 100%; final equity = I + net PnL.
 
 This is a linear USD-denominated model with fixed units and exact entry and exit prices, not an exchange settlement engine. Funding, slippage, taxes, inverse contracts, maintenance margin and exchange-specific rules are not modeled. Final equity may be negative; no exchange loss cap is applied. Payback is a hypothetical reduction of both trading fees, not a guaranteed rebate. This is information, not financial advice.
+
+
+## Data policy and citation
+- Source of figures: the formulas above, implemented in the calculator code; worked examples on the guide pages are computed from the same formulas. No market data feed is used.
+- Analytics: Google Analytics is loaded on the calculator page (see /privacy).
+- Citation: cite profitcalc.tech and the guide URL for the formula or example used.

@@ -20,7 +20,7 @@
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://profitcalc.tech/" />
-    <meta property="og:title" content="Crypto Futures Profit Calculator" />
+    <meta property="og:title" content="ProfitCalc | Futures PnL, fees and ROI calculator" />
     <meta
       property="og:description"
       content="Calculate leveraged crypto futures PnL, ROI, fees, and for long and short trades."
@@ -29,7 +29,7 @@
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://profitcalc.tech/" />
-    <meta name="twitter:title" content="Crypto Futures Profit Calculator" />
+    <meta name="twitter:title" content="ProfitCalc | Futures PnL, fees and ROI calculator" />
     <meta
       name="twitter:description"
       content="Calculate leveraged crypto futures PnL, ROI, fees, and for long and short trades."
@@ -38,8 +38,13 @@
     <script type="application/ld+json" id="structured-data">{
   "@context": "https://schema.org",
   "@graph": [
+    {"@type":"Organization","@id":"https://profitcalc.tech/#organization","name":"ProfitCalc","url":"https://profitcalc.tech/"},
+    {"@type":"WebSite","@id":"https://profitcalc.tech/#website","url":"https://profitcalc.tech/","name":"ProfitCalc","inLanguage":"en","publisher":{"@id":"https://profitcalc.tech/#organization"}},
     {
       "@type": "WebApplication",
+      "@id": "https://profitcalc.tech/#app",
+      "publisher": {"@id": "https://profitcalc.tech/#organization"},
+      "dateModified": "2026-10-13",
       "name": "ProfitCalc",
       "url": "https://profitcalc.tech/",
       "applicationCategory": "FinanceApplication",
@@ -109,7 +114,7 @@
   <body class="bg-black">
     <div id="root"></div>
 <noscript>
-<section class="semantic-copy" lang="en" aria-labelledby="method-summary"><h1 id="method-summary">ProfitCalc: formulas and assumptions</h1><p>Estimate long or short futures gross PnL, net PnL, ROI, trading fees and final equity from your own inputs. Enable JavaScript to use the interactive calculator. Values are calculated locally; analytics may still be loaded.</p><h2>What formulas does ProfitCalc use?</h2><p>Let I be investment (initial margin), L leverage, E entry price, T target price, f fee percent / 100 and p enabled payback percent / 100 (otherwise 0). Position value N = I × L; units Q = N / E; closing value C = Q × T. Gross PnL is C − N for long or N − C for short. Entry fee = N × f; exit fee = C × f; gross fees = entry fee + exit fee; payback = gross fees × p; total fees = gross fees − payback. Net PnL = gross PnL − total fees; ROI = net PnL / I × 100%; final equity = I + net PnL.</p><h2>What are the limitations?</h2><p>This is a linear USD-denominated model with fixed units and exact entry and exit prices, not an exchange settlement engine. Funding, slippage, taxes, inverse contracts, maintenance margin and exchange-specific rules are not modeled. Final equity may be negative; no exchange loss cap is applied. Payback is a hypothetical reduction of both trading fees, not a guaranteed rebate. This is information, not financial advice.</p><h2>Which inputs are accepted?</h2><p>Entry, target, leverage and investment must be finite and greater than zero. Fee must be finite and nonnegative; no maximum fee or leverage is imposed. Enabled payback must be between 0% and 100%. Entry and target start blank. If both are blank, no result or error is shown; once either is entered, all required fields are checked. Reset restores blank prices, 10× leverage, $1,000 investment and 0.075% fee, disables payback and retains the selected direction. Derived position values, quantities, fees, PnL, ROI and equity must also remain finite; arithmetic overflow is rejected with a validation error.</p><h2>Worked examples</h2><p>For a long trade with E = $50,000, T = $55,000, I = $1,000, L = 10 and fee = 0.075%: N = $10,000, Q = 0.2, C = $11,000, gross PnL = $1,000, entry fee = $7.50, exit fee = $8.25, total fees = $15.75, net PnL = $984.25, ROI = 98.425% (displayed 98.43%) and final equity = $1,984.25. With 20% payback, fees become $12.60 and net PnL becomes $987.40. A short to $45,000 gives gross PnL $1,000, fees $14.25 and net PnL $985.75. A flat $50,000 exit gives gross PnL $0 and net PnL −$15.</p><nav aria-label="English calculation guides"><a href="/guides/crypto-futures-profit-formula">Crypto futures profit formula</a> <a href="/guides/leverage-roi-calculator">Leverage and ROI</a> <a href="/guides/long-short-futures-pnl">Long and short PnL</a> <a href="/guides/trading-fee-impact">Trading fee impact</a><a href="/about">About ProfitCalc</a><a href="/methodology">Methodology</a></nav></section>
+<section class="semantic-copy" lang="en" aria-labelledby="method-summary"><h1 id="method-summary">ProfitCalc: formulas and assumptions</h1><p>Estimate long or short futures gross PnL, net PnL, ROI, trading fees and final equity from your own inputs. Enable JavaScript to use the interactive calculator. Values are calculated locally; analytics may still be loaded.</p><h2>What formulas does ProfitCalc use?</h2><p>Let I be investment (initial margin), L leverage, E entry price, T target price, f fee percent / 100 and p enabled payback percent / 100 (otherwise 0). Position value N = I × L; units Q = N / E; closing value C = Q × T. Gross PnL is C − N for long or N − C for short. Entry fee = N × f; exit fee = C × f; gross fees = entry fee + exit fee; payback = gross fees × p; total fees = gross fees − payback. Net PnL = gross PnL − total fees; ROI = net PnL / I × 100%; final equity = I + net PnL.</p><h2>What are the limitations?</h2><p>This is a linear USD-denominated model with fixed units and exact entry and exit prices, not an exchange settlement engine. Funding, slippage, taxes, inverse contracts, maintenance margin and exchange-specific rules are not modeled. Final equity may be negative; no exchange loss cap is applied. Payback is a hypothetical reduction of both trading fees, not a guaranteed rebate. This is information, not financial advice.</p><h2>Which inputs are accepted?</h2><p>Entry, target, leverage and investment must be finite and greater than zero. Fee must be finite and nonnegative; no maximum fee or leverage is imposed. Enabled payback must be between 0% and 100%. Entry and target start blank. If both are blank, no result or error is shown; once either is entered, all required fields are checked. Reset restores blank prices, 10× leverage, $1,000 investment and 0.075% fee, disables payback and retains the selected direction. Derived position values, quantities, fees, PnL, ROI and equity must also remain finite; arithmetic overflow is rejected with a validation error.</p><h2>Worked examples</h2><p>For a long trade with E = $50,000, T = $55,000, I = $1,000, L = 10 and fee = 0.075%: N = $10,000, Q = 0.2, C = $11,000, gross PnL = $1,000, entry fee = $7.50, exit fee = $8.25, total fees = $15.75, net PnL = $984.25, ROI = 98.425% (displayed 98.43%) and final equity = $1,984.25. With 20% payback, fees become $12.60 and net PnL becomes $987.40. A short to $45,000 gives gross PnL $1,000, fees $14.25 and net PnL $985.75. A flat $50,000 exit gives gross PnL $0 and net PnL −$15.</p><nav aria-label="English calculation guides"><a href="/guides/crypto-futures-profit-formula">Crypto futures profit formula</a> <a href="/guides/leverage-roi-calculator">Leverage and ROI</a> <a href="/guides/long-short-futures-pnl">Long and short PnL</a> <a href="/guides/trading-fee-impact">Trading fee impact</a><a href="/about">About ProfitCalc</a><a href="/methodology">Methodology</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a></nav></section>
 </noscript>
     <script type="module" src="/index.tsx"></script>
   </body>
