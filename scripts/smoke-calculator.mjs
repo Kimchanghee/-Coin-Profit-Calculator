@@ -69,17 +69,21 @@ const scopedUrls = [
   'https://profitcalc.tech/guides/trading-fee-impact',
   'https://profitcalc.tech/about',
   'https://profitcalc.tech/methodology',
+  'https://profitcalc.tech/privacy',
+  'https://profitcalc.tech/terms',
 ];
 const staticPages = [
   ['public/about.html','https://profitcalc.tech/about'],
   ['public/methodology.html','https://profitcalc.tech/methodology'],
+  ['public/privacy.html','https://profitcalc.tech/privacy'],
+  ['public/terms.html','https://profitcalc.tech/terms'],
   ['public/guides/crypto-futures-profit-formula.html','https://profitcalc.tech/guides/crypto-futures-profit-formula'],
   ['public/guides/leverage-roi-calculator.html','https://profitcalc.tech/guides/leverage-roi-calculator'],
   ['public/guides/long-short-futures-pnl.html','https://profitcalc.tech/guides/long-short-futures-pnl'],
   ['public/guides/trading-fee-impact.html','https://profitcalc.tech/guides/trading-fee-impact'],
 ];
 const indexableFiles = ['index.html',...staticPages.map(([file])=>file)];
-if(indexableFiles.length!==7)throw new Error('Indexable page count regression');
+if(indexableFiles.length!==9)throw new Error('Indexable page count regression');
 for(const file of indexableFiles){const text=fs.readFileSync(path.join(repoRoot,file),'utf8');if(/<meta[^>]+noindex/i.test(text)||/liquidat/i.test(text))throw new Error('Indexability/claim regression: '+file);}
 for(const [file,url] of staticPages){const text=fs.readFileSync(path.join(repoRoot,file),'utf8');for(const tag of [`<link rel="canonical" href="${url}">`,`<meta property="og:url" content="${url}">`,`<meta name="twitter:url" content="${url}">`])if(!text.includes(tag))throw new Error('Clean self URL metadata missing: '+file);if(/href="\/(?:about|methodology|guides\/[^"?#]+)\.html"/i.test(text))throw new Error('Redirecting internal link remains: '+file);}
 if((index.match(/<link rel="canonical" href="https:\/\/profitcalc\.tech\/" \/>/g)||[]).length!==1)throw new Error('Homepage root canonical changed');
@@ -89,7 +93,7 @@ if(translationHookSource.includes('link[rel="canonical"]')||translationHookSourc
 if(!translationHookSource.includes('buildLocalizedUrl')||!translationHookSource.includes('replaceState'))throw new Error('Ten-locale query UX was removed');
 const sitemap=fs.readFileSync(path.join(repoRoot,'public/sitemap.xml'),'utf8');
 const sitemapUrls=[...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(match=>match[1]);
-if(JSON.stringify(sitemapUrls)!==JSON.stringify(scopedUrls))throw new Error('Sitemap must contain exactly the seven scoped URLs');
+if(JSON.stringify(sitemapUrls)!==JSON.stringify(scopedUrls))throw new Error('Sitemap must contain exactly the nine scoped URLs');
 for(const file of ['public/discover.html','public/404.html']){const text=fs.readFileSync(path.join(repoRoot,file),'utf8');if(!/<meta name="robots" content="[^"]*noindex/i.test(text))throw new Error('Noindex missing: '+file);}
 if(fs.existsSync(path.join(repoRoot,'public/_redirects')))throw new Error('Redirect file added');
 const headers=fs.readFileSync(path.join(repoRoot,'public/_headers'),'utf8');
@@ -114,7 +118,7 @@ for (const [name, actual, expected] of cases) {
   }
 }
 
-console.log('Calculator smoke passed: arithmetic, 10 locales, matching FAQ, seven final clean sitemap URLs, six self-canonical static pages, scoped discover headers, and 404 meta safeguard.');
+console.log('Calculator smoke passed: arithmetic, 10 locales, matching FAQ, nine final clean sitemap URLs, eight self-canonical static pages, scoped discover headers, and 404 meta safeguard.');
 
 // Review regression cases: all inputs are finite, but intermediate arithmetic is not.
 for (const args of [

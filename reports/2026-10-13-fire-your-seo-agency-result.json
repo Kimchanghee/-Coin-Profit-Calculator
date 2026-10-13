@@ -48,5 +48,125 @@
     "Naver Search Advisor",
     "AI citation Q&A 5-10 queries (Perplexity/ChatGPT/Naver AI briefing)",
     "AI crawler visits (Cloudflare bot analytics)"
-  ]
+  ],
+  "real_build_audit": {
+    "date": "2026-10-13",
+    "note": "real vite build output served locally (127.0.0.1) and audited with audit.mjs; live re-audit still required after upload",
+    "lanes": {
+      "SEO": "OK",
+      "AEO": "OK",
+      "GEO": "OK",
+      "LLMO": "OK",
+      "NEO": "WARN"
+    },
+    "site": {
+      "robots": true,
+      "robotsSitemapRef": true,
+      "robotsDisallowAll": false,
+      "aiBotsExplicit": [
+        "GPTBot",
+        "OAI-SearchBot",
+        "ChatGPT-User",
+        "ClaudeBot",
+        "Claude-SearchBot",
+        "Claude-User",
+        "PerplexityBot",
+        "Perplexity-User",
+        "Google-Extended",
+        "Yeti",
+        "Bingbot"
+      ],
+      "sitemap": true,
+      "sitemapUrls": 9,
+      "llmsTxt": true,
+      "llmsLinks": 9,
+      "missingPageStatus": 404
+    },
+    "pages": {
+      "/": {
+        "status": 200,
+        "noindex": false,
+        "titleLen": 49,
+        "descLen": 155,
+        "h1": 1,
+        "bodyChars": 2506,
+        "jsonLd": [
+          "Organization",
+          "WebSite",
+          "WebApplication",
+          "FAQPage"
+        ],
+        "faq": {
+          "total": 3,
+          "visible": 3
+        },
+        "canonical": "https://profitcalc.tech/"
+      },
+      "/about": {
+        "status": 200,
+        "noindex": false,
+        "titleLen": 53,
+        "descLen": 139,
+        "h1": 1,
+        "bodyChars": 1129,
+        "jsonLd": [
+          "Organization",
+          "WebSite",
+          "AboutPage",
+          "BreadcrumbList"
+        ],
+        "faq": null,
+        "canonical": "https://profitcalc.tech/about"
+      },
+      "/privacy": {
+        "status": 200,
+        "noindex": false,
+        "titleLen": 27,
+        "descLen": 152,
+        "h1": 1,
+        "bodyChars": 1296,
+        "jsonLd": [
+          "Organization",
+          "WebSite",
+          "WebPage",
+          "BreadcrumbList"
+        ],
+        "faq": null,
+        "canonical": "https://profitcalc.tech/privacy"
+      },
+      "/terms": {
+        "status": 200,
+        "noindex": false,
+        "titleLen": 40,
+        "descLen": 144,
+        "h1": 1,
+        "bodyChars": 1235,
+        "jsonLd": [
+          "Organization",
+          "WebSite",
+          "WebPage",
+          "BreadcrumbList"
+        ],
+        "faq": null,
+        "canonical": "https://profitcalc.tech/terms"
+      },
+      "/guides/trading-fee-impact": {
+        "status": 200,
+        "noindex": false,
+        "titleLen": 61,
+        "descLen": 144,
+        "h1": 1,
+        "bodyChars": 3678,
+        "jsonLd": [
+          "Organization",
+          "WebSite",
+          "Article",
+          "BreadcrumbList"
+        ],
+        "faq": null,
+        "canonical": "https://profitcalc.tech/guides/trading-fee-impact"
+      }
+    },
+    "release_zip": "~/seo-tools/releases/profitcalc.tech.zip"
+  }
 }
